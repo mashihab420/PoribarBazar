@@ -30,7 +30,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray"
+            android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -40,7 +40,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="32dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -95,7 +95,7 @@
                 android:layout_marginLeft="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Create Account"
+                android:text="Sign Up"
                 android:textSize="@dimen/nav_item_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
