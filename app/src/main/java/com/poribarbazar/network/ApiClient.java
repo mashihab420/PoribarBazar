@@ -1,28 +1,45 @@
 package com.poribarbazar.network;
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static Retrofit retrofit;
-  private static final String baseURL = "https://shihab.techdevbd.com/sokol_bazar/";
 
+    private static final String BASE_URL = "http://poribarbazar.com/"; //IP of your localhost or live server
 
-    private static ApiInterface apiInterface;
+    private static Retrofit retrofit = null;
 
-    public static synchronized ApiInterface getApiInterface(){
-        if (retrofit==null)
-        {
-            retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(baseURL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    private static Gson gson = new GsonBuilder()
+            .setLenient()
+            .create();
+
+    private ApiClient() {} // So that nobody can create an object with constructor
+
+    public static synchronized Retrofit getClient() {
+        if (retrofit==null) {
+
+            int timeOut = 5 * 60;
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(timeOut, TimeUnit.SECONDS)
+                    .writeTimeout(timeOut, TimeUnit.SECONDS)
+                    .readTimeout(timeOut, TimeUnit.SECONDS)
                     .build();
-            apiInterface = retrofit.create(ApiInterface.class);
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .client(client)
+                    .build();
         }
-        return apiInterface;
+        return retrofit;
     }
 
 }
