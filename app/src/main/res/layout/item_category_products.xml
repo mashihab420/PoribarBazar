@@ -80,6 +80,15 @@
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/item_category_name" />
 
+           <ImageView
+               android:layout_width="45dp"
+               android:layout_height="1dp"
+               android:background="@drawable/line_design"
+               app:layout_constraintBottom_toBottomOf="@+id/item_category_normal_price"
+               app:layout_constraintEnd_toEndOf="@+id/item_category_normal_price"
+               app:layout_constraintStart_toStartOf="@+id/item_category_normal_price"
+               app:layout_constraintTop_toTopOf="@+id/item_category_normal_price" />
+
            <TextView
                android:id="@+id/item_category_final_price"
                android:layout_width="wrap_content"
