@@ -24,7 +24,7 @@ private FragmentHomeBinding binding;
 EditText editTextsearch;
 
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -35,13 +35,15 @@ EditText editTextsearch;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (container!=null)
+        binding=FragmentHomeBinding.inflate(inflater,container,false);
+        View view=binding.getRoot();
+
+        /*if (container!=null)
         {
 
             container.removeAllViews();
 
-        }
-       View view = inflater.inflate(R.layout.fragment_home, container, false);
+        }*/
 
 
 
