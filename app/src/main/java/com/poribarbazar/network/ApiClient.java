@@ -13,30 +13,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://poribarbazar.com/"; //IP of your localhost or live server
-
     private static Retrofit retrofit = null;
+
 
     private static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
 
-    private ApiClient() {} // So that nobody can create an object with constructor
 
-    public static synchronized Retrofit getClient() {
-        if (retrofit==null) {
+    private ApiClient() {}
 
-            int timeOut = 5 * 60;
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(timeOut, TimeUnit.SECONDS)
-                    .writeTimeout(timeOut, TimeUnit.SECONDS)
-                    .readTimeout(timeOut, TimeUnit.SECONDS)
-                    .build();
+
+
+    public static synchronized Retrofit instance(){
+        if (retrofit==null){
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client)
+
+                    .baseUrl("http://poribarbazar.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;

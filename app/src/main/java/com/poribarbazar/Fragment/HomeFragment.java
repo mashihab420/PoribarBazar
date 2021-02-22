@@ -53,21 +53,16 @@ ArrayList<ModelProducts>products;
         binding= FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
 
-        /*if (container!=null)
-        {
-
-            container.removeAllViews();
-
-        }*/
-
+        Retrofit instance =  ApiClient.instance();
+       // Retrofit instance = ApiClient.getClient();
+        apiInterface =instance.create(ApiInterface.class);
 
         products=new ArrayList<>();
 
         adapter_item_category = new Adapter_item_category(products,getContext());
         binding.recylerFlashSell.setLayoutManager(new GridLayoutManager(getContext(),1));
 
-        Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
+
 
 
         get_flash_sell();
@@ -85,14 +80,14 @@ ArrayList<ModelProducts>products;
             @Override
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
 
-                Toast.makeText(getActivity(), "all data ase nai", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "all data ase nai", Toast.LENGTH_LONG).show();
 
 
             }
 
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
-                Toast.makeText(getActivity(), "failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "failed", Toast.LENGTH_LONG).show();
             }
         });
 
