@@ -44,7 +44,7 @@ public class ModelProducts {
     private String description;
     @SerializedName("reviews")
     @Expose
-    private List<ModelReview> reviews = null;
+    private List<Review> reviews = null;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -151,35 +151,86 @@ public class ModelProducts {
         this.description = description;
     }
 
-    public List<ModelReview> getReviews() {
-        return reviews;
-    }
 
-    public void setReviews(List<ModelReview> reviews) {
-        this.reviews = reviews;
-    }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
+    private class Review {
+        @SerializedName("_id")
+        @Expose
+        private String id;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("rating")
+        @Expose
+        private Integer rating;
+        @SerializedName("comment")
+        @Expose
+        private String comment;
+        @SerializedName("user")
+        @Expose
+        private String user;
+        @SerializedName("createdAt")
+        @Expose
+        private String createdAt;
+        @SerializedName("updatedAt")
+        @Expose
+        private String updatedAt;
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+        public String getId() {
+            return id;
+        }
 
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
+        public void setId(String id) {
+            this.id = id;
+        }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public Integer getV() {
-        return v;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    public void setV(Integer v) {
-        this.v = v;
+        public Integer getRating() {
+            return rating;
+        }
+
+        public void setRating(Integer rating) {
+            this.rating = rating;
+        }
+
+        public String getComment() {
+            return comment;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public void setUser(String user) {
+            this.user = user;
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
+
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
     }
 }

@@ -1,7 +1,6 @@
 package com.poribarbazar.network;
 
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -13,28 +12,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static Retrofit retrofit = null;
+    private static final String BASE_URL = "http://poribarbazar.com/api/products/"; //IP of your localhost or live server
 
+    private static Retrofit retrofit = null;
 
     private static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
 
+    private ApiClient() {} // So that nobody can create an object with constructor
 
-    private ApiClient() {}
+    public static synchronized Retrofit getClient() {
+        if (retrofit==null) {
 
-
-
-    public static synchronized Retrofit instance(){
-        if (retrofit==null){
+            int timeOut = 5 * 60;
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(timeOut, TimeUnit.SECONDS)
+                    .writeTimeout(timeOut, TimeUnit.SECONDS)
+                    .readTimeout(timeOut, TimeUnit.SECONDS)
+                    .build();
 
             retrofit = new Retrofit.Builder()
-
-                    .baseUrl("http://poribarbazar.com/")
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .client(client)
                     .build();
         }
         return retrofit;
     }
-
 }

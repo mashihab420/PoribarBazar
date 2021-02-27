@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.databinding.FragmentHomeBinding;
 import com.poribarbazar.model.ModelProducts;
+import com.poribarbazar.model.Test;
 import com.poribarbazar.network.ApiClient;
 import com.poribarbazar.network.ApiInterface;
 
@@ -53,14 +54,10 @@ ArrayList<ModelProducts>products;
         binding= FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
 
-        Retrofit instance =  ApiClient.instance();
-       // Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
 
         products=new ArrayList<>();
-
-        adapter_item_category = new Adapter_item_category(products,getContext());
-        binding.recylerFlashSell.setLayoutManager(new GridLayoutManager(getContext(),1));
+        adapter_item_category = new Adapter_item_category(products,getActivity());
+        binding.recylerFlashSell.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
 
 
@@ -75,21 +72,61 @@ ArrayList<ModelProducts>products;
 
     public void get_flash_sell(){
 
-
+//todo get All product
+        Retrofit instance = ApiClient.getClient();
+        apiInterface =instance.create(ApiInterface.class);
+        Toast.makeText(getActivity(), "duke nai", Toast.LENGTH_SHORT).show();
         apiInterface.getCategories().enqueue(new Callback<List<ModelProducts>>() {
             @Override
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
+                binding.textView.setText("The Data is:  "+response.body().get(2).getName());
 
-                Toast.makeText(getContext(), "all data ase nai", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "The Data is:  "+response.body().get(2).getName(), Toast.LENGTH_SHORT).show();
+             //  Toast.makeText(getContext(), "The Data is:  "+response.body().get(2).getName(), Toast.LENGTH_LONG).show();
 
 
             }
 
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+                binding.textView.setText("failed");
                 Toast.makeText(getContext(), "failed", Toast.LENGTH_LONG).show();
+
             }
         });
+
+/*
+        Test test = new Test();
+        test.setName("shihab");
+        test.setPhone("01432192612");
+        test.setPassword("seatssaed");
+
+        apiInterface.createuser(test).enqueue(new Callback<Test>() {
+            @Override
+            public void onResponse(Call<Test> call, Response<Test> response) {
+
+                try {
+                    if(response.body().getMessage() !=null){
+                        Toast.makeText(getContext(), "User Already exist", Toast.LENGTH_LONG).show();
+                        binding.textView.setText("User Already exist");
+                    }else {
+                        Toast.makeText(getContext(), ""+response.body().getToken(), Toast.LENGTH_LONG).show();
+                        binding.textView.setText(""+response.body().getToken());
+                    }
+                }catch (Exception e){
+                    binding.textView.setText("User Already exist");
+                    Toast.makeText(getContext(), "User Already exist", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Test> call, Throwable t) {
+
+            }
+        });*/
 
 
 
