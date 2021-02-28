@@ -72,17 +72,19 @@ ArrayList<ModelProducts>products;
 
     public void get_flash_sell(){
 
-//todo get All product
+
         Retrofit instance = ApiClient.getClient();
         apiInterface =instance.create(ApiInterface.class);
-        Toast.makeText(getActivity(), "duke nai", Toast.LENGTH_SHORT).show();
+
+
         apiInterface.getCategories().enqueue(new Callback<List<ModelProducts>>() {
             @Override
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
-                binding.textView.setText("The Data is:  "+response.body().get(2).getName());
 
-                Toast.makeText(getContext(), "The Data is:  "+response.body().get(2).getName(), Toast.LENGTH_SHORT).show();
-             //  Toast.makeText(getContext(), "The Data is:  "+response.body().get(2).getName(), Toast.LENGTH_LONG).show();
+
+
+
+
 
 
             }
@@ -90,7 +92,7 @@ ArrayList<ModelProducts>products;
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
                 binding.textView.setText("failed");
-                Toast.makeText(getContext(), "failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Something Wrong !", Toast.LENGTH_LONG).show();
 
             }
         });
