@@ -91,7 +91,7 @@ ArrayList<ModelProducts>products;
 
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
-                binding.textView.setText("failed");
+
                 Toast.makeText(getContext(), "Something Wrong !", Toast.LENGTH_LONG).show();
 
             }
