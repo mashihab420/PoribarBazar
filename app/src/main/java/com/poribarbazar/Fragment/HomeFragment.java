@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.poribarbazar.Adapter.AdapterCategoryProduct;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.databinding.FragmentHomeBinding;
 import com.poribarbazar.model.ModelProducts;
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
 Adapter_item_category adapter_item_category;
+AdapterCategoryProduct adapterCategoryProduct;
 ApiInterface apiInterface;
 ArrayList<ModelProducts>products;
 
@@ -82,6 +84,9 @@ ArrayList<ModelProducts>products;
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
 
 
+             /*   products.addAll(response.body());
+                binding.recylerFlashSell.setAdapter(adapterCategoryProduct);
+                adapterCategoryProduct.notifyDataSetChanged();*/
 
 
 
