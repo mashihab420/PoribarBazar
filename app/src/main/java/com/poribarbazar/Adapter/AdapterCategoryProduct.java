@@ -23,6 +23,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     ArrayList<ModelProducts> Products;
     Context context;
 
+
     public AdapterCategoryProduct(ArrayList<ModelProducts> products, Context context) {
         Products = products;
         this.context = context;
@@ -44,6 +45,46 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         holder.p_name.setText(Products.get(position).getName());
 
 
+
+
+
+
+
+
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                holder.quantity.setVisibility(View.VISIBLE);
+                holder.minus.setVisibility(View.VISIBLE);
+                holder.quantity.setVisibility(View.VISIBLE);
+
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+                quantity=quantity+1;
+                holder.quantity.setText(""+quantity);
+
+            }
+        });
+
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                holder.quantity.setVisibility(View.VISIBLE);
+                holder.minus.setVisibility(View.VISIBLE);
+                holder.quantity.setVisibility(View.VISIBLE);
+
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+
+                if (quantity>1)
+                {
+                    quantity=quantity-1;
+                    holder.quantity.setText(""+quantity);
+                }
+
+
+            }
+        });
 
     }
 

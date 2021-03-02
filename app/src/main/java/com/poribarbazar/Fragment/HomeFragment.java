@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
 import com.poribarbazar.Adapter.Adapter_item_category;
@@ -58,9 +59,8 @@ ArrayList<ModelProducts>products;
 
 
         products=new ArrayList<>();
-        adapter_item_category = new Adapter_item_category(products,getActivity());
-        binding.recylerFlashSell.setLayoutManager(new GridLayoutManager(getActivity(),1));
-
+        adapterCategoryProduct = new AdapterCategoryProduct(products,getActivity());
+        binding.recylerFlashSell.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
 
@@ -84,12 +84,9 @@ ArrayList<ModelProducts>products;
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
 
 
-             /*   products.addAll(response.body());
+                products.addAll(response.body());
+                adapterCategoryProduct.notifyDataSetChanged();
                 binding.recylerFlashSell.setAdapter(adapterCategoryProduct);
-                adapterCategoryProduct.notifyDataSetChanged();*/
-
-
-
 
 
             }
