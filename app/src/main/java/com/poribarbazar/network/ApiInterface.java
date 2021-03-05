@@ -2,6 +2,8 @@ package com.poribarbazar.network;
 
 
 
+import com.poribarbazar.model.ModelCategory;
+import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.model.Test;
 
@@ -15,8 +17,12 @@ import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    @GET("all")
-    Call<List<ModelProducts>> getCategories();
+    @GET("get_category.php")
+    Call<List<ModelCategory>> getCategories();
+
+
+    @GET("get_offers.php")
+    Call<List<ModelOffers>> getOffers();
 
 
     @POST("users")

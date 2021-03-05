@@ -6,10 +6,10 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.poribarbazar.model.ModelCart;
+import com.poribarbazar.model.ModelCartRoom;
 
 
-@Database(entities = ModelCart.class,version = 3,exportSchema = false)
+@Database(entities = ModelCartRoom.class,version = 3,exportSchema = false)
 public abstract class MyRoomDataBase extends RoomDatabase {
 
     private static MyRoomDataBase roomDataBase = null;

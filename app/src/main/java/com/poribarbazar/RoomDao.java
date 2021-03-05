@@ -9,7 +9,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.poribarbazar.model.ModelCart;
+import com.poribarbazar.model.ModelCartRoom;
 
 import java.util.List;
 
@@ -17,16 +17,16 @@ import java.util.List;
 public interface RoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSingleData(ModelCart cartdb);
+    void insertSingleData(ModelCartRoom cartdb);
 
     @Update
-    void updateSingleData(ModelCart cartdb);
+    void updateSingleData(ModelCartRoom cartdb);
 
     @Delete
-    void DeleteSingleData(ModelCart cartdb);
+    void DeleteSingleData(ModelCartRoom cartdb);
 
     @Query("SELECT * FROM cartitem")
-    LiveData<List<ModelCart>> getAllData();
+    LiveData<List<ModelCartRoom>> getAllData();
 
 
 }

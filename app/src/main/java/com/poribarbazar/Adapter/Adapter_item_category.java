@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.model.ModelCategory;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
@@ -18,10 +20,10 @@ import java.util.ArrayList;
 
 public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_category.Holder> {
 
-    ArrayList<ModelProducts> categories;
+    ArrayList<ModelCategory> categories;
     Context context;
 
-    public Adapter_item_category(ArrayList<ModelProducts> categories, Context context) {
+    public Adapter_item_category(ArrayList<ModelCategory> categories, Context context) {
         this.categories = categories;
         this.context = context;
     }
@@ -38,6 +40,13 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
     public void onBindViewHolder(@NonNull Adapter_item_category.Holder holder, int position) {
 
 
+        holder.category_name.setText(categories.get(position).getCategory());
+
+
+        Glide.with(context)
+                .load(categories.get(position).getImage_url())
+                .override(300, 200)
+                .into(holder.category_image);
 
 
 

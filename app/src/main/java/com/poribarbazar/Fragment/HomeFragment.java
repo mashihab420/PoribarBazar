@@ -16,8 +16,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
+import com.poribarbazar.Adapter.AdapterOffers;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.databinding.FragmentHomeBinding;
+import com.poribarbazar.model.ModelCategory;
+import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.model.Test;
 import com.poribarbazar.network.ApiClient;
@@ -38,9 +41,11 @@ public class HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
 Adapter_item_category adapter_item_category;
-AdapterCategoryProduct adapterCategoryProduct;
+AdapterOffers adapterOffers;
+
 ApiInterface apiInterface;
-ArrayList<ModelProducts>products;
+ArrayList<ModelCategory>categories;
+ArrayList<ModelOffers>offers;
 
     public HomeFragment() {
 
@@ -57,42 +62,64 @@ ArrayList<ModelProducts>products;
         binding= FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
 
+        Retrofit instance = ApiClient.getClient();
+        apiInterface =instance.create(ApiInterface.class);
 
-        products=new ArrayList<>();
-        adapterCategoryProduct = new AdapterCategoryProduct(products,getActivity());
-        binding.recylerFlashSell.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        categories=new ArrayList<>();
+        adapter_item_category = new Adapter_item_category(categories,getActivity());
+        binding.recylerCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        offers=new ArrayList<>();
+        adapterOffers = new AdapterOffers(offers,getActivity());
+        binding.recylerOffers.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
+        get_category();
 
-        get_flash_sell();
-
+        getOffers();
 
 
         return view;
     }
 
 
-    public void get_flash_sell(){
+    public void getOffers()
+    {
 
-
-        Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
-
-
-        apiInterface.getCategories().enqueue(new Callback<List<ModelProducts>>() {
+        apiInterface.getOffers().enqueue(new Callback<List<ModelOffers>>() {
             @Override
-            public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
+            public void onResponse(Call<List<ModelOffers>> call, Response<List<ModelOffers>> response) {
+                offers.addAll(response.body());
+                adapterOffers.notifyDataSetChanged();
+                binding.recylerOffers.setAdapter(adapterOffers);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelOffers>> call, Throwable t) {
+
+            }
+        });
+    }
 
 
-                products.addAll(response.body());
-                adapterCategoryProduct.notifyDataSetChanged();
-                binding.recylerFlashSell.setAdapter(adapterCategoryProduct);
+    public void get_category(){
+
+
+        apiInterface.getCategories().enqueue(new Callback<List<ModelCategory>>() {
+            @Override
+            public void onResponse(Call<List<ModelCategory>> call, Response<List<ModelCategory>> response) {
+
+
+                categories.addAll(response.body());
+                adapter_item_category.notifyDataSetChanged();
+                binding.recylerCategory.setAdapter(adapter_item_category);
 
 
             }
 
             @Override
-            public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+            public void onFailure(Call<List<ModelCategory>> call, Throwable t) {
 
                 Toast.makeText(getContext(), "Something Wrong !", Toast.LENGTH_LONG).show();
 

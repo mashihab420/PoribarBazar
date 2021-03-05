@@ -9,11 +9,12 @@
 
 
     <androidx.cardview.widget.CardView
+        android:layout_marginBottom="2dp"
         android:id="@+id/cardView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
 
-        app:cardCornerRadius="10dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,9 +24,10 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:layout_marginBottom="22dp"
                 android:id="@+id/category_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:src="@drawable/healthyfood"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,9 +36,12 @@
                 app:layout_constraintVertical_bias="0.39" />
 
             <TextView
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/montserrat"
                 android:id="@+id/category_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 android:text="Demo"

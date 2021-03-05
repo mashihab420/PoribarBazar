@@ -14,4 +14,6 @@
 যে নাম্বার থেকে বিকাশ করেছ্ন তা এবং ট্রানজেকশন \n
 আইডি/TrxID, উ[পরের  ফর্মে ফিলাপ করে দিন ।</string>
     <string name="instruction">টাকা পাঠানোর নিয়মাবলি \nবিকাশ নাম্বারঃ  (মার্চেন্ট অ্যাকাউন্ট)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

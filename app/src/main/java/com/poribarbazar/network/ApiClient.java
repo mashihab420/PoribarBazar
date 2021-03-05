@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://poribarbazar.com/api/products/"; //IP of your localhost or live server
+    private static final String BASE_URL = "http://shihab.techdevbd.com/poribarbazar/api/"; //IP of your localhost or live server
 
     private static Retrofit retrofit = null;
 
