@@ -6,16 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.poribarbazar.Fragment.ProductFragment;
 import com.poribarbazar.R;
 import com.poribarbazar.model.ModelCategory;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
+
+import static java.security.AccessController.getContext;
 
 
 public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_category.Holder> {
@@ -42,12 +47,22 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
 
         holder.category_name.setText(categories.get(position).getCategory());
 
+        String getcat = categories.get(position).getCategory();
 
         Glide.with(context)
                 .load(categories.get(position).getImage_url())
                 .override(300, 200)
                 .into(holder.category_image);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, ""+getcat, Toast.LENGTH_SHORT).show();
+
+
+
+            }
+        });
 
 
     }

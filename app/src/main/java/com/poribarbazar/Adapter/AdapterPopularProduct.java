@@ -1,6 +1,7 @@
 package com.poribarbazar.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.UI.ProductInfoActivity;
 import com.poribarbazar.model.ModelFlashSell;
 
 import java.util.ArrayList;
@@ -34,6 +36,10 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        String pname = popularproduct.get(position).getPName();
+        String price = popularproduct.get(position).getPPrice();
+        String details = popularproduct.get(position).getPDescription();
+        String url = popularproduct.get(position).getImageUrl();
         holder.p_name.setText(popularproduct.get(position).getPName());
         holder.price.setText(popularproduct.get(position).getPPrice()+" BDT");
         holder.disount_price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
@@ -57,6 +63,19 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                 holder.quentity.setText("00");
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductInfoActivity.class);
+                intent.putExtra("pname",pname);
+                intent.putExtra("price",price);
+                intent.putExtra("details",details);
+                intent.putExtra("image_url",url);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

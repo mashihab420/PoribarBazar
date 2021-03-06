@@ -1,6 +1,7 @@
 package com.poribarbazar.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.UI.ProductInfoActivity;
 import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelOffers;
 
@@ -38,7 +40,10 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        String pname = flashSells.get(position).getPName();
+        String price = flashSells.get(position).getPPrice();
+        String details = flashSells.get(position).getPDescription();
+        String url = flashSells.get(position).getImageUrl();
         holder.p_name.setText(flashSells.get(position).getPName());
 
         holder.price.setText(flashSells.get(position).getPPrice()+" BDT");
@@ -65,6 +70,18 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
             }
         });
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductInfoActivity.class);
+                intent.putExtra("pname",pname);
+                intent.putExtra("price",price);
+                intent.putExtra("details",details);
+                intent.putExtra("image_url",url);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
