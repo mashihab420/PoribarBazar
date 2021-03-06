@@ -16,10 +16,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
+import com.poribarbazar.Adapter.AdapterFlashSell;
 import com.poribarbazar.Adapter.AdapterOffers;
+import com.poribarbazar.Adapter.AdapterPopularProduct;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.databinding.FragmentHomeBinding;
 import com.poribarbazar.model.ModelCategory;
+import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.model.Test;
@@ -42,10 +45,14 @@ public class HomeFragment extends Fragment {
 private FragmentHomeBinding binding;
 Adapter_item_category adapter_item_category;
 AdapterOffers adapterOffers;
+AdapterFlashSell adapterFlashSell;
+AdapterPopularProduct adapterPopularProduct;
 
 ApiInterface apiInterface;
-ArrayList<ModelCategory>categories;
-ArrayList<ModelOffers>offers;
+ArrayList<ModelCategory> categories;
+ArrayList<ModelOffers> offers;
+ArrayList<ModelFlashSell> flashSells;
+ArrayList<ModelFlashSell> popularproducts;
 
     public HomeFragment() {
 
@@ -73,11 +80,20 @@ ArrayList<ModelOffers>offers;
         adapterOffers = new AdapterOffers(offers,getActivity());
         binding.recylerOffers.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
+        flashSells=new ArrayList<>();
+        adapterFlashSell = new AdapterFlashSell(flashSells,getActivity());
+        binding.recyclerflashsell.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        popularproducts=new ArrayList<>();
+        adapterPopularProduct = new AdapterPopularProduct(popularproducts,getActivity());
+        binding.recyclerpopularproduct.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
 
         get_category();
 
         getOffers();
-
+        getFlashSell();
+        getPoputerProduct();
 
         return view;
     }
@@ -102,6 +118,43 @@ ArrayList<ModelOffers>offers;
         });
     }
 
+    public void getFlashSell()
+    {
+
+        apiInterface.getflashsell().enqueue(new Callback<List<ModelFlashSell>>() {
+            @Override
+            public void onResponse(Call<List<ModelFlashSell>> call, Response<List<ModelFlashSell>> response) {
+                flashSells.addAll(response.body());
+                adapterFlashSell.notifyDataSetChanged();
+                binding.recyclerflashsell.setAdapter(adapterFlashSell);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelFlashSell>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getPoputerProduct()
+    {
+
+        apiInterface.getPopularProduct().enqueue(new Callback<List<ModelFlashSell>>() {
+            @Override
+            public void onResponse(Call<List<ModelFlashSell>> call, Response<List<ModelFlashSell>> response) {
+                popularproducts.addAll(response.body());
+                adapterPopularProduct.notifyDataSetChanged();
+                binding.recyclerpopularproduct.setAdapter(adapterPopularProduct);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelFlashSell>> call, Throwable t) {
+
+            }
+        });
+    }
 
     public void get_category(){
 
