@@ -22,6 +22,10 @@ public interface ApiInterface {
     Call<List<ModelCategory>> getCategories();
 
 
+    @POST("get_categoryproduct.php")
+    Call<List<ModelFlashSell>> getCategorieProduct(@Body ModelFlashSell modelFlashSell);
+
+
     @GET("get_offers.php")
     Call<List<ModelOffers>> getOffers();
 

@@ -18,15 +18,18 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.poribarbazar.Fragment.HomeFragment;
+import com.poribarbazar.Fragment.ProductFragment;
 import com.poribarbazar.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     private ActivityMainBinding binding;
     HomeFragment homeFragment;
+    ProductFragment productFragment;
     int valu =0;
     Toolbar toolbarr;
     TextView toolbarTitle,cartQuantity;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +57,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding.navigationView.setNavigationItemSelectedListener(this);
 
-        
 
-   
-        initFragmentHome();
-        
+            initFragmentHome();
+
+
     }
 
     private void initFragmentHome(){
         homeFragment=new HomeFragment();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(),homeFragment,"HomeFragment").commit();
+
+    }
+
+
+    private void FragmentCategory(){
+        productFragment=new ProductFragment();
+        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(),productFragment,"ProductFragment").commit();
 
     }
 

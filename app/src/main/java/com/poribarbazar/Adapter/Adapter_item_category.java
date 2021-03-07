@@ -1,6 +1,7 @@
 package com.poribarbazar.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.Fragment.ProductFragment;
+import com.poribarbazar.MainActivity;
 import com.poribarbazar.R;
+import com.poribarbazar.UI.ProductsActivity;
 import com.poribarbazar.model.ModelCategory;
 import com.poribarbazar.model.ModelProducts;
 
@@ -57,7 +60,10 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ""+getcat, Toast.LENGTH_SHORT).show();
+
+                Intent intent=new Intent(context, ProductsActivity.class);
+                intent.putExtra("category",holder.category_name.getText().toString());
+                context.startActivity(intent);
 
 
 

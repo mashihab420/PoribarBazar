@@ -9,11 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.poribarbazar.R;
+import com.poribarbazar.model.ModelFlashSell;
+import com.poribarbazar.network.ApiInterface;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ProductFragment extends Fragment {
 
 
+    ArrayList<ModelFlashSell>products;
+    ApiInterface apiInterface;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -24,6 +35,8 @@ public class ProductFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
     }
 
     @Override
@@ -32,8 +45,14 @@ public class ProductFragment extends Fragment {
 
 
 
+        products=new ArrayList<>();
+
+
+
 
 
         return inflater.inflate(R.layout.fragment_product, container, false);
     }
+
+
 }
