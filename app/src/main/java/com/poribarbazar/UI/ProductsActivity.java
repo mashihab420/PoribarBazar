@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 
 import com.poribarbazar.Adapter.AdapterFlashSell;
@@ -56,11 +58,22 @@ public class ProductsActivity extends AppCompatActivity {
         apiInterface =instance.create(ApiInterface.class);
 
         products=new ArrayList<>();
-        adapterFlashSell = new AdapterFlashSell(products,ProductsActivity.this);
-        binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
+
+        Display display = ProductsActivity.this.getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+      /*  float density  = getResources().getDisplayMetrics().density;
+        float dpWidth  = outMetrics.widthPixels / density;
+        int columns = Math.round(dpWidth/300);
+        GridLayoutManager  mLayoutManager = new GridLayoutManager(ProductsActivity.this,2);
+        binding.recyler.setLayoutManager(mLayoutManager);*/
+
+
+       binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
 
         getCategoryProduct();
-
+        adapterFlashSell = new AdapterFlashSell(products,ProductsActivity.this);
 
     }
     public void getCategoryProduct()
