@@ -6,6 +6,7 @@ import com.poribarbazar.model.ModelCategory;
 import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
+import com.poribarbazar.model.ModelUser;
 import com.poribarbazar.model.Test;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 
 public interface ApiInterface {
@@ -39,4 +41,12 @@ public interface ApiInterface {
     @POST("users")
     Call<Test> createuser(@Body Test test);
 
+    @POST("user_registration.php")
+    Call<ModelUser> user_signUp(@Body ModelUser modelUser);
+
+    @GET("check_data_before_create.php")
+    Call<ModelUser> check_data(@Query("phone") String phone );
+
+    @POST("insert_user_info.php")
+    Call<ModelUser> addUsers(@Body ModelUser modelUsers);
 }
