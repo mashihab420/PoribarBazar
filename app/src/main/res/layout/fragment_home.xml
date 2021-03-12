@@ -79,6 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recyler_offers" />
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recyclerflashsell"
         android:layout_width="match_parent"
         android:layout_height="165dp"

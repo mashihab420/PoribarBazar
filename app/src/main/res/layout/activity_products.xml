@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/activity"
     android:layout_height="match_parent"
     tools:context=".UI.ProductsActivity">
 
@@ -62,9 +63,10 @@
                 android:id="@+id/category_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="99+"
+                android:text="1"
                 android:textColor="@android:color/white"
-                android:textSize="9dp"
+
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:layout_constraintVertical_bias="0.98"
-        tools:listitem="@layout/item_category_products" />
+        tools:listitem="@layout/item_category_product" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

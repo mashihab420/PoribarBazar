@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 
+import com.poribarbazar.Adapter.AdapterCategoryProduct;
 import com.poribarbazar.Adapter.AdapterFlashSell;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.R;
 
 import com.poribarbazar.databinding.ActivityProductsBinding;
 import com.poribarbazar.model.ModelFlashSell;
+import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.network.ApiClient;
 import com.poribarbazar.network.ApiInterface;
 
@@ -31,7 +34,7 @@ public class ProductsActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ArrayList<ModelFlashSell> products;
     ActivityProductsBinding binding;
-    AdapterFlashSell adapterFlashSell;
+    AdapterCategoryProduct adapterCategoryProduct;
     ModelFlashSell modelFlashSell;
 
     @Override
@@ -59,21 +62,20 @@ public class ProductsActivity extends AppCompatActivity {
 
         products=new ArrayList<>();
 
-        Display display = ProductsActivity.this.getWindowManager().getDefaultDisplay();
+ /*       Display display = ProductsActivity.this.getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
         display.getMetrics(outMetrics);
 
-      /*  float density  = getResources().getDisplayMetrics().density;
+      float density  = getResources().getDisplayMetrics().density;
         float dpWidth  = outMetrics.widthPixels / density;
         int columns = Math.round(dpWidth/300);
-        GridLayoutManager  mLayoutManager = new GridLayoutManager(ProductsActivity.this,2);
+        GridLayoutManager  mLayoutManager = new GridLayoutManager(ProductsActivity.this,columns);
         binding.recyler.setLayoutManager(mLayoutManager);*/
-
 
        binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
 
         getCategoryProduct();
-        adapterFlashSell = new AdapterFlashSell(products,ProductsActivity.this);
+        adapterCategoryProduct = new AdapterCategoryProduct(products,ProductsActivity.this);
 
     }
     public void getCategoryProduct()
@@ -86,8 +88,8 @@ public class ProductsActivity extends AppCompatActivity {
             public void onResponse(Call<List<ModelFlashSell>> call, Response<List<ModelFlashSell>> response) {
 
                 products.addAll(response.body());
-                binding.recyler.setAdapter(adapterFlashSell);
-                adapterFlashSell.notifyDataSetChanged();
+                binding.recyler.setAdapter(adapterCategoryProduct);
+                adapterCategoryProduct.notifyDataSetChanged();
 
 
 
