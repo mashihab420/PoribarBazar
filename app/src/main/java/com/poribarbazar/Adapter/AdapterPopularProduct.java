@@ -1,5 +1,6 @@
 package com.poribarbazar.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.Tools;
+import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
 import com.poribarbazar.model.ModelFlashSell;
 
@@ -49,18 +52,36 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.quentity.setText("01");
-                holder.quentity.setVisibility(View.VISIBLE);
+                holder.quantity.setVisibility(View.VISIBLE);
                 holder.minus.setVisibility(View.VISIBLE);
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+                quantity++;
+                holder.quantity.setText(""+quantity);
+                Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, CartActivity.class));
+                    }
+                });
             }
         });
 
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.quentity.setVisibility(View.GONE);
-                holder.minus.setVisibility(View.GONE);
-                holder.quentity.setText("00");
+
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+                if (quantity==0)
+                {
+                    holder.quantity.setVisibility(View.GONE);
+                    holder.minus.setVisibility(View.GONE);
+                }else {
+
+                    quantity--;
+                    holder.quantity.setText(""+quantity);
+                    holder.quantity.setVisibility(View.VISIBLE);
+                    holder.minus.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -85,14 +106,14 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView p_img,minus,pluse;
-        TextView p_name,price,disount_price,quentity;
+        TextView p_name,price,disount_price,quantity;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             p_img = itemView.findViewById(R.id.item_procut_image);
             p_name = itemView.findViewById(R.id.item_product_name);
             price = itemView.findViewById(R.id.item_product_price);
             disount_price = itemView.findViewById(R.id.item_product_discount_price);
-            quentity = itemView.findViewById(R.id.item_category_quantity);
+            quantity = itemView.findViewById(R.id.item_category_quantity);
             minus = itemView.findViewById(R.id.item_product_minus);
             pluse = itemView.findViewById(R.id.item_category_plus);
         }

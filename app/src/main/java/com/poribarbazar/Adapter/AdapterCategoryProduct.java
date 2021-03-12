@@ -1,5 +1,6 @@
 package com.poribarbazar.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
@@ -8,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.Tools;
+import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
 import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelProducts;
@@ -61,9 +65,18 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.quantity.setText("01");
+
                 holder.quantity.setVisibility(View.VISIBLE);
                 holder.minus.setVisibility(View.VISIBLE);
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+                quantity++;
+                holder.quantity.setText(""+quantity);
+                Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, CartActivity.class));
+                    }
+                });
             }
         });
 
@@ -71,11 +84,21 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             @Override
             public void onClick(View view) {
 
+                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+                if (quantity==0)
+                {
+                    holder.quantity.setVisibility(View.GONE);
+                    holder.minus.setVisibility(View.GONE);
+                }else {
+
+                    quantity--;
+                    holder.quantity.setText(""+quantity);
+                    holder.quantity.setVisibility(View.VISIBLE);
+                    holder.minus.setVisibility(View.VISIBLE);
+                }
 
 
-                holder.quantity.setVisibility(View.GONE);
-                holder.minus.setVisibility(View.GONE);
-                holder.quantity.setText("00");
+
             }
         });
 

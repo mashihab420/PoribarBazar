@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.logout:
                 Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
                
-                binding.userName.setText("");
+
                 binding.createaccount.setVisibility(View.VISIBLE);
                 binding.loginid.setVisibility(View.VISIBLE);
                 binding.logout.setVisibility(View.GONE);
