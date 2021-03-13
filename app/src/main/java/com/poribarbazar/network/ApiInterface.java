@@ -49,4 +49,8 @@ public interface ApiInterface {
 
     @POST("insert_user_info.php")
     Call<ModelUser> addUsers(@Body ModelUser modelUsers);
+
+    @GET("user_login.php")
+    //Call<ModelUser> loginUser(@Body ModelUser modelUsers);
+    Call<ModelUser> loginUser(@Query("phone") String phone, @Query("password") String password);
 }

@@ -3,6 +3,7 @@ package com.poribarbazar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.core.content.ContextCompat;
 
@@ -81,8 +82,8 @@ public class Tools {
     }
 
     public static void snackErrInfo(Activity activity,
-                                    final String mainTextStringId,
-                                    View.OnClickListener listener) {
+                                      final String mainTextStringId,
+                                      View.OnClickListener listener) {
         Snackbar snackbar = Snackbar.make(
                 activity.findViewById(android.R.id.content),
                 mainTextStringId,
@@ -93,4 +94,5 @@ public class Tools {
         snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.red_800));
         snackbar.show();
     }
+
 }
