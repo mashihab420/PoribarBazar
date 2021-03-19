@@ -20,6 +20,8 @@ public class ProductInfoActivity extends AppCompatActivity {
 
     private ActivityProductInfoBinding binding;
 
+    int quantitytext =1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,26 @@ public class ProductInfoActivity extends AppCompatActivity {
                 .load(url)
                 .into(binding.imageView5);
 
+        binding.plusitemquantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantitytext = quantitytext+1;
+                binding.quantity.setText(""+quantitytext);
+            }
+        });
+
+        binding.minusitemquantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quantitytext==1){
+
+                }else{
+                    quantitytext = quantitytext-1;
+                    binding.quantity.setText(""+quantitytext);
+                }
+            }
+        });
+
 
 
         binding.back.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +80,10 @@ public class ProductInfoActivity extends AppCompatActivity {
                 modelCartRoom.setP_name(name);
                 modelCartRoom.setP_price(price);
                 modelCartRoom.setUrl(url);
-                modelCartRoom.setP_name(binding.quantity.getText().toString());
+                modelCartRoom.setQuantity(""+quantitytext);
+            //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                repository.insertSingleData(new ModelCartRoom(name,price,binding.quantity.getText().toString(),url,"M"));
+                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M"));
 
 
                 Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {

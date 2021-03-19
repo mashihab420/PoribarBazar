@@ -1,6 +1,7 @@
 package com.poribarbazar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.poribarbazar.Fragment.HomeFragment;
 import com.poribarbazar.Fragment.ProductFragment;
+import com.poribarbazar.UI.CartActivity;
+import com.poribarbazar.UI.LoginActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.cartmenuid){
 
-            /*Intent intent = new Intent(MainActivity.this, CartActivity.class);
-            startActivity(intent);*/
-            Toast.makeText(this, "Add to Cart", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(intent);
+
 
           /*  valu++;
             if (valu>0){
@@ -123,24 +128,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       
 
             case R.id.cart:
+                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
+
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
                 
                 break;
 
 
             case R.id.loginid:
+                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
+
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
           
 
                 break;
 
             case R.id.createaccount:
+                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
+
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
                
 
                 break;
 
             case R.id.orderid:
+                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
+
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
                 
 
@@ -158,6 +171,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 binding.orderid.setVisibility(View.GONE);
                 break;
 
+            case R.id.imageView3:
+                Toast.makeText(this, "Kaj hoi na", Toast.LENGTH_SHORT).show();
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                break;
 
             default:
 
