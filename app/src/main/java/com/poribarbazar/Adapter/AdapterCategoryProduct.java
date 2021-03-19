@@ -18,6 +18,7 @@ import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
+import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
@@ -66,13 +67,22 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             @Override
             public void onClick(View view) {
 
+                final CartRepository repository = new CartRepository(context);
 
+                ModelCartRoom modelCartRoom=new ModelCartRoom();
+                modelCartRoom.setP_name(pname);
+                modelCartRoom.setP_price(price);
+                modelCartRoom.setUrl(url);
+                modelCartRoom.setQuantity("1");
+                //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                holder.quantity.setVisibility(View.VISIBLE);
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+
+               /* holder.quantity.setVisibility(View.VISIBLE);
                 holder.minus.setVisibility(View.VISIBLE);
                 int quantity= Integer.parseInt(holder.quantity.getText().toString());
                 quantity++;
-                holder.quantity.setText(""+quantity);
+                holder.quantity.setText(""+quantity);*/
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -82,7 +92,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             }
         });
 
-        holder.minus.setOnClickListener(new View.OnClickListener() {
+      /*  holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -102,7 +112,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
 
             }
-        });
+        });*/
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
