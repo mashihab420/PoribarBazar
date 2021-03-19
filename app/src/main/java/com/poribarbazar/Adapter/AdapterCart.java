@@ -162,7 +162,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
 
         Log.d("taka", "" + total);
 
-        dataSend.totalPrice("" + sendSubtotal+" BDT");
+        dataSend.totalPrice("" + sendSubtotal);
     }
 
     public int getSubtotal(int quantity,int amount){

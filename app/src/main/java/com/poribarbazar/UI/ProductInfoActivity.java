@@ -84,7 +84,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                 modelCartRoom.setQuantity(""+quantitytext);
             //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M",p_id));
+                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M"));
 
 
                 Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {

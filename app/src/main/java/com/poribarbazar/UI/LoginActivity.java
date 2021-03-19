@@ -14,11 +14,14 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.poribarbazar.MainActivity;
+import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.R;
 import com.poribarbazar.model.ModelUser;
 import com.poribarbazar.network.ApiClient;
@@ -32,13 +35,17 @@ import retrofit2.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText phone,pass;
     ApiInterface apiInterface;
+    MysharedPreferance sharedPreferance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
         phone = findViewById(R.id.phoneid);
         pass = findViewById(R.id.passwordid);
+
+        String tag = getIntent().getStringExtra("TAG");
+        Toast.makeText(this, ""+tag, Toast.LENGTH_SHORT).show();
 
 
         TextView textView = findViewById(R.id.dthana);
@@ -131,9 +138,17 @@ public class LoginActivity extends AppCompatActivity {
         apiInterface.loginUser(phonee,passs).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                if (response.body().getResponse() == "ok"){
-                    Toast.makeText(LoginActivity.this, ""+response.body().getResponse(), Toast.LENGTH_SHORT).show();
-                }
+               /* if (response.body().getResponse() == "ok"){
+
+                    sharedPreferance.setName(response.body().getName());
+                    sharedPreferance.setPhone(response.body().getPhone());
+                    sharedPreferance.setAddress(response.body().getAddress());
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }*/
+                Toast.makeText(LoginActivity.this, ""+response.body().getResponse(), Toast.LENGTH_SHORT).show();
 
             }
 
