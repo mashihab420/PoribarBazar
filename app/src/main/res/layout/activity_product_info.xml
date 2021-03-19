@@ -55,6 +55,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="12dp"
+            android:visibility="gone"
             android:layout_marginBottom="14dp"
             android:background="@drawable/circle"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -211,7 +212,7 @@ Lorem Ipsum is simply dummy text of the  printing and typesetting industry. Lore
 
             <TextView
                 android:textColor="@color/colorPrimary"
-                android:id="@+id/textView19"
+                android:id="@+id/quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -226,9 +227,9 @@ Lorem Ipsum is simply dummy text of the  printing and typesetting industry. Lore
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView19"
-                app:layout_constraintStart_toEndOf="@+id/textView19"
-                app:layout_constraintTop_toTopOf="@+id/textView19"
+                app:layout_constraintBottom_toBottomOf="@+id/quantity"
+                app:layout_constraintStart_toEndOf="@+id/quantity"
+                app:layout_constraintTop_toTopOf="@+id/quantity"
                 app:srcCompat="@drawable/ic_add_black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

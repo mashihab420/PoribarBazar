@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.databinding.ActivityPlaceOrderBinding;
 import com.poribarbazar.databinding.ActivityProductInfoBinding;
+import com.poribarbazar.model.ModelCartRoom;
 
 public class ProductInfoActivity extends AppCompatActivity {
 
@@ -50,6 +52,17 @@ public class ProductInfoActivity extends AppCompatActivity {
         binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final CartRepository repository = new CartRepository(ProductInfoActivity.this);
+
+                ModelCartRoom modelCartRoom=new ModelCartRoom();
+                modelCartRoom.setP_name(name);
+                modelCartRoom.setP_price(price);
+                modelCartRoom.setUrl(url);
+                modelCartRoom.setP_name(binding.quantity.getText().toString());
+
+                repository.insertSingleData(new ModelCartRoom(name,price,binding.quantity.getText().toString(),url,"M"));
+
+
                 Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

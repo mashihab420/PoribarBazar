@@ -1,6 +1,7 @@
 package com.poribarbazar.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,7 +13,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.poribarbazar.Adapter.AdapterCart;
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
+import com.poribarbazar.model.ModelCartRoom;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -20,7 +27,9 @@ public class CartActivity extends AppCompatActivity {
     RadioGroup     radioGroup;
     Button confirmorder;
 
-
+    CartRepository repository;
+    AdapterCart adapterCart;
+    ArrayList<ModelCartRoom> carts=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,10 @@ public class CartActivity extends AppCompatActivity {
         radio_bkash = findViewById(R.id.radiobkash);
         radio_cash_on_dv = findViewById(R.id.radiocashondelivery);
         confirmorder = findViewById(R.id.button2);
+
+        repository = new CartRepository(getApplicationContext());
+
+        getData();
 
         radio_bkash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +87,41 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    public void getData()
+    {
+        repository.getAllData().observe(this, new Observer<List<ModelCartRoom>>() {
+        @Override
+        public void onChanged(List<ModelCartRoom> modelCartRooms) {
+
+            carts.clear();
+            carts.addAll(modelCartRooms);
+            adapterCart.notifyDataSetChanged();
+
+/*
+            if (modelCartRooms.size() == 0){
+                constraintLayout.setVisibility(View.GONE);
+                emptyimage.setVisibility(View.VISIBLE);
+
+             *//*   emptyimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                            *//**//*Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();*//**//*
+                        onBackPressed();
+                    }*//*
+                });
+
+            }else {
+                constraintLayout.setVisibility(View.VISIBLE);
+                emptyimage.setVisibility(View.GONE);
+            }*/
+
+
+        }
+    });
+    }
 
 
 }
