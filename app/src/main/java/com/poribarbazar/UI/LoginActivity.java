@@ -138,18 +138,20 @@ public class LoginActivity extends AppCompatActivity {
         apiInterface.loginUser(phonee,passs).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-               /* if (response.body().getResponse() == "ok"){
+                /*if (response.body().getResponse() == "ok"){
 
                     sharedPreferance.setName(response.body().getName());
                     sharedPreferance.setPhone(response.body().getPhone());
                     sharedPreferance.setAddress(response.body().getAddress());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                }else {
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }*/
-                Toast.makeText(LoginActivity.this, ""+response.body().getResponse(), Toast.LENGTH_SHORT).show();
-
+              //  Toast.makeText(LoginActivity.this, ""+response.body().getResponse(), Toast.LENGTH_SHORT).show();
+                sharedPreferance.setName(response.body().getName());
+                sharedPreferance.setPhone(response.body().getPhone());
+                sharedPreferance.setAddress(response.body().getAddress());
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
             }
 
             @Override

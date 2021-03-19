@@ -92,6 +92,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:maxLines="1"
+            android:inputType="number"
             android:textColorHint="@color/blue"
             android:textSize="14dp" />
 
