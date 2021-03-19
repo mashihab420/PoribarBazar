@@ -18,13 +18,10 @@ import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
-<<<<<<< HEAD
 import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelOffers;
-=======
 import com.poribarbazar.model.ModelProducts;
->>>>>>> 6d2ed74017b4f7ee810da42a48768c9bec3aba45
 
 import java.util.ArrayList;
 

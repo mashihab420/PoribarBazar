@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.poribarbazar.Adapter.AdapterCart;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.CartRepository;
+import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.OnDataSend;
 import com.poribarbazar.R;
 import com.poribarbazar.databinding.ActivityCartBinding;
@@ -31,7 +32,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
     RadioButton radio_bkash, radio_cash_on_dv;
     RadioGroup radioGroup;
     Button confirmorder;
-
+    MysharedPreferance sharedPreferance;
     CartRepository repository;
     AdapterCart adapterCart;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
@@ -43,13 +44,20 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // setContentView(R.layout.activity_cart);
-
-
+        sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
+     String address =   sharedPreferance.getAddress();
         radio_bkash = findViewById(R.id.radiobkash);
         radio_cash_on_dv = findViewById(R.id.radiocashondelivery);
         confirmorder = findViewById(R.id.button2);
 
+
         repository = new CartRepository(getApplicationContext());
+
+        if (address.equals("none")){
+
+        }else {
+            binding.addressid.setText(address);
+        }
 
 
       /*  adapterCart = new AdapterCart(carts, getApplication(), repository, this);
@@ -86,9 +94,8 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             @Override
             public void onClick(View view) {
                 if (radio_bkash.isChecked() == true) {
-                    String cf = confirmorder.getText().toString();
-                    Toast.makeText(getApplicationContext(), "" + cf, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CartActivity.this, PlaceOrderActivity.class);
+                    Intent intent = new Intent(CartActivity.this, LoginActivity.class);
+                    intent.putExtra("TAG","CartActivity");
                     startActivity(intent);
                 } else if (radio_cash_on_dv.isChecked() == true) {
                     String cf = confirmorder.getText().toString();
@@ -145,6 +152,12 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
     @Override
     public void totalPrice(String subtotal) {
+        int intsub = Integer.parseInt(subtotal);
+        int total = intsub+50;
+
        binding.subtotalprice.setText(subtotal+" BDT");
+       binding.textView22.setText("50 BDT");
+       binding.textView23.setText(total+" BDT");
+
     }
 }
