@@ -3,9 +3,8 @@ package com.poribarbazar.network;
 
 
 import com.poribarbazar.model.ModelCategory;
-import com.poribarbazar.model.ModelFlashSell;
-import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
+import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelUser;
 import com.poribarbazar.model.Test;
 
@@ -25,17 +24,20 @@ public interface ApiInterface {
 
 
     @POST("get_categoryproduct.php")
-    Call<List<ModelFlashSell>> getCategorieProduct(@Body ModelFlashSell modelFlashSell);
+    Call<List<ModelProducts>> getCategorieProduct(@Body ModelProducts modelProducts);
+
+    @POST("get_offer_product.php")
+    Call<List<ModelProducts>> getOfferProduct(@Body ModelProducts modelProducts);
 
 
     @GET("get_offers.php")
     Call<List<ModelOffers>> getOffers();
 
     @GET("get_flash_sell.php")
-    Call<List<ModelFlashSell>> getflashsell();
+    Call<List<ModelProducts>> getflashsell();
 
     @GET("get_popular_product.php")
-    Call<List<ModelFlashSell>> getPopularProduct();
+    Call<List<ModelProducts>> getPopularProduct();
 
 
     @POST("users")

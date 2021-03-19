@@ -3,97 +3,40 @@ package com.poribarbazar.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class ModelProducts {
-    @SerializedName("rating")
-    @Expose
-    private Integer rating;
-    @SerializedName("numReviews")
-    @Expose
-    private Integer numReviews;
-    @SerializedName("sellPrice")
-    @Expose
-    private Integer sellPrice;
-    @SerializedName("buyPrice")
-    @Expose
-    private Integer buyPrice;
-    @SerializedName("countInStock")
-    @Expose
-    private Integer countInStock;
-    @SerializedName("_id")
+    @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("user")
-    @Expose
-    private String user;
-    @SerializedName("image")
-    @Expose
-    private String image;
-    @SerializedName("brand")
-    @Expose
-    private String brand;
     @SerializedName("category")
     @Expose
     private String category;
-    @SerializedName("description")
+    @SerializedName("image_url")
     @Expose
-    private String description;
-    @SerializedName("reviews")
+    private String imageUrl;
+    @SerializedName("p_name")
     @Expose
-    private List<Review> reviews = null;
-    @SerializedName("createdAt")
+    private String pName;
+    @SerializedName("p_description")
     @Expose
-    private String createdAt;
-    @SerializedName("updatedAt")
+    private String pDescription;
+    @SerializedName("p_price")
     @Expose
-    private String updatedAt;
-    @SerializedName("__v")
+    private String pPrice;
+    @SerializedName("stock")
     @Expose
-    private Integer v;
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public Integer getNumReviews() {
-        return numReviews;
-    }
-
-    public void setNumReviews(Integer numReviews) {
-        this.numReviews = numReviews;
-    }
-
-    public Integer getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(Integer sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
-    public Integer getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(Integer buyPrice) {
-        this.buyPrice = buyPrice;
-    }
-
-    public Integer getCountInStock() {
-        return countInStock;
-    }
-
-    public void setCountInStock(Integer countInStock) {
-        this.countInStock = countInStock;
-    }
+    private String stock;
+    @SerializedName("discount_price")
+    @Expose
+    private String discountPrice;
+    @SerializedName("dicount_percentage")
+    @Expose
+    private String dicountPercentage;
+    @SerializedName("flash_sell")
+    @Expose
+    private String flashSell;
+    @SerializedName("polular")
+    @Expose
+    private String polular;
 
     public String getId() {
         return id;
@@ -101,38 +44,6 @@ public class ModelProducts {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getCategory() {
@@ -143,94 +54,76 @@ public class ModelProducts {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-
-
-    private class Review {
-        @SerializedName("_id")
-        @Expose
-        private String id;
-        @SerializedName("name")
-        @Expose
-        private String name;
-        @SerializedName("rating")
-        @Expose
-        private Integer rating;
-        @SerializedName("comment")
-        @Expose
-        private String comment;
-        @SerializedName("user")
-        @Expose
-        private String user;
-        @SerializedName("createdAt")
-        @Expose
-        private String createdAt;
-        @SerializedName("updatedAt")
-        @Expose
-        private String updatedAt;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Integer getRating() {
-            return rating;
-        }
-
-        public void setRating(Integer rating) {
-            this.rating = rating;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(String comment) {
-            this.comment = comment;
-        }
-
-        public String getUser() {
-            return user;
-        }
-
-        public void setUser(String user) {
-            this.user = user;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public String getUpdatedAt() {
-            return updatedAt;
-        }
-
-        public void setUpdatedAt(String updatedAt) {
-            this.updatedAt = updatedAt;
-        }
-
+    public String getPName() {
+        return pName;
     }
+
+    public void setPName(String pName) {
+        this.pName = pName;
+    }
+
+    public String getPDescription() {
+        return pDescription;
+    }
+
+    public void setPDescription(String pDescription) {
+        this.pDescription = pDescription;
+    }
+
+    public String getPPrice() {
+        return pPrice;
+    }
+
+    public void setPPrice(String pPrice) {
+        this.pPrice = pPrice;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
+    public String getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(String discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public String getDicountPercentage() {
+        return dicountPercentage;
+    }
+
+    public void setDicountPercentage(String dicountPercentage) {
+        this.dicountPercentage = dicountPercentage;
+    }
+
+    public String getFlashSell() {
+        return flashSell;
+    }
+
+    public void setFlashSell(String flashSell) {
+        this.flashSell = flashSell;
+    }
+
+    public String getPolular() {
+        return polular;
+    }
+
+    public void setPolular(String polular) {
+        this.polular = polular;
+    }
+
 }

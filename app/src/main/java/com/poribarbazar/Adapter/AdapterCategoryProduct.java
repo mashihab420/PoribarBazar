@@ -3,37 +3,35 @@ package com.poribarbazar.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
-import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategoryProduct.ViewHolder> {
 
 
-    ArrayList<ModelFlashSell> Products;
+    ArrayList<ModelProducts> products;
     Context context;
+    CartRepository repository;
 
 
-    public AdapterCategoryProduct(ArrayList<ModelFlashSell> products, Context context) {
-        Products = products;
+    public AdapterCategoryProduct(ArrayList<ModelProducts> products, Context context) {
+        this.products = products;
         this.context = context;
     }
 
@@ -50,21 +48,25 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     @Override
     public void onBindViewHolder(@NonNull AdapterCategoryProduct.ViewHolder holder, int position) {
 
-        String pname = Products.get(position).getPName();
-        String price = Products.get(position).getPPrice();
-        String details = Products.get(position).getPDescription();
-        String url = Products.get(position).getImageUrl();
-        holder.p_name.setText(Products.get(position).getPName());
+        String pname = products.get(position).getPName();
+        String price = products.get(position).getPPrice();
+        String details = products.get(position).getPDescription();
+        String url = products.get(position).getImageUrl();
+        holder.p_name.setText(products.get(position).getPName());
 
-        holder.p_price_normal.setText(Products.get(position).getPPrice()+" BDT");
-        holder.p_price_final.setText(Products.get(position).getDiscountPrice()+" BDT");
+        holder.p_price_normal.setText(products.get(position).getPPrice()+" BDT");
+        holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
         Glide.with(context)
-                .load(Products.get(position).getImageUrl())
+                .load(products.get(position).getImageUrl())
                 .into(holder.image);
+
+
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
 
                 holder.quantity.setVisibility(View.VISIBLE);
                 holder.minus.setVisibility(View.VISIBLE);
@@ -111,6 +113,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 intent.putExtra("price",price);
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
+                intent.putExtra("p_id",products.get(position).getId());
                 context.startActivity(intent);
             }
         });
@@ -120,7 +123,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
     @Override
     public int getItemCount() {
-        return Products.size();
+        return products.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

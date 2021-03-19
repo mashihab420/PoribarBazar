@@ -17,15 +17,15 @@ import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
-import com.poribarbazar.model.ModelFlashSell;
+import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
 
 public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularProduct.MyViewHolder> {
-    ArrayList<ModelFlashSell> popularproduct;
+    ArrayList<ModelProducts> popularproduct;
     Context context;
 
-    public AdapterPopularProduct(ArrayList<ModelFlashSell> popularproduct, Context context) {
+    public AdapterPopularProduct(ArrayList<ModelProducts> popularproduct, Context context) {
         this.popularproduct = popularproduct;
         this.context = context;
     }
