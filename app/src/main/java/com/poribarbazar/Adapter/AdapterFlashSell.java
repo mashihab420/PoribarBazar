@@ -100,6 +100,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 intent.putExtra("price",price);
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
+                intent.putExtra("p_id",flashSells.get(position).getId());
                 context.startActivity(intent);
             }
         });

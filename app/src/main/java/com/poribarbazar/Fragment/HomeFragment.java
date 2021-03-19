@@ -66,6 +66,14 @@ ArrayList<ModelFlashSell> popularproducts;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
+        if (container != null) {
+
+            container.removeAllViews();
+
+        }
+
         binding= FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
 

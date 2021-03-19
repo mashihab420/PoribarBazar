@@ -17,17 +17,23 @@ public class CartRepository {
     private MyRoomDataBase roomDataBase;
     private LiveData<List<ModelCartRoom>> allData;
     private Context context;
+    String p_id;
 
     public CartRepository(Context context) {
         this.context = context;
         roomDataBase = MyRoomDataBase.getInstance(context);
         roomDao = roomDataBase.roomDao();
         allData = roomDao.getAllData();
+       // p_id = roomDao.getP_id(p_id);
     }
+
+
 
     public LiveData<List<ModelCartRoom>> getAllData(){
         return  this.allData;
     }
+
+
 
     public void insertSingleData(ModelCartRoom cartdb)
     {
@@ -38,6 +44,8 @@ public class CartRepository {
     {
         new UpdateData(roomDao).execute(cartdb);
     }
+
+
 
     public void delete(ModelCartRoom cartdb)
     {
@@ -74,6 +82,9 @@ public class CartRepository {
 
         }
 
+
+
+
         @Override
         protected Void doInBackground(ModelCartRoom... modelCartRooms) {
             roomDao.updateSingleData(modelCartRooms[0]);
@@ -86,6 +97,9 @@ public class CartRepository {
          //  Toast.makeText(context, "Data Updated", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 
     private class DeleteData extends AsyncTask<ModelCartRoom, Void, Void> {
         RoomDao roomDao;

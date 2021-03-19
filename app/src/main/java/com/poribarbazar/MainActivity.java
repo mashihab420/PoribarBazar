@@ -14,13 +14,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.poribarbazar.Fragment.HomeFragment;
-import com.poribarbazar.Fragment.ProductFragment;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.LoginActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
@@ -28,7 +26,6 @@ import com.poribarbazar.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     private ActivityMainBinding binding;
     HomeFragment homeFragment;
-    ProductFragment productFragment;
     int valu =0;
     Toolbar toolbarr;
     TextView toolbarTitle,cartQuantity;
@@ -76,12 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void FragmentCategory(){
-        productFragment=new ProductFragment();
-        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(),productFragment,"ProductFragment").commit();
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

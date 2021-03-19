@@ -33,6 +33,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String details = intent.getStringExtra("details");
         String url = intent.getStringExtra("image_url");
+        String p_id = intent.getStringExtra("p_id");
 
         binding.textView13.setText(name);
         binding.textView18.setText(price);
@@ -83,7 +84,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                 modelCartRoom.setQuantity(""+quantitytext);
             //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M"));
+                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M",p_id));
 
 
                 Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {

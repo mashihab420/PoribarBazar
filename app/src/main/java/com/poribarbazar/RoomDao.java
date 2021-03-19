@@ -28,5 +28,14 @@ public interface RoomDao {
     @Query("SELECT * FROM cartitem")
     LiveData<List<ModelCartRoom>> getAllData();
 
+    @Query(
+            "SELECT p_id FROM "
+                    + "cartitem"
+                    + " WHERE "
+                    + "p_id"
+                    + "= :id "
+
+    )
+    public String getP_id(String id);
 
 }

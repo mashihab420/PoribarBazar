@@ -7,25 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.poribarbazar.Fragment.ProductFragment;
-import com.poribarbazar.MainActivity;
-import com.poribarbazar.R;
 import com.poribarbazar.UI.ProductsActivity;
-import com.poribarbazar.databinding.ItemCartBinding;
 import com.poribarbazar.databinding.ItemCategoryBinding;
 import com.poribarbazar.model.ModelCategory;
-import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 
 public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_category.Holder> {

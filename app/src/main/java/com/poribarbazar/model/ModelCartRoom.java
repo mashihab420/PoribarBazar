@@ -13,18 +13,20 @@ public class ModelCartRoom {
     String quantity;
     String url;
     String size;
+    String p_id;
 
     public ModelCartRoom(){
 
     }
 
 
-    public ModelCartRoom(String p_name, String p_price, String quantity, String url, String size) {
+    public ModelCartRoom(String p_name, String p_price, String quantity, String url, String size,String p_id) {
         this.p_name = p_name;
         this.p_price = p_price;
         this.quantity = quantity;
         this.url = url;
         this.size = size;
+        this.p_id = p_id;
     }
 
 
@@ -75,5 +77,13 @@ public class ModelCartRoom {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getP_id() {
+        return p_id;
+    }
+
+    public void setP_id(String p_id) {
+        this.p_id = p_id;
     }
 }
