@@ -14,6 +14,13 @@ public class ModelFlashSell {
     @Expose
     private String imageUrl;
     @SerializedName("p_name")
+
+    private String sub_category;
+    @SerializedName("sub_category")
+
+    private String discount_percent;
+    @SerializedName("discount_percent")
+
     @Expose
     private String pName;
     @SerializedName("p_description")
@@ -126,4 +133,20 @@ public class ModelFlashSell {
         this.polular = polular;
     }
 
+
+    public String getSub_category() {
+        return sub_category;
+    }
+
+    public void setSub_category(String sub_category) {
+        this.sub_category = sub_category;
+    }
+
+    public String getDiscount_percent() {
+        return discount_percent;
+    }
+
+    public void setDiscount_percent(String discount_percent) {
+        this.discount_percent = discount_percent;
+    }
 }
