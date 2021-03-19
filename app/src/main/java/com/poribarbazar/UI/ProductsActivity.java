@@ -67,7 +67,7 @@ public class ProductsActivity extends AppCompatActivity {
        binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
 
 
-       if (getIntent().getStringExtra("type").equals("offer"))
+       if (getIntent().getStringExtra("type").equals("Offer"))
        {
           getOfferProduct();
 
