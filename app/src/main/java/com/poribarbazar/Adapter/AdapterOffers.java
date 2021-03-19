@@ -1,6 +1,7 @@
 package com.poribarbazar.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.poribarbazar.R;
+import com.poribarbazar.UI.ProductsActivity;
 import com.poribarbazar.model.ModelOffers;
 
 import java.util.ArrayList;
@@ -47,6 +49,19 @@ public class AdapterOffers extends RecyclerView.Adapter<AdapterOffers.Holder> {
                 .load(offers.get(position).getImage())
                 .override(300, 200)
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent =new Intent(context, ProductsActivity.class);
+                intent.putExtra("type","offer");
+                intent.putExtra("category","offer");
+                intent.putExtra("sub_category","offer");
+                context.startActivity(intent);
+
+            }
+        });
 
 
 

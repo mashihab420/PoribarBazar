@@ -2,21 +2,13 @@ package com.poribarbazar.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
-import com.poribarbazar.Adapter.AdapterFlashSell;
-import com.poribarbazar.Adapter.Adapter_item_category;
-import com.poribarbazar.R;
 
 import com.poribarbazar.databinding.ActivityProductsBinding;
-import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.network.ApiClient;
 import com.poribarbazar.network.ApiInterface;
@@ -32,10 +24,10 @@ import retrofit2.Retrofit;
 public class ProductsActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
-    ArrayList<ModelFlashSell> products;
+    ArrayList<ModelProducts> products;
     ActivityProductsBinding binding;
     AdapterCategoryProduct adapterCategoryProduct;
-    ModelFlashSell modelFlashSell;
+    ModelProducts modelProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +36,8 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         products=new ArrayList<>();
 
-         modelFlashSell=new ModelFlashSell();
-        modelFlashSell.setCategory(getIntent().getStringExtra("category"));
+         modelProducts=new ModelProducts();
+        modelProducts.setCategory(getIntent().getStringExtra("category"));
 
         binding.title.setText(getIntent().getStringExtra("category"));
 
@@ -74,7 +66,16 @@ public class ProductsActivity extends AppCompatActivity {
 
        binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
 
-        getCategoryProduct();
+
+       if (getIntent().getStringExtra("type").equals("offer"))
+       {
+          getOfferProduct();
+
+       }else {
+
+           getCategoryProduct();
+       }
+
         adapterCategoryProduct = new AdapterCategoryProduct(products,ProductsActivity.this);
 
     }
@@ -83,9 +84,31 @@ public class ProductsActivity extends AppCompatActivity {
 
 
 
-        apiInterface.getCategorieProduct(modelFlashSell).enqueue(new Callback<List<ModelFlashSell>>() {
+        apiInterface.getCategorieProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
             @Override
-            public void onResponse(Call<List<ModelFlashSell>> call, Response<List<ModelFlashSell>> response) {
+            public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
+
+                products.addAll(response.body());
+                binding.recyler.setAdapter(adapterCategoryProduct);
+                adapterCategoryProduct.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    public void getOfferProduct()
+    {
+
+        apiInterface.getOfferProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
+            @Override
+            public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
 
                 products.addAll(response.body());
                 binding.recyler.setAdapter(adapterCategoryProduct);
@@ -96,7 +119,7 @@ public class ProductsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<ModelFlashSell>> call, Throwable t) {
+            public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
 
             }
         });

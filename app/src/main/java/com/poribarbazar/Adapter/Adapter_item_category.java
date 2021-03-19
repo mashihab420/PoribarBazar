@@ -61,6 +61,7 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
 
                 Intent intent=new Intent(context, ProductsActivity.class);
                 intent.putExtra("category",holder.binding.categoryName.getText().toString());
+                intent.putExtra("type","category");
                 context.startActivity(intent);
 
 

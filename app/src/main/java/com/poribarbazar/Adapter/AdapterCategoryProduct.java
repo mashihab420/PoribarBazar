@@ -3,13 +3,11 @@ package com.poribarbazar.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,26 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
-import com.poribarbazar.RoomDao;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
-import com.poribarbazar.model.ModelCartRoom;
-import com.poribarbazar.model.ModelFlashSell;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategoryProduct.ViewHolder> {
 
 
-    ArrayList<ModelFlashSell> products;
+    ArrayList<ModelProducts> products;
     Context context;
     CartRepository repository;
 
 
-    public AdapterCategoryProduct(ArrayList<ModelFlashSell> products, Context context) {
+    public AdapterCategoryProduct(ArrayList<ModelProducts> products, Context context) {
         this.products = products;
         this.context = context;
     }
