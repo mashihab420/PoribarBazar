@@ -38,6 +38,48 @@ public class ModelProducts {
     @Expose
     private String polular;
 
+
+    @SerializedName("sub_category")
+    @Expose
+    private String sub_category;
+
+    public String getSub_category() {
+        return sub_category;
+    }
+
+    public void setSub_category(String sub_category) {
+        this.sub_category = sub_category;
+    }
+
+    public String getpName() {
+        return pName;
+    }
+
+    public void setpName(String pName) {
+        this.pName = pName;
+    }
+
+    public String getpDescription() {
+        return pDescription;
+    }
+
+    public void setpDescription(String pDescription) {
+        this.pDescription = pDescription;
+    }
+
+    public String getpPrice() {
+        return pPrice;
+    }
+
+    public void setpPrice(String pPrice) {
+        this.pPrice = pPrice;
+    }
+
+
+
+
+
+
     public String getId() {
         return id;
     }

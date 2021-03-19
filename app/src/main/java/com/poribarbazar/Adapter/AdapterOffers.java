@@ -57,7 +57,7 @@ public class AdapterOffers extends RecyclerView.Adapter<AdapterOffers.Holder> {
                 Intent intent =new Intent(context, ProductsActivity.class);
                 intent.putExtra("type","Offer");
                 intent.putExtra("category",offers.get(position).getCategory());
-                intent.putExtra("sub_category",offers.get(position).getCategory());
+                intent.putExtra("sub_category",offers.get(position).getSub_category());
                 context.startActivity(intent);
 
             }

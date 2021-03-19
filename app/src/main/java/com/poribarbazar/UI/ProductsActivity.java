@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
 
@@ -27,7 +28,7 @@ public class ProductsActivity extends AppCompatActivity {
     ArrayList<ModelProducts> products;
     ActivityProductsBinding binding;
     AdapterCategoryProduct adapterCategoryProduct;
-    ModelProducts modelProducts;
+    ModelProducts modelProducts,modelOfferProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,17 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         products=new ArrayList<>();
 
-         modelProducts=new ModelProducts();
-        modelProducts.setCategory(getIntent().getStringExtra("category"));
 
-        binding.title.setText(getIntent().getStringExtra("category"));
+        if (getIntent().getStringExtra("type").equals("Offer")) {
+
+            binding.title.setText("Offer");
+
+        }else {
+            binding.title.setText(getIntent().getStringExtra("category"));
+        }
+
+
+
 
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +77,14 @@ public class ProductsActivity extends AppCompatActivity {
 
        if (getIntent().getStringExtra("type").equals("Offer"))
        {
+           modelOfferProducts=new ModelProducts();
+           modelOfferProducts.setCategory(getIntent().getStringExtra("category"));
+           modelOfferProducts.setSub_category(getIntent().getStringExtra("sub_category"));
           getOfferProduct();
 
        }else {
+           modelProducts=new ModelProducts();
+           modelProducts.setCategory(getIntent().getStringExtra("category"));
 
            getCategoryProduct();
        }
@@ -79,6 +92,7 @@ public class ProductsActivity extends AppCompatActivity {
         adapterCategoryProduct = new AdapterCategoryProduct(products,ProductsActivity.this);
 
     }
+    
     public void getCategoryProduct()
     {
 
@@ -106,7 +120,7 @@ public class ProductsActivity extends AppCompatActivity {
     public void getOfferProduct()
     {
 
-        apiInterface.getOfferProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
+        apiInterface.getOfferProduct(modelOfferProducts).enqueue(new Callback<List<ModelProducts>>() {
             @Override
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
 
@@ -120,6 +134,7 @@ public class ProductsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+
 
             }
         });

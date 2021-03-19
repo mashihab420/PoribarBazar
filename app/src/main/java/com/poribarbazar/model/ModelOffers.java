@@ -17,6 +17,11 @@ public class ModelOffers {
     @Expose
     private String category;
 
+
+    @SerializedName("sub_category")
+    @Expose
+    private String sub_category;
+
     @SerializedName("image")
     @Expose
     private String image;
@@ -51,5 +56,13 @@ public class ModelOffers {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSub_category() {
+        return sub_category;
+    }
+
+    public void setSub_category(String sub_category) {
+        this.sub_category = sub_category;
     }
 }
