@@ -13,11 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
+<<<<<<< HEAD
+import com.poribarbazar.model.ModelCartRoom;
+import com.poribarbazar.model.ModelFlashSell;
+import com.poribarbazar.model.ModelOffers;
+=======
 import com.poribarbazar.model.ModelProducts;
+>>>>>>> 6d2ed74017b4f7ee810da42a48768c9bec3aba45
 
 import java.util.ArrayList;
 
@@ -55,17 +62,33 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.quantity.setVisibility(View.VISIBLE);
-                holder.minus.setVisibility(View.VISIBLE);
+
+                final CartRepository repository = new CartRepository(context);
+
+                ModelCartRoom modelCartRoom=new ModelCartRoom();
+                modelCartRoom.setP_name(pname);
+                modelCartRoom.setP_price(price);
+                modelCartRoom.setUrl(url);
+                modelCartRoom.setQuantity("1");
+                //    modelCartRoom.setP_name(binding.quantity.getText().toString());
+
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+
+
+
+              //  holder.quantity.setVisibility(View.VISIBLE);
+            //    holder.minus.setVisibility(View.VISIBLE);
                 int quantity= Integer.parseInt(holder.quantity.getText().toString());
                 quantity++;
-                holder.quantity.setText(""+quantity);
+            //    holder.quantity.setText(""+quantity);
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         context.startActivity(new Intent(context, CartActivity.class));
                     }
                 });
+                
+
             }
         });
 
