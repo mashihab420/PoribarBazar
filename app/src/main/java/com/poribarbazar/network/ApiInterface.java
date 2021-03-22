@@ -3,6 +3,7 @@ package com.poribarbazar.network;
 
 
 import com.poribarbazar.model.ModelCategory;
+import com.poribarbazar.model.ModelOrders;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelUser;
@@ -51,6 +52,9 @@ public interface ApiInterface {
 
     @POST("insert_user_info.php")
     Call<ModelUser> addUsers(@Body ModelUser modelUsers);
+
+    @POST("insert_order.php")
+    Call<ModelOrders> insert_order(@Body ModelOrders modelOrders);
 
     @GET("user_login.php")
     //Call<ModelUser> loginUser(@Body ModelUser modelUsers);
