@@ -187,7 +187,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             modelOrders.setP_name(carts.get(i).getP_name());
             modelOrders.setP_price(carts.get(i).getP_price());
             modelOrders.setQuantity(carts.get(i).getQuantity());
-            modelOrders.setInvoice_id(getInvoiveID);
+             modelOrders.setInvoice_id(getInvoiveID);
             modelOrders.setPhone(sharedPreferance.getPhone());
             modelOrders.setSubtotal(""+intsub);
             modelOrders.setTotal(""+total);
@@ -228,13 +228,13 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
     }
 
     public static String getOrderNumberGenerator() {
-        // It will generate 6 digit random Number.
-        // from 0 to 999999
+        // It will generate 8 digit random Number.
+        // from 0 to 99999999
         Random rnd = new Random();
-        int number = rnd.nextInt(999999);
+        int number = rnd.nextInt(99999999);
 
         // this will convert any number sequence into 6 character.
-        return String.format("%06d", number);
+        return String.format("%08d", number);
     }
 
     public void getData() {
