@@ -45,7 +45,6 @@ public class MysharedPreferance {
 
 
 
-
     public  void setPhone(String phone)
     {
         editor.putString("phone",phone);

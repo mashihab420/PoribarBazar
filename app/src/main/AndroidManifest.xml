@@ -13,11 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UI.SignUpActivity">
-
-
-        </activity>
-
+        <activity android:name=".UI.MyOrders"></activity>
+        <activity android:name=".UI.Profile" />
+        <activity android:name=".UI.SignUpActivity" />
         <activity android:name=".UI.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

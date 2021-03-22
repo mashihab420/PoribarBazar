@@ -8,7 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +21,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.poribarbazar.Fragment.HomeFragment;
+import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.LoginActivity;
+import com.poribarbazar.UI.MyOrders;
+import com.poribarbazar.UI.Profile;
+import com.poribarbazar.UI.SignUpActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbarr;
     TextView toolbarTitle,cartQuantity;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    MysharedPreferance sharedPreferences;
 
     
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sharedPreferences = MysharedPreferance.getPreferences(getApplicationContext());
 
         toolbarr=findViewById(R.id.toolbar);
         setSupportActionBar(toolbarr);
@@ -114,12 +123,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-      
 
-            case R.id.cart:
+
+
+            case R.id.nav_profile:
+
+                if (sharedPreferences.getPhone().equals("none"))
+                {
+                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+                }else {
+
+                    startActivity(new Intent(MainActivity.this, Profile.class));
+                }
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
+
+
+            case R.id.nav_orders:
+                if (sharedPreferences.getPhone().equals("none"))
+                {
+                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+                }else {
+
+                    startActivity(new Intent(MainActivity.this, MyOrders.class));
+                }
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
+
+          /*  case R.id.cart:
                 Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
@@ -170,8 +208,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
 
+            default:*/
             default:
-
 
         }
     }
