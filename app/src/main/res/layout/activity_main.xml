@@ -125,7 +125,7 @@
 
                     <com.poribarbazar.UI.CustomTextView
                         android:id="@+id/nav_baby"
-                        android:text="Baby"
+                        android:text="Baby &amp; Toy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -133,6 +133,18 @@
                     <com.poribarbazar.UI.CustomTextView
                         android:id="@+id/nav_electronic"
                         android:text="Electronics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <com.poribarbazar.UI.CustomTextView
+                        android:id="@+id/nav_Watches"
+                        android:text="Watches &amp; Accessories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <com.poribarbazar.UI.CustomTextView
+                        android:id="@+id/nav_health"
+                        android:text="Health &amp; Beauty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

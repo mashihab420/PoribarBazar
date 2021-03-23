@@ -24,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.poribarbazar.R;
+import com.poribarbazar.databinding.ActivityPlaceOrderBinding;
+import com.poribarbazar.databinding.ActivitySignUpBinding;
 import com.poribarbazar.model.ModelUser;
 import com.poribarbazar.network.ApiClient;
 import com.poribarbazar.network.ApiInterface;
@@ -35,21 +37,22 @@ import retrofit2.Retrofit;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextInputEditText name, email, phone, pass, c_pass, address;
-/*    TextInputLayout err_name, err_email, err_phone, err_pass, err_c_pass, err_address;*/
+
+    ActivitySignUpBinding binding;
     ApiInterface apiInterface;
     int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        name = findViewById(R.id.nameid);
+       /* name = findViewById(R.id.nameid);
         phone = findViewById(R.id.phoneid);
         email = findViewById(R.id.emailid);
         address = findViewById(R.id.addressid);
         pass = findViewById(R.id.passwordid);
-        c_pass = findViewById(R.id.cpassid);
+        c_pass = findViewById(R.id.cpassid);*/
 /*
         err_name = findViewById(R.id.err_name);
         err_email = findViewById(R.id.err_email);
@@ -94,18 +97,18 @@ public class SignUpActivity extends AppCompatActivity {
         
         
 
-        String namee = name.getText().toString();
-        String phonee = phone.getText().toString();
-        String emaill = email.getText().toString();
-        String addresss = address.getText().toString();
-        String passs = pass.getText().toString();
-        String c_passs = c_pass.getText().toString();
+        String namee = binding.nameid.getText().toString();
+        String phonee =binding.phoneid.getText().toString();
+        String emaill = binding.emailid.getText().toString();
+        String addresss = binding.addressid.getText().toString();
+        String passs = binding.passwordid.getText().toString();
+        String c_passs = binding.cpassid.getText().toString();
         String firstThreeNumber = "";
         if (TextUtils.isEmpty(namee)){
 
 
-            name.setError("Please enter your name");
-            name.requestFocus();
+            binding.nameid.setError("Name required");
+            binding.nameid.requestFocus();
             return;
         }/*if (TextUtils.isEmpty(phonee)){
             phone.setError("Please enter your phone");
@@ -125,28 +128,28 @@ public class SignUpActivity extends AppCompatActivity {
 
             }else {
 
-                phone.setError("Invalid Phone Number");
-                phone.requestFocus();
+                binding.phoneid.setError("Number required");
+                binding.phoneid.requestFocus();
                 return;
             }
         }else
         {
-            phone.setError("Phone number must be 11 digit");
-            phone.requestFocus();
+            binding.phoneid.setError("must be 11 digit");
+            binding.phoneid.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(emaill)){
-            email.setError("Please enter your email");
-            email.requestFocus();
+            binding.emailid.setError(" email required");
+            binding.emailid.requestFocus();
             return;
         }if (TextUtils.isEmpty(addresss)){
-            address.setError("Please enter your address");
-            address.requestFocus();
+            binding.addressid.setError("Address required");
+            binding.addressid.requestFocus();
             return;
         }if (TextUtils.isEmpty(passs)){
-            pass.setError("Please enter your password");
-            pass.requestFocus();
+            binding.passwordid.setError("password required");
+            binding.passwordid.requestFocus();
             return;
         }
         else{
@@ -221,15 +224,15 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                 }else {
-                    c_pass.setError("Password Not match");
-                    c_pass.requestFocus();
+                    binding.passwordid.setError("Password Not match");
+                    binding.passwordid.requestFocus();
                     return;
                 }
 
 
             }else {
-                pass.setError("password must be greater than 8 digit");
-                pass.requestFocus();
+                binding.cpassid.setError("password must be greater than 8 digit");
+                binding.cpassid.requestFocus();
                 return;
             }
 

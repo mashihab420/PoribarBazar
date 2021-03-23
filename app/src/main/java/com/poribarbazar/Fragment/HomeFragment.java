@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -41,23 +42,32 @@ AdapterFlashSell adapterFlashSell;
 AdapterPopularProduct adapterPopularProduct;
 
 ApiInterface apiInterface;
-ArrayList<ModelCategory> categories;
-ArrayList<ModelOffers> offers;
-ArrayList<ModelProducts> flashSells;
-ArrayList<ModelProducts> popularproducts;
+ArrayList<ModelCategory> categories=new ArrayList<>();
+ArrayList<ModelOffers> offers=new ArrayList<>();
+ArrayList<ModelProducts> flashSells=new ArrayList<>();
+ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
     public HomeFragment() {
 
     }
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        Retrofit instance = ApiClient.getClient();
+        apiInterface =instance.create(ApiInterface.class);
+        get_category();
+        getOffers();
+        getFlashSell();
+        getPoputerProduct();
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
 
         if (container != null) {
@@ -69,31 +79,20 @@ ArrayList<ModelProducts> popularproducts;
         binding= FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
 
-        Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
 
-        categories=new ArrayList<>();
         adapter_item_category = new Adapter_item_category(categories,getActivity());
         binding.recylerCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        offers=new ArrayList<>();
         adapterOffers = new AdapterOffers(offers,getActivity());
         binding.recylerOffers.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        flashSells=new ArrayList<>();
         adapterFlashSell = new AdapterFlashSell(flashSells,getActivity());
         binding.recyclerflashsell.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        popularproducts=new ArrayList<>();
         adapterPopularProduct = new AdapterPopularProduct(popularproducts,getActivity());
         binding.recyclerpopularproduct.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
-        get_category();
-
-        getOffers();
-        getFlashSell();
-        getPoputerProduct();
 
         return view;
     }

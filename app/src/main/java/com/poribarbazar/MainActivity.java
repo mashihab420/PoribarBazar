@@ -29,6 +29,7 @@ import com.poribarbazar.UI.Profile;
 import com.poribarbazar.UI.SignUpActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     private ActivityMainBinding binding;
     HomeFragment homeFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     MysharedPreferance sharedPreferences;
 
     
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding.navigationView.setNavigationItemSelectedListener(this);
 
+
+
+        binding.navBaby.setOnClickListener(this);
+        binding.navElectronic.setOnClickListener(this);
+        binding.navHealth.setOnClickListener(this);
+        binding.navOrders.setOnClickListener(this);
+        binding.navProfile.setOnClickListener(this);
+        binding.navWoman.setOnClickListener(this);
+        binding.navWatches.setOnClickListener(this);
 
             initFragmentHome();
 
@@ -123,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -131,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             case R.id.nav_profile:
+
 
                 if (sharedPreferences.getPhone().equals("none"))
                 {
