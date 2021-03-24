@@ -51,7 +51,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
          phone = getIntent().getStringExtra("phone");
 
 
-        binding.textView9.setText(price);
+        binding.textView9.setText(price+" BDT");
         repository = new CartRepository(getApplicationContext());
 
         getData();
