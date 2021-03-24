@@ -49,8 +49,8 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
     ApiInterface apiInterface;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
     ActivityCartBinding binding;
-    int intsub =0;
-    int total =0;
+    int intsub = 0;
+    int total = 0;
     int i = 0;
 
     @Override
@@ -60,7 +60,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         setContentView(binding.getRoot());
         // setContentView(R.layout.activity_cart);
         sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
-     String address =   sharedPreferance.getAddress();
+        String address = sharedPreferance.getAddress();
         radio_bkash = findViewById(R.id.radiobkash);
         radio_cash_on_dv = findViewById(R.id.radiocashondelivery);
         confirmorder = findViewById(R.id.button2);
@@ -68,9 +68,9 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
         repository = new CartRepository(getApplicationContext());
 
-        if (address.equals("none")){
+        if (address.equals("none")) {
 
-        }else {
+        } else {
             binding.addressid.setText(address);
         }
 
@@ -79,9 +79,9 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         binding.recyclerView2.setLayoutManager(new LinearLayoutManager(getApplication(), LinearLayoutManager.VERTICAL, false));
 
 */
-        binding.recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        binding.recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        adapterCart = new AdapterCart(carts,getApplicationContext(),repository,this);
+        adapterCart = new AdapterCart(carts, getApplicationContext(), repository, this);
         binding.recyclerView2.setAdapter(adapterCart);
 
         getData();
@@ -110,16 +110,39 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             public void onClick(View view) {
                 if (radio_bkash.isChecked() == true) {
                     Intent intent = new Intent(CartActivity.this, LoginActivity.class);
-                    intent.putExtra("TAG","CartActivity");
+                    intent.putExtra("TAG", "CartActivity");
                     startActivity(intent);
+
+                    if (address.equals("none")) {
+                        Intent intentw = new Intent(CartActivity.this, LoginActivity.class);
+                        intent.putExtra("TAG", "CartActivity-bkash");
+                        startActivity(intentw);
+                    } else {
+
+                        String getInvoiceID = getOrderNumberGenerator();
+                        Date d = new Date();
+                        CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
+
+                        String pricee = binding.textView23.getText().toString();
+                        Intent intentw = new Intent(CartActivity.this, PlaceOrderActivity.class);
+                        intentw.putExtra("totall",""+total);
+                        intentw.putExtra("subtotal",""+intsub);
+                        intentw.putExtra("phone",""+sharedPreferance.getPhone());
+                        intentw.putExtra("invoiceid",""+getInvoiceID);
+                        intentw.putExtra("timedate",""+datetime);
+                        startActivity(intentw);
+                      //  Toast.makeText(CartActivity.this, "" + binding.textView23.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+
                 } else if (radio_cash_on_dv.isChecked() == true) {
 
-                    if (address.equals("none")){
+                    if (address.equals("none")) {
                         Intent intent = new Intent(CartActivity.this, LoginActivity.class);
-                        intent.putExtra("TAG","CartActivity");
+                        intent.putExtra("TAG", "CartActivity");
                         startActivity(intent);
-                    }else {
-                        
+                    } else {
+
                         orderProduct();
 
                     }
@@ -172,14 +195,13 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
     private void orderProduct() {
 
         Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
+        apiInterface = instance.create(ApiInterface.class);
 
-        String getInvoiveID=getOrderNumberGenerator();
+        String getInvoiveID = getOrderNumberGenerator();
         Date d = new Date();
-        CharSequence datetime  = DateFormat.format("d MMMM, yyyy ", d.getTime());
+        CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
 
-        for (i=0;i<carts.size();i++)
-        {
+        for (i = 0; i < carts.size(); i++) {
 
             ModelOrders modelOrders = new ModelOrders();
 
@@ -187,22 +209,21 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             modelOrders.setP_name(carts.get(i).getP_name());
             modelOrders.setP_price(carts.get(i).getP_price());
             modelOrders.setQuantity(carts.get(i).getQuantity());
-             modelOrders.setInvoice_id(getInvoiveID);
+            modelOrders.setInvoice_id(getInvoiveID);
             modelOrders.setPhone(sharedPreferance.getPhone());
-            modelOrders.setSubtotal(""+intsub);
-            modelOrders.setTotal(""+total);
-            modelOrders.setOrder_time(""+datetime);
+            modelOrders.setSubtotal("" + intsub);
+            modelOrders.setTotal("" + total);
+            modelOrders.setOrder_time("" + datetime);
             modelOrders.setShipping_fee("50");
             modelOrders.setPay_method("Home Delivey");
-
 
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {
                 @Override
                 public void onResponse(Call<ModelOrders> call, Response<ModelOrders> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         Toast.makeText(CartActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         Toast.makeText(CartActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
 
                     }
@@ -219,7 +240,6 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             });
 
             //  Toast.makeText(CartActivity.this, ""+i, Toast.LENGTH_SHORT).show();
-
 
 
         }
@@ -245,7 +265,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
                 carts.clear();
                 carts.addAll(modelCartRooms);
                 adapterCart.notifyDataSetChanged();
-              //  binding.recyclerView2.setAdapter(adapterCart);
+                //  binding.recyclerView2.setAdapter(adapterCart);
 
 /*
             if (modelCartRooms.size() == 0){
@@ -277,11 +297,11 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
     @Override
     public void totalPrice(String subtotal) {
         intsub = Integer.parseInt(subtotal);
-        total = intsub+50;
+        total = intsub + 50;
 
-       binding.subtotalprice.setText(subtotal+" BDT");
-       binding.textView22.setText("50 BDT");
-       binding.textView23.setText(total+" BDT");
+        binding.subtotalprice.setText(subtotal + " BDT");
+        binding.textView22.setText("50 BDT");
+        binding.textView23.setText(total + " BDT");
 
     }
 }

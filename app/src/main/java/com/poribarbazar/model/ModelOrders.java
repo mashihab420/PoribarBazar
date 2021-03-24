@@ -52,6 +52,14 @@ public class ModelOrders {
     @Expose
     private String p_name;
 
+    @SerializedName("payment_phone")
+    @Expose
+    private String payment_phone;
+
+    @SerializedName("trx_id")
+    @Expose
+    private String trx_id;
+
     public String getId() {
         return id;
     }
@@ -146,5 +154,21 @@ public class ModelOrders {
 
     public void setP_name(String p_name) {
         this.p_name = p_name;
+    }
+
+    public String getPayment_phone() {
+        return payment_phone;
+    }
+
+    public void setPayment_phone(String payment_phone) {
+        this.payment_phone = payment_phone;
+    }
+
+    public String getTrx_id() {
+        return trx_id;
+    }
+
+    public void setTrx_id(String trx_id) {
+        this.trx_id = trx_id;
     }
 }
