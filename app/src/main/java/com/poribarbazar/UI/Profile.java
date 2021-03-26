@@ -48,9 +48,9 @@ public class Profile extends AppCompatActivity {
         binding.appBar.title.setText("Profile");
 
         binding.name.setText(mysharedPreferance.getName());
-        binding.phone.setText(mysharedPreferance.getName());
-        binding.email.setText(mysharedPreferance.getName());
-        binding.address.setText(mysharedPreferance.getName());
+        binding.phone.setText(mysharedPreferance.getPhone());
+        binding.email.setText(mysharedPreferance.getemail());
+        binding.address.setText(mysharedPreferance.getAddress());
 
 
         binding.save.setOnClickListener(new View.OnClickListener() {
