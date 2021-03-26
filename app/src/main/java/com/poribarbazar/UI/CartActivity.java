@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.poribarbazar.Adapter.AdapterCart;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.CartRepository;
+import com.poribarbazar.MainActivity;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.OnDataSend;
 import com.poribarbazar.R;
@@ -277,26 +278,25 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
                 adapterCart.notifyDataSetChanged();
                 //  binding.recyclerView2.setAdapter(adapterCart);
 
-/*
             if (modelCartRooms.size() == 0){
-                constraintLayout.setVisibility(View.GONE);
-                emptyimage.setVisibility(View.VISIBLE);
+                binding.constraintLayout4.setVisibility(View.GONE);
+                /*emptyimage.setVisibility(View.VISIBLE);
 
-             *//*   emptyimage.setOnClickListener(new View.OnClickListener() {
+                emptyimage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            *//**//*Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                            Intent intent = new Intent(CartActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();*//**//*
+                            finish();
                         onBackPressed();
-                    }*//*
-                });
+                    }
+                });*/
 
             }else {
-                constraintLayout.setVisibility(View.VISIBLE);
-                emptyimage.setVisibility(View.GONE);
-            }*/
+                binding.constraintLayout4.setVisibility(View.VISIBLE);
+               // emptyimage.setVisibility(View.GONE);
+            }
 
 
             }
