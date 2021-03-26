@@ -90,7 +90,13 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(@NonNull View widget) {
 
 
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                intent.putExtra("method", "" +"MainActivity");
+                intent.putExtra("invoiceid", "");
+                intent.putExtra("subtotal", "");
+                intent.putExtra("total", "");
+                startActivity(intent);
                 //finish();
 
             }
@@ -354,7 +360,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
                 Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-
+                if (deliverymethod.equals("MainActivity")){
+                    Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
                 if (deliverymethod.equals("bkashDelivery")){
 
                    /* String getInvoiveID = getIntent().getStringExtra("invoiceid");
@@ -411,37 +420,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void btn_createaccount(View view) {
 
-       /* String namee = name.getText().toString();
-        String phonee = phone.getText().toString();
-        String emaill = email.getText().toString();
-        String addresss = address.getText().toString();
-        String passs = pass.getText().toString();
-        String c_passs = c_pass.getText().toString();
 
-        Retrofit instance = ApiClient.getClient();
-        apiInterface = instance.create(ApiInterface.class);
-
-        ModelUser modelUser = new ModelUser();
-        modelUser.setName(namee);
-        modelUser.setPhone(phonee);
-        modelUser.setEmail(emaill);
-        modelUser.setAddress(addresss);
-        modelUser.setPassword(passs);
-
-
-        apiInterface.user_signUp(modelUser).enqueue(new Callback<ModelUser>() {
-            @Override
-            public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-
-                Toast.makeText(SignUpActivity.this, "Create Successfull", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFailure(Call<ModelUser> call, Throwable t) {
-                Toast.makeText(SignUpActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         check_data();
     }
