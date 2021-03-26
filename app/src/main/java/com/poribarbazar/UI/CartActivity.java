@@ -109,17 +109,20 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             @Override
             public void onClick(View view) {
                 if (radio_bkash.isChecked() == true) {
-                    Intent intent = new Intent(CartActivity.this, LoginActivity.class);
+                  /*  Intent intent = new Intent(CartActivity.this, LoginActivity.class);
                     intent.putExtra("TAG", "CartActivity");
-                    startActivity(intent);
-
+                    startActivity(intent);*/
+                    String getInvoiceID = getOrderNumberGenerator();
                     if (address.equals("none")) {
-                        Intent intentw = new Intent(CartActivity.this, LoginActivity.class);
-                        intent.putExtra("TAG", "CartActivity-bkash");
-                        startActivity(intentw);
+                        Intent intent = new Intent(CartActivity.this, LoginActivity.class);
+                        intent.putExtra("method", "bkashDelivery");
+                        intent.putExtra("invoiceid", ""+getInvoiceID);
+                        intent.putExtra("subtotal", ""+intsub);
+                        intent.putExtra("total", ""+total);
+                        startActivity(intent);
                     } else {
 
-                        String getInvoiceID = getOrderNumberGenerator();
+
                         Date d = new Date();
                         CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
 
@@ -138,8 +141,13 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
                 } else if (radio_cash_on_dv.isChecked() == true) {
 
                     if (address.equals("none")) {
+                        String getInvoiceID = getOrderNumberGenerator();
+
                         Intent intent = new Intent(CartActivity.this, LoginActivity.class);
-                        intent.putExtra("TAG", "CartActivity");
+                        intent.putExtra("method", "cashOnDelivery");
+                        intent.putExtra("invoiceid", ""+getInvoiceID);
+                        intent.putExtra("subtotal", ""+intsub);
+                        intent.putExtra("total", ""+total);
                         startActivity(intent);
                     } else {
 
@@ -216,7 +224,8 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             modelOrders.setOrder_time("" + datetime);
             modelOrders.setShipping_fee("50");
             modelOrders.setPay_method("Home Delivey");
-
+            modelOrders.setPayment_phone("null");
+            modelOrders.setTrx_id("null");
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {
                 @Override

@@ -63,6 +63,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
         holder.cartBinding.cartitemprice.setText(carts.get(position).getP_price());
         holder.cartBinding.cartquantity.setText(carts.get(position).getQuantity());
 
+
+
         Glide.with(context)
                 .load(carts.get(position).getUrl())
                 .override(300, 200)
