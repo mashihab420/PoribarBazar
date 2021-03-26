@@ -48,6 +48,8 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
         String price = flashSells.get(position).getPPrice();
         String details = flashSells.get(position).getPDescription();
         String url = flashSells.get(position).getImageUrl();
+        String url2 = flashSells.get(position).getImage_url2();
+        String url3 = flashSells.get(position).getImage_url3();
         holder.p_name.setText(flashSells.get(position).getPName());
 
         holder.price.setText(flashSells.get(position).getPPrice()+" BDT");
@@ -117,6 +119,8 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 intent.putExtra("price",price);
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
+                intent.putExtra("image_url2",url2);
+                intent.putExtra("image_url3",url3);
                 intent.putExtra("p_id",flashSells.get(position).getId());
                 context.startActivity(intent);
             }

@@ -10,6 +10,9 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
@@ -17,12 +20,14 @@ import com.poribarbazar.databinding.ActivityPlaceOrderBinding;
 import com.poribarbazar.databinding.ActivityProductInfoBinding;
 import com.poribarbazar.model.ModelCartRoom;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductInfoActivity extends AppCompatActivity {
 
     private ActivityProductInfoBinding binding;
 
     int quantitytext =1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +39,35 @@ public class ProductInfoActivity extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String details = intent.getStringExtra("details");
         String url = intent.getStringExtra("image_url");
+        String url2 = intent.getStringExtra("image_url2");
+        String url3 = intent.getStringExtra("image_url3");
         String p_id = intent.getStringExtra("p_id");
-
         binding.textView13.setText(name);
         binding.textView18.setText(price);
        // binding.textView17.setText(details);
 
-        Glide.with(getApplicationContext())
+       /* Glide.with(getApplicationContext())
                 .load(url)
-                .into(binding.imageView5);
+                .into(binding.imageView5);*/
+
+        ImageSlider imageSlider = findViewById(R.id.imageView5);
+
+        List<SlideModel> slideModels = new ArrayList<>();
+        // slideModels.add(new SlideModel(imgurl1,"1 Image"));
+        slideModels.add(new SlideModel(url));
+        slideModels.add(new SlideModel(url2));
+        slideModels.add(new SlideModel(url3));
+      /*  slideModels.add(new SlideModel("https://i.ytimg.com/vi/-CeFIBmltnU/maxresdefault.jpg","3 Image"));
+        slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/order-pizza-online-banner-mobile-app-templates-concept-fast-free-delivery-service-vector-illustration-flat-cartoon-design-138516640.jpg","4 Image"));
+        */imageSlider.setImageList(slideModels,false);
+
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                Toast.makeText(ProductInfoActivity.this, "slider position: "+i, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         binding.plusitemquantity.setOnClickListener(new View.OnClickListener() {
             @Override

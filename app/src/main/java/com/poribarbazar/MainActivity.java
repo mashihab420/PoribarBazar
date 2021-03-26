@@ -168,7 +168,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_orders:
                 if (sharedPreferences.getPhone().equals("none"))
                 {
-                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                    intent.putExtra("method", "" +"MainActivity");
+                    intent.putExtra("invoiceid", "");
+                    intent.putExtra("subtotal", "");
+                    intent.putExtra("total", "");
+                    startActivity(intent);
                 }else {
 
                     startActivity(new Intent(MainActivity.this, MyOrders.class));

@@ -13,6 +13,15 @@ public class ModelProducts {
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
+
+    @SerializedName("image_url2")
+    @Expose
+    private String image_url2;
+
+    @SerializedName("image_url3")
+    @Expose
+    private String image_url3;
+
     @SerializedName("p_name")
     @Expose
     private String pName;
@@ -168,4 +177,19 @@ public class ModelProducts {
         this.polular = polular;
     }
 
+    public String getImage_url2() {
+        return image_url2;
+    }
+
+    public void setImage_url2(String image_url2) {
+        this.image_url2 = image_url2;
+    }
+
+    public String getImage_url3() {
+        return image_url3;
+    }
+
+    public void setImage_url3(String image_url3) {
+        this.image_url3 = image_url3;
+    }
 }

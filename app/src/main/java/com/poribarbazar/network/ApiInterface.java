@@ -31,7 +31,7 @@ public interface ApiInterface {
     Call<List<ModelProducts>> getOfferProduct(@Body ModelProducts modelProducts);
 
 
-    @POST("get_offer_product.php")
+    @POST("update_user_info.php")
     Call<List<ModelUser>> update_profile(@Body ModelUser modelUser);
 
     @GET("get_offers.php")
