@@ -28,6 +28,7 @@ import com.poribarbazar.CartRepository;
 import com.poribarbazar.MainActivity;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.R;
+import com.poribarbazar.Tools;
 import com.poribarbazar.databinding.ActivityCartBinding;
 import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelOrders;
@@ -254,7 +255,17 @@ public class LoginActivity extends AppCompatActivity {
                 /*Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);*/
 
+                if (deliverymethod.equals("MainActivity")){
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
 
+                    Tools.snackErrInfo(LoginActivity.this, "Login Successfull", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                }
                 if (deliverymethod.equals("bkashDelivery")) {
 
 

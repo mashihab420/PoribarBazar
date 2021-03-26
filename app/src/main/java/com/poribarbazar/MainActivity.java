@@ -78,9 +78,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navHealth.setOnClickListener(this);
         binding.navOrders.setOnClickListener(this);
         binding.navProfile.setOnClickListener(this);
+        binding.navLogout.setOnClickListener(this);
         binding.navWoman.setOnClickListener(this);
         binding.navWatches.setOnClickListener(this);
         binding.navMan.setOnClickListener(this);
+
 
             initFragmentHome();
 
@@ -147,7 +149,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (sharedPreferences.getPhone().equals("none"))
                 {
-                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+
+                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                    intent.putExtra("method", "" +"MainActivity");
+                    intent.putExtra("invoiceid", "");
+                    intent.putExtra("subtotal", "");
+                    intent.putExtra("total", "");
+                    startActivity(intent);
                 }else {
 
                     startActivity(new Intent(MainActivity.this, Profile.class));
@@ -205,7 +213,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
 
                 break;
+            case R.id.nav_logout:
 
+                sharedPreferences.setName(null);
+                sharedPreferences.setAddress(null);
+                sharedPreferences.setPhone("none");
+                sharedPreferences.setEmail(null);
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
 
           /*  case R.id.cart:
                 Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
