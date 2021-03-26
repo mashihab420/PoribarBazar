@@ -25,6 +25,7 @@ import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.LoginActivity;
 import com.poribarbazar.UI.MyOrders;
+import com.poribarbazar.UI.ProductsActivity;
 import com.poribarbazar.UI.Profile;
 import com.poribarbazar.UI.SignUpActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navProfile.setOnClickListener(this);
         binding.navWoman.setOnClickListener(this);
         binding.navWatches.setOnClickListener(this);
+        binding.navMan.setOnClickListener(this);
 
             initFragmentHome();
 
@@ -167,6 +169,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
 
                 break;
+
+
+
+            case R.id.nav_man:
+
+                Intent intent=new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category","Man");
+                intent.putExtra("type","none");
+                startActivity(intent);
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
+
+
+            case R.id.nav_woman:
+
+                intent=new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category","Woman");
+                intent.putExtra("type","none");
+                startActivity(intent);
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
+
+            case R.id.nav_baby:
+
+                intent=new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category","Baby");
+                intent.putExtra("type","none");
+                startActivity(intent);
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+                break;
+
 
           /*  case R.id.cart:
                 Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();

@@ -28,136 +28,205 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
 
-            android:orientation="vertical">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+           <ScrollView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
 
 
-                <ImageView
-                    android:id="@+id/circleImageView"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/app_logo"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@color/white"
 
-                <ImageView
-                    android:id="@+id/nav_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintEnd_toStartOf="@+id/nav_orders"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_user" />
-
-                <ImageView
-                    android:id="@+id/nav_orders"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/nav_profile"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_shopping" />
-
-                <com.poribarbazar.UI.CustomTextView
-                    android:id="@+id/orderid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Orders"
-                    app:layout_constraintEnd_toEndOf="@+id/nav_orders"
-                    app:layout_constraintStart_toStartOf="@+id/nav_orders"
-                    app:layout_constraintTop_toBottomOf="@+id/nav_orders" />
-
-                <com.poribarbazar.UI.CustomTextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile"
-                    app:layout_constraintEnd_toEndOf="@+id/nav_profile"
-                    app:layout_constraintStart_toStartOf="@+id/nav_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/nav_profile" />
+                   android:orientation="vertical">
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+
+
+                       <ImageView
+
+                           android:id="@+id/circleImageView"
+                           android:layout_width="120dp"
+                           android:layout_height="120dp"
+                           android:src="@drawable/app_logo"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintVertical_bias="0.0" />
+
+
+                   </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                   <ScrollView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
 
 
-                <LinearLayout
-                    android:layout_marginLeft="8dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_man"
-                        android:text="Man"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                       <LinearLayout
+                           android:layout_marginLeft="8dp"
+                           android:orientation="vertical"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent">
 
 
 
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_woman"
-                        android:text="Woman"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_man"
+                               android:text="Men's Fashion"
+                               android:background="?attr/selectableItemBackground"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
 
 
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_baby"
-                        android:text="Baby &amp; Toy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_woman"
+                               android:text="Woman's Fashion"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
 
 
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_electronic"
-                        android:text="Electronics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_Watches"
-                        android:text="Watches &amp; Accessories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <com.poribarbazar.UI.CustomTextView
-                        android:id="@+id/nav_health"
-                        android:text="Health &amp; Beauty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_baby"
+                               android:text="Baby &amp; Toy"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
 
 
-                </LinearLayout>
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_electronic"
+                               android:text="Electronics"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"/>
 
-            </ScrollView>
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_Watches"
+                               android:text="Watches &amp; Accessories"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
+
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_health"
+                               android:text="Health &amp; Beauty"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
+
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_grocharies"
+                               android:text="Groceries"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
+
+                           <com.poribarbazar.UI.CustomTextView
+                               android:id="@+id/nav_home"
+                               android:text="Home &amp; Lifestyle"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
+
+
+
+
+                       </LinearLayout>
+
+                   </ScrollView>
 
 
 
 
 
-        </LinearLayout>
+               </LinearLayout>
+
+           </ScrollView>
+
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true">
+
+               <ImageView
+                   android:id="@+id/nav_profile"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintEnd_toStartOf="@+id/nav_orders"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_user" />
+
+               <TextView
+                   android:id="@+id/textView28"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="16dp"
+                   android:text="Profile"
+                   android:padding="8dp"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="@+id/nav_profile"
+                   app:layout_constraintStart_toStartOf="@+id/nav_profile"
+                   app:layout_constraintTop_toBottomOf="@+id/nav_profile" />
+
+               <ImageView
+                   android:id="@+id/nav_orders"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintEnd_toStartOf="@+id/nav_logout"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toEndOf="@+id/nav_profile"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_shopping" />
+
+               <TextView
+                   android:id="@+id/orderid"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="16dp"
+                   android:text="Orders"
+                   android:padding="8dp"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="@+id/nav_orders"
+                   app:layout_constraintStart_toStartOf="@+id/nav_orders"
+                   app:layout_constraintTop_toBottomOf="@+id/nav_orders" />
+
+               <ImageView
+                   android:id="@+id/nav_logout"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toEndOf="@+id/nav_orders"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_logout" />
+
+               <TextView
+                   android:id="@+id/textView"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="16dp"
+                   android:text="Logout"
+                   android:padding="8dp"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="@+id/nav_logout"
+                   app:layout_constraintStart_toStartOf="@+id/nav_logout"
+                   app:layout_constraintTop_toBottomOf="@+id/nav_logout" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </RelativeLayout>
+
+
 
     </com.google.android.material.navigation.NavigationView>
 
