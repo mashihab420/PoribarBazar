@@ -109,6 +109,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 modelOrders.setQuantity(carts.get(i).getQuantity());
                 modelOrders.setInvoice_id(getInvoiveID);
                 modelOrders.setPhone(phone);
+                modelOrders.setSize(carts.get(i).getSize());
                 modelOrders.setPayment_phone(""+payment_number);
                 modelOrders.setTrx_id(""+trxno);
                 modelOrders.setSubtotal("" + subtotal);

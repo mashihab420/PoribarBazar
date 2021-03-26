@@ -12,6 +12,10 @@ public class ModelOrders {
     @Expose
     private String p_price;
 
+    @SerializedName("size")
+    @Expose
+    private String size;
+
     @SerializedName("quantity")
     @Expose
     private String quantity;
@@ -170,5 +174,13 @@ public class ModelOrders {
 
     public void setTrx_id(String trx_id) {
         this.trx_id = trx_id;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

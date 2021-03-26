@@ -70,6 +70,75 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
                 .override(300, 200)
                 .into(holder.cartBinding.cartimg);
 
+        String sizee = carts.get(position).getSize();
+
+
+        if (sizee.equals("S")){
+            holder.cartBinding.small.setChecked(true);
+        }
+        if (sizee.equals("M")){
+            holder.cartBinding.medium.setChecked(true);
+        }
+        if (sizee.equals("L")){
+            holder.cartBinding.large.setChecked(true);
+        }
+        if (sizee.equals("XL")){
+
+            holder.cartBinding.extralarge.setChecked(true);
+        }
+
+
+
+        holder.cartBinding.small.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CartRepository repository = new CartRepository(context);
+                carts.get(position).setSize("S");
+                repository.update(carts.get(position));
+                holder.cartBinding.small.setChecked(true);
+
+
+            }
+        });
+        holder.cartBinding.medium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CartRepository repository = new CartRepository(context);
+                carts.get(position).setSize("M");
+                repository.update(carts.get(position));
+                holder.cartBinding.medium.setChecked(true);
+
+            }
+        });
+
+        holder.cartBinding.large.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CartRepository repository = new CartRepository(context);
+                carts.get(position).setSize("L");
+                repository.update(carts.get(position));
+                holder.cartBinding.large.setChecked(true);
+
+            }
+        });
+
+        holder.cartBinding.extralarge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CartRepository repository = new CartRepository(context);
+                carts.get(position).setSize("XL");
+                repository.update(carts.get(position));
+
+
+                holder.cartBinding.extralarge.setChecked(true);
+
+            }
+        });
+
+
+
+
 
         holder.cartBinding.deletecartitem.setOnClickListener(new View.OnClickListener() {
             @Override
