@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -29,6 +30,9 @@ import com.poribarbazar.UI.ProductsActivity;
 import com.poribarbazar.UI.Profile;
 import com.poribarbazar.UI.SignUpActivity;
 import com.poribarbazar.databinding.ActivityMainBinding;
+import com.poribarbazar.model.ModelCartRoom;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView toolbarTitle,cartQuantity;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     MysharedPreferance sharedPreferences;
-
+    CartRepository repository;
     
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbarr);
 
      //   cartQuantity = findViewById(R.id.cart_quantity_id);
+        cartQuantity = findViewById(R.id.cart_quantity_id);
         toolbarTitle=findViewById(R.id.toolbarTitle);
         toolbarTitle.setText(R.string.app_name);
 
@@ -83,8 +88,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navWatches.setOnClickListener(this);
         binding.navMan.setOnClickListener(this);
 
+        repository = new CartRepository(this);
+
+        repository.getAllData().observe(this, new Observer<List<ModelCartRoom>>() {
+            @Override
+            public void onChanged(List<ModelCartRoom> modelCartRooms) {
+
+                if (modelCartRooms.size()==0){
+                    cartQuantity.setVisibility(View.GONE);
+                }else {
+                    cartQuantity.setVisibility(View.VISIBLE);
+                    if(modelCartRooms.size()>99){
+                        cartQuantity.setText("99+");
+                    }else {
+                        cartQuantity.setText(""+modelCartRooms.size());
+                    }
+
+
+                }
+            }
+        });
 
             initFragmentHome();
+
+
+
 
 
     }

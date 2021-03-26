@@ -53,18 +53,25 @@ public class ProductInfoActivity extends AppCompatActivity {
         ImageSlider imageSlider = findViewById(R.id.imageView5);
 
         List<SlideModel> slideModels = new ArrayList<>();
+
+        if(url2.equals("") && url3.equals("")){
+            slideModels.add(new SlideModel(url));
+        }else {
+          /*  slideModels.clear();*/
+            slideModels.add(new SlideModel(url));
+            slideModels.add(new SlideModel(url2));
+            slideModels.add(new SlideModel(url3));
+        }
+
         // slideModels.add(new SlideModel(imgurl1,"1 Image"));
-        slideModels.add(new SlideModel(url));
-        slideModels.add(new SlideModel(url2));
-        slideModels.add(new SlideModel(url3));
-      /*  slideModels.add(new SlideModel("https://i.ytimg.com/vi/-CeFIBmltnU/maxresdefault.jpg","3 Image"));
-        slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/order-pizza-online-banner-mobile-app-templates-concept-fast-free-delivery-service-vector-illustration-flat-cartoon-design-138516640.jpg","4 Image"));
-        */imageSlider.setImageList(slideModels,false);
+
+
+      imageSlider.setImageList(slideModels,false);
 
         imageSlider.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemSelected(int i) {
-                Toast.makeText(ProductInfoActivity.this, "slider position: "+i, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ProductInfoActivity.this, "slider position: "+i, Toast.LENGTH_SHORT).show();
             }
         });
 
