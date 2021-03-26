@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -75,24 +76,39 @@ public class ProductInfoActivity extends AppCompatActivity {
         binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final CartRepository repository = new CartRepository(ProductInfoActivity.this);
-
-                ModelCartRoom modelCartRoom=new ModelCartRoom();
-                modelCartRoom.setP_name(name);
-                modelCartRoom.setP_price(price);
-                modelCartRoom.setUrl(url);
-                modelCartRoom.setQuantity(""+quantitytext);
-            //    modelCartRoom.setP_name(binding.quantity.getText().toString());
-
-                repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,"M"));
 
 
-                Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
-                    }
-                });
+
+                if (binding.radioGroup.getCheckedRadioButtonId()==-1){
+                    Toast.makeText(ProductInfoActivity.this, "You Must Select Dress Size ", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    final CartRepository repository = new CartRepository(ProductInfoActivity.this);
+                    String size = ((RadioButton)findViewById(binding.radioGroup.getCheckedRadioButtonId())).getText().toString();
+
+                    ModelCartRoom modelCartRoom=new ModelCartRoom();
+                    modelCartRoom.setP_name(name);
+                    modelCartRoom.setP_price(price);
+                    modelCartRoom.setUrl(url);
+                    modelCartRoom.setQuantity(""+quantitytext);
+
+                    //    modelCartRoom.setP_name(binding.quantity.getText().toString());
+
+                    repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size));
+
+
+                    Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
+                        }
+                    });
+                }
+
+
+
+
             }
         });
 

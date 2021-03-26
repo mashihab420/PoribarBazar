@@ -50,23 +50,30 @@ public class LoginActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     MysharedPreferance sharedPreferance;
 
-    String deliverymethod ="";
-    CartRepository repository = new CartRepository(getApplication());
+    String deliverymethod = "";
+    CartRepository repository;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
 
     int i = 0;
+    String subtotal = "";
+    String total = "";
+    String getInvoiveID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
+        repository = new CartRepository(getApplicationContext());
         phone = findViewById(R.id.phoneid);
         pass = findViewById(R.id.passwordid);
         getData();
         deliverymethod = getIntent().getStringExtra("method");
+        getInvoiveID = getIntent().getStringExtra("invoiceid");
+        subtotal = getIntent().getStringExtra("subtotal");
+        total = getIntent().getStringExtra("total");
 
-        Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + deliverymethod, Toast.LENGTH_SHORT).show();
 
         TextView textView = findViewById(R.id.dthana);
         String text = "Don't have an account ? Create New Account";
@@ -78,8 +85,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(@NonNull View widget) {
 
 
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-              //  finish();
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                intent.putExtra("method", "" + deliverymethod);
+                intent.putExtra("invoiceid", "" + getInvoiveID);
+                intent.putExtra("subtotal", "" + subtotal);
+                intent.putExtra("total", "" + total);
+                startActivity(intent);
+                //  finish();
 
             }
 
@@ -89,10 +101,10 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         };
-        ss.setSpan(clickableSpan1, 24,41, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 24, 41, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        ss.setSpan(new BackgroundColorSpan(Color.WHITE), 24,42, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(new ForegroundColorSpan(Color.rgb(243, 156, 38)), 24,42, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new BackgroundColorSpan(Color.WHITE), 24, 42, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ForegroundColorSpan(Color.rgb(243, 156, 38)), 24, 42, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -121,17 +133,16 @@ public class LoginActivity extends AppCompatActivity {
             modelOrders.setP_name(carts.get(i).getP_name());
             modelOrders.setP_price(carts.get(i).getP_price());
             modelOrders.setQuantity(carts.get(i).getQuantity());
-            modelOrders.setInvoice_id(""+getInvoiveID);
-            modelOrders.setPhone(""+sharedPreferance.getPhone());
+            modelOrders.setInvoice_id("" + getInvoiveID);
+            modelOrders.setPhone("" + sharedPreferance.getPhone());
             modelOrders.setSubtotal("" + subtotal);
             modelOrders.setTotal("" + total);
+            modelOrders.setSize(carts.get(i).getSize());
             modelOrders.setOrder_time("" + datetime);
             modelOrders.setShipping_fee("50");
             modelOrders.setPay_method("Home Delivey");
             modelOrders.setPayment_phone("null");
             modelOrders.setTrx_id("null");
-
-
 
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {
@@ -167,41 +178,36 @@ public class LoginActivity extends AppCompatActivity {
         String phonee = phone.getText().toString();
         String passs = pass.getText().toString();
 
-    //input string
+        //input string
         String firstThreeNumber = "";     //substring containing first 4 characters
 
-        if (phonee.length() ==11)
-        {
+        if (phonee.length() == 11) {
             firstThreeNumber = phonee.substring(0, 3);
-      //      Toast.makeText(this, ""+firstThreeNumber, Toast.LENGTH_SHORT).show();
-            if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))){
+            //      Toast.makeText(this, ""+firstThreeNumber, Toast.LENGTH_SHORT).show();
+            if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))) {
 
 
-                if (passs.length() >=8){
-                   // Toast.makeText(getApplicationContext(), "You CAn Login", Toast.LENGTH_SHORT).show();
+                if (passs.length() >= 8) {
+                    // Toast.makeText(getApplicationContext(), "You CAn Login", Toast.LENGTH_SHORT).show();
                     //Here is the login api
                     login_method();
-                }else {
+                } else {
                     pass.setError("password must be greater than 8 digit");
                     pass.requestFocus();
                     return;
                 }
 
-            }else {
+            } else {
                 Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show();
                 phone.setError("Invalid Phone Number");
                 phone.requestFocus();
                 return;
             }
-        }
-        else
-        {
+        } else {
             phone.setError("Phone number must be 11 digit");
             phone.requestFocus();
             return;
         }
-
-
 
 
     }
@@ -213,7 +219,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 carts.clear();
                 carts.addAll(modelCartRooms);
-
 
 
             }
@@ -230,8 +235,8 @@ public class LoginActivity extends AppCompatActivity {
         ModelUser modelUser = new ModelUser();
         modelUser.setPhone(phonee);
         modelUser.setPassword(passs);
-        
-        apiInterface.loginUser(phonee,passs).enqueue(new Callback<ModelUser>() {
+
+        apiInterface.loginUser(phonee, passs).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
                 /*if (response.body().getResponse() == "ok"){
@@ -242,7 +247,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }*/
-                Toast.makeText(LoginActivity.this, ""+response.body().getAddress(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "" + response.body().getAddress(), Toast.LENGTH_SHORT).show();
                 sharedPreferance.setName(response.body().getName());
                 sharedPreferance.setPhone(response.body().getPhone());
                 sharedPreferance.setAddress(response.body().getAddress());
@@ -250,23 +255,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);*/
 
 
-                if (deliverymethod.equals("bkashDelivery")){
+                if (deliverymethod.equals("bkashDelivery")) {
 
-                    String getInvoiveID = getIntent().getStringExtra("invoiceid");
-                    String subtotal = getIntent().getStringExtra("subtotal");
-                    String total = getIntent().getStringExtra("total");
 
                     Date d = new Date();
                     CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
 
                     Intent intentw = new Intent(LoginActivity.this, PlaceOrderActivity.class);
-                    intentw.putExtra("totall",""+total);
-                    intentw.putExtra("subtotal",""+subtotal);
-                    intentw.putExtra("phone",""+sharedPreferance.getPhone());
-                    intentw.putExtra("invoiceid",""+getInvoiveID);
-                    intentw.putExtra("timedate",""+datetime);
+                    intentw.putExtra("totall", "" + total);
+                    intentw.putExtra("subtotal", "" + subtotal);
+                    intentw.putExtra("phone", "" + sharedPreferance.getPhone());
+                    intentw.putExtra("invoiceid", "" + getInvoiveID);
+                    intentw.putExtra("timedate", "" + datetime);
                     startActivity(intentw);
-                }else {
+                } else {
                     orderProduct();
                 }
 
@@ -278,6 +280,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
             }
         });
-        
+
     }
 }
