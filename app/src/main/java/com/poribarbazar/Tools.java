@@ -34,7 +34,7 @@ public class Tools {
         Snackbar snackbar = Snackbar.make(
                 activity.findViewById(android.R.id.content),
                 mainTextString,
-                Snackbar.LENGTH_INDEFINITE)
+                Snackbar.LENGTH_LONG)
                 .setActionTextColor(Color.WHITE)
                 .setAction("OK", listener);
         snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.red_900));
@@ -51,7 +51,7 @@ public class Tools {
                 .setActionTextColor(Color.WHITE)
                 .setAction("OK", listener);
 
-        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.green_500));
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
         snackbar.show();
     }
 

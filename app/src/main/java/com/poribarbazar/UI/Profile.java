@@ -2,9 +2,11 @@ package com.poribarbazar.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.poribarbazar.MainActivity;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
@@ -57,7 +59,21 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                update_profile();
+                if (binding.name.getText().toString().isEmpty()
+                        ||binding.address.getText().toString().isEmpty()
+                )
+                {
+                    Tools.snackErr(Profile.this, "Required filed can't be empty", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                }else {
+                    update_profile();
+                }
+
+
 
             }
         });
@@ -71,22 +87,36 @@ public class Profile extends AppCompatActivity {
         apiInterface = instance.create(ApiInterface.class);
 
 
-        ModelUser modelProducts=new ModelUser();
-        modelProducts.setName(binding.name.getText().toString());
-        modelProducts.setEmail(binding.phone.getText().toString());
-        modelProducts.setPhone(binding.email.getText().toString());
-        modelProducts.setAddress(binding.address.getText().toString());
-        apiInterface.update_profile(modelProducts).enqueue(new Callback<List<ModelUser>>() {
+        ModelUser modelUser=new ModelUser();
+        modelUser.setName(binding.name.getText().toString());
+        modelUser.setPhone(binding.phone.getText().toString());
+        modelUser.setEmail(binding.email.getText().toString());
+        modelUser.setAddress(binding.address.getText().toString());
+
+
+        apiInterface.update_profile(modelUser).enqueue(new Callback<ModelUser>() {
             @Override
-            public void onResponse(Call<List<ModelUser>> call, Response<List<ModelUser>> response) {
+            public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
+
                 mysharedPreferance.setName(binding.name.getText().toString());
                 mysharedPreferance.setEmail(binding.email.getText().toString());
                 mysharedPreferance.setAddress(binding.phone.getText().toString());
+                Tools.snackOK(Profile.this, "Successful Saved", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        startActivity(new Intent(Profile.this, MainActivity.class));
+                    }
+                });
+
+
+
+
 
             }
 
             @Override
-            public void onFailure(Call<List<ModelUser>> call, Throwable t) {
+            public void onFailure(Call<ModelUser> call, Throwable t) {
 
                 Tools.snackErr(Profile.this, "Failed ,check the internet connection !", new View.OnClickListener() {
                     @Override
@@ -94,8 +124,11 @@ public class Profile extends AppCompatActivity {
 
                     }
                 });
+
             }
         });
+
+
 
 
     }
