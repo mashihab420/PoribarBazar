@@ -13,13 +13,14 @@ import com.poribarbazar.databinding.ItemMyOrdersBinding;
 import com.poribarbazar.model.ModelOrders;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter_my_orders extends RecyclerView.Adapter<Adapter_my_orders.Holder> {
 
-    ArrayList<ModelOrders> orders;
+    List<ModelOrders> orders;
     Context context;
 
-    public Adapter_my_orders(ArrayList<ModelOrders> orders, Context context) {
+    public Adapter_my_orders(List<ModelOrders> orders, Context context) {
         this.orders = orders;
         this.context = context;
     }
@@ -35,9 +36,12 @@ public class Adapter_my_orders extends RecyclerView.Adapter<Adapter_my_orders.Ho
     @Override
     public void onBindViewHolder(@NonNull Adapter_my_orders.Holder holder, int position) {
 
-        holder.binding.date.setText(orders.get(position).getOrder_time());
-        holder.binding.invoice.setText(orders.get(position).getInvoice_id());
-        holder.binding.date.setText(orders.get(position).getOrder_status());
+        int positions = Integer.parseInt(""+holder.getAdapterPosition());
+        int res = positions+1;
+        holder.binding.orderNo.setText("Order No: "+res);
+        holder.binding.date.setText("Date: "+orders.get(position).getOrder_time());
+        holder.binding.invoice.setText("Invoice ID: "+orders.get(position).getInvoice_id());
+        holder.binding.status.setText("Status: "+orders.get(position).getOrder_status());
 
 
 

@@ -23,8 +23,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_back" />
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/orderidtv"
@@ -85,8 +84,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView23"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16"
-                app:srcCompat="@drawable/ic_shopping_bag" />
+                app:layout_constraintTop_toBottomOf="@+id/textView16"/>
 
             <TextView
                 android:id="@+id/textView22"
@@ -140,8 +138,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="32dp"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/ic_qr_code" />
+                    android:visibility="visible" />
             </RelativeLayout>
 
             <TextView
@@ -164,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="64dp"
-                android:onClick="savebtn"
+
                 android:text="Main Menu"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -172,19 +169,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
-            <Button
-                android:id="@+id/mainmenu_when_homedelivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:onClick="mainmenu_HD"
-                android:text="Main Menu"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
 
 
             <TextView
