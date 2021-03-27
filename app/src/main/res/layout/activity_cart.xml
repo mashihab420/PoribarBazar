@@ -7,6 +7,11 @@
     android:background="@color/white"
     tools:context=".UI.CartActivity">
 
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/app_bar">
+
+    </include>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"

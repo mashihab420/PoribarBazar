@@ -67,6 +67,9 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         confirmorder = findViewById(R.id.button2);
 
 
+        binding.appbar.title.setText("Cart");
+
+
         repository = new CartRepository(getApplicationContext());
 
         if (address.equals("none")) {
@@ -313,5 +316,10 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         binding.textView22.setText("50 BDT");
         binding.textView23.setText(total + " BDT");
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
