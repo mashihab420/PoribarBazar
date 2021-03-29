@@ -2,67 +2,53 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="130dp"
+    android:layout_width="140dp"
     app:cardCornerRadius="10dp"
+    android:layout_marginLeft="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
 
 
-   <androidx.constraintlayout.widget.ConstraintLayout
+   <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content">
+
+
+       <ImageView
+           android:id="@+id/item_procut_image"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="8dp"
+           android:layout_marginEnd="16dp"
+           android:layout_alignParentTop="true"
+           android:background="@color/white" />
 
 
        <androidx.constraintlayout.widget.ConstraintLayout
-           android:id="@+id/constraintLayout4"
-           android:layout_width="80dp"
-           android:layout_height="80dp"
-           android:layout_marginTop="2dp"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent">
-
-           <ImageView
-               android:id="@+id/item_procut_image"
-               android:layout_width="100dp"
-               android:layout_height="100dp"
-               android:layout_marginStart="16dp"
-               android:layout_marginEnd="16dp"
-               android:background="@color/white"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
-
-
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-       <androidx.constraintlayout.widget.ConstraintLayout
+           android:orientation="vertical"
            android:id="@+id/constraintLayout2"
            android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_marginStart="8dp"
-           android:layout_marginTop="4dp"
-           android:layout_marginBottom="8dp"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
-           app:layout_constraintHorizontal_bias="0.0"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-           app:layout_constraintVertical_bias="0.0">
+           android:layout_height="60dp"
+           android:layout_below="@+id/item_procut_image"
+           android:layout_marginStart="10dp"
+           android:layout_marginTop="8dp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginEnd="8dp">
 
            <TextView
-               android:paddingRight="5dp"
-               android:fontFamily="@font/montserrat"
                android:id="@+id/item_product_name"
                android:layout_width="match_parent"
                android:layout_height="22dp"
                android:layout_marginEnd="4dp"
                android:ellipsize="end"
+               android:fontFamily="@font/montserrat"
                android:maxEms="7"
                android:maxLength="29"
                android:maxLines="1"
+               android:paddingRight="5dp"
                android:text="Strawberry (1 KG)"
                android:textColor="@android:color/black"
                app:layout_constraintEnd_toEndOf="parent"
@@ -75,8 +61,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginStart="2dp"
-               android:text="0"
                android:fontFamily="@font/montserrat"
+               android:text="0"
                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                app:layout_constraintStart_toStartOf="@+id/imageView4"
                app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -91,21 +77,21 @@
                app:layout_constraintTop_toBottomOf="@+id/item_product_name" />
 
 
-
            <TextView
                android:id="@+id/item_product_price"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginTop="8dp"
-               android:text=""
                android:fontFamily="@font/montserrat"
+               android:text="12345678"
                android:textColor="@color/colorPrimaryDark"
                android:textStyle="bold"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintHorizontal_bias="0.0"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+               app:layout_constraintTop_toBottomOf="@+id/imageView4"
+               app:layout_constraintVertical_bias="0.0" />
 
 
        </androidx.constraintlayout.widget.ConstraintLayout>
@@ -116,8 +102,9 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:background="@drawable/add_product_design"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        >
 
 
         <ImageView
@@ -161,5 +148,5 @@
 
 
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
+   </RelativeLayout>
 </androidx.cardview.widget.CardView>
