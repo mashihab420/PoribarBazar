@@ -28,7 +28,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="285dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -41,8 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Sub Total"
+            android:layout_marginTop="16dp"
+            android:text="Sub Total : "
             android:textColor="@color/black_material"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,21 +52,21 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Shipping Fee"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="COD Fee : "
             android:textColor="@color/black_material"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintStart_toEndOf="@+id/subtotalprice"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Total"
+            android:layout_marginTop="16dp"
+            android:text="Total :"
             android:textColor="@color/black_material"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,58 +76,57 @@
             android:id="@+id/subtotalprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:text="00 BDT"
             android:textColor="@color/black_material"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:text="00 BDT"
             android:textColor="@color/black_material"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subtotalprice" />
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:text="00 BDT"
             android:textColor="@color/black_material"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editText2"
+
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="10dp"
             android:hint="Address"
             app:boxStrokeColor="@color/black"
             app:hintTextAppearance="@style/BlueTextInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addressid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
                 android:textColorHint="@color/blue"
@@ -140,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="Payment Method"
             android:textColor="@color/black_material"
             android:textSize="18sp"
@@ -148,10 +147,11 @@
             app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
         <RadioGroup
+
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView24">
@@ -163,6 +163,7 @@
                 android:text="Bkash " />
 
             <RadioButton
+
                 android:id="@+id/radiocashondelivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,7 +181,7 @@
             android:layout_marginTop="13dp"
             android:background="#C8C8C8"
             android:padding="15dp"
-            android:text="Button"
+            android:text="continue"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

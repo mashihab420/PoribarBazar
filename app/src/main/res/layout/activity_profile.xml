@@ -125,7 +125,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <com.google.android.material.textfield.TextInputLayout
+              <!--  <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_margin="8dp"
                     android:layout_height="55dp"
@@ -144,7 +144,7 @@
                         android:textColorHint="@color/blue"
                         android:textSize="14dp" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>-->
 
             </androidx.cardview.widget.CardView>
 

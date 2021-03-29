@@ -51,7 +51,7 @@ public class Profile extends AppCompatActivity {
 
         binding.name.setText(mysharedPreferance.getName());
         binding.phone.setText(mysharedPreferance.getPhone());
-        binding.email.setText(mysharedPreferance.getemail());
+       // binding.email.setText(mysharedPreferance.getemail());
         binding.address.setText(mysharedPreferance.getAddress());
 
 
@@ -90,7 +90,7 @@ public class Profile extends AppCompatActivity {
         ModelUser modelUser=new ModelUser();
         modelUser.setName(binding.name.getText().toString());
         modelUser.setPhone(binding.phone.getText().toString());
-        modelUser.setEmail(binding.email.getText().toString());
+      //  modelUser.setEmail(binding.email.getText().toString());
         modelUser.setAddress(binding.address.getText().toString());
 
 
@@ -99,7 +99,7 @@ public class Profile extends AppCompatActivity {
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
 
                 mysharedPreferance.setName(binding.name.getText().toString());
-                mysharedPreferance.setEmail(binding.email.getText().toString());
+             //   mysharedPreferance.setEmail(binding.email.getText().toString());
                 mysharedPreferance.setAddress(binding.phone.getText().toString());
                 Tools.snackOK(Profile.this, "Successful Saved", new View.OnClickListener() {
                     @Override
