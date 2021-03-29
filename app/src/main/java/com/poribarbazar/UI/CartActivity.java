@@ -69,7 +69,14 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
         binding.appbar.title.setText("Cart");
 
-
+binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(CartActivity.this,MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+});
         repository = new CartRepository(getApplicationContext());
 
         if (address.equals("none")) {
@@ -283,6 +290,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
             if (modelCartRooms.size() == 0){
                 binding.constraintLayout4.setVisibility(View.GONE);
+                binding.emptyConstant.setVisibility(View.VISIBLE);
                 /*emptyimage.setVisibility(View.VISIBLE);
 
                 emptyimage.setOnClickListener(new View.OnClickListener() {
@@ -298,6 +306,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
             }else {
                 binding.constraintLayout4.setVisibility(View.VISIBLE);
+                binding.emptyConstant.setVisibility(View.GONE);
                // emptyimage.setVisibility(View.GONE);
             }
 

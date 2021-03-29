@@ -53,6 +53,8 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         String price = products.get(position).getPPrice();
         String details = products.get(position).getPDescription();
         String url = products.get(position).getImageUrl();
+        String url2 = products.get(position).getImage_url2();
+        String url3 = products.get(position).getImage_url3();
         holder.p_name.setText(products.get(position).getPName());
 
         holder.p_price_normal.setText(products.get(position).getPPrice()+" BDT");
@@ -123,6 +125,8 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 intent.putExtra("price",price);
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
+                intent.putExtra("image_url2",url2);
+                intent.putExtra("image_url3",url3);
                 intent.putExtra("p_id",products.get(position).getId());
                 context.startActivity(intent);
             }

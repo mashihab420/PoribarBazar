@@ -54,6 +54,9 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         List<SlideModel> slideModels = new ArrayList<>();
 
+        if(url.equals("") && url2.equals("") && url3.equals("")){
+
+        }
         if(url2.equals("") && url3.equals("")){
             slideModels.add(new SlideModel(url));
         }else {

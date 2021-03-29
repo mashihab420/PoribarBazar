@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
+import com.poribarbazar.Adapter.AdapterOffers;
 import com.poribarbazar.Adapter.Adapter_my_orders;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.databinding.ActivityMyOrdersBinding;
-import com.poribarbazar.databinding.ActivityPlaceOrderBinding;
 import com.poribarbazar.model.ModelOrders;
 import com.poribarbazar.model.ModelUser;
 import com.poribarbazar.network.ApiClient;
@@ -34,7 +35,7 @@ public class MyOrders extends AppCompatActivity {
     Adapter_my_orders adapter_my_orders;
     ActivityMyOrdersBinding binding;
     MysharedPreferance mysharedPreferance;
-    ArrayList<ModelOrders>orders=new ArrayList<>();
+    List<ModelOrders> orders;
 
 
     @Override
@@ -42,7 +43,7 @@ public class MyOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMyOrdersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        orders=new ArrayList<>();
         mysharedPreferance= MysharedPreferance.getPreferences(MyOrders.this);
 
         binding.appBar.back.setOnClickListener(new View.OnClickListener() {
@@ -54,9 +55,11 @@ public class MyOrders extends AppCompatActivity {
 
         binding.appBar.title.setText("My Orders");
 
-
+        /*adapter_my_orders = new Adapter_my_orders(orders,MyOrders.this);
         binding.recyler.setLayoutManager(new LinearLayoutManager(MyOrders.this,LinearLayoutManager.VERTICAL,false));
-        adapter_my_orders = new Adapter_my_orders(orders,MyOrders.this);
+*/
+        adapter_my_orders = new Adapter_my_orders(orders,getApplicationContext());
+        binding.recyler.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
 
         getMyOrders();
 
@@ -78,8 +81,9 @@ public class MyOrders extends AppCompatActivity {
 
                 binding.spinkit.setVisibility(View.GONE);
                 orders.addAll(response.body());
-                binding.recyler.setAdapter(adapter_my_orders);
                 adapter_my_orders.notifyDataSetChanged();
+                binding.recyler.setAdapter(adapter_my_orders);
+
 
             }
 

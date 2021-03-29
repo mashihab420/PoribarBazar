@@ -13,10 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.R;
 import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
+import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
@@ -43,6 +45,8 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         String price = popularproduct.get(position).getPPrice();
         String details = popularproduct.get(position).getPDescription();
         String url = popularproduct.get(position).getImageUrl();
+        String url2 = popularproduct.get(position).getImage_url2();
+        String url3 = popularproduct.get(position).getImage_url3();
         holder.p_name.setText(popularproduct.get(position).getPName());
         holder.price.setText(popularproduct.get(position).getPPrice()+" BDT");
         holder.disount_price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
@@ -52,11 +56,21 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.quantity.setVisibility(View.VISIBLE);
-                holder.minus.setVisibility(View.VISIBLE);
-                int quantity= Integer.parseInt(holder.quantity.getText().toString());
+               // holder.quantity.setVisibility(View.VISIBLE);
+              //  holder.minus.setVisibility(View.VISIBLE);
+               /* int quantity= Integer.parseInt(holder.quantity.getText().toString());
                 quantity++;
-                holder.quantity.setText(""+quantity);
+                holder.quantity.setText(""+quantity);*/
+                final CartRepository repository = new CartRepository(context);
+
+                ModelCartRoom modelCartRoom=new ModelCartRoom();
+                modelCartRoom.setP_name(pname);
+                modelCartRoom.setP_price(price);
+                modelCartRoom.setUrl(url);
+                modelCartRoom.setQuantity("1");
+
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -93,6 +107,9 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                 intent.putExtra("price",price);
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
+                intent.putExtra("image_url2",url2);
+                intent.putExtra("image_url3",url3);
+                intent.putExtra("p_id",popularproduct.get(position).getId());
                 context.startActivity(intent);
             }
         });
