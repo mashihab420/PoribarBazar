@@ -29,6 +29,7 @@ import com.poribarbazar.CartRepository;
 import com.poribarbazar.MainActivity;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.R;
+import com.poribarbazar.Tools;
 import com.poribarbazar.databinding.ActivityPlaceOrderBinding;
 import com.poribarbazar.databinding.ActivitySignUpBinding;
 import com.poribarbazar.model.ModelCartRoom;
@@ -78,7 +79,9 @@ public class SignUpActivity extends AppCompatActivity {
         subtotal = getIntent().getStringExtra("subtotal");
         total = getIntent().getStringExtra("total");
 
-        Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();
+   /*     Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();*/
+
+
 
         TextView textView = findViewById(R.id.dthana);
         String text = "Already have an account ? LOGIN";
@@ -139,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         String namee = binding.nameid.getText().toString();
         String phonee =binding.phoneid.getText().toString();
-        String emaill = binding.emailid.getText().toString();
+     /*   String emaill = binding.emailid.getText().toString();*/
         String addresss = binding.addressid.getText().toString();
         String passs = binding.passwordid.getText().toString();
         String c_passs = binding.cpassid.getText().toString();
@@ -179,11 +182,11 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(emaill)){
+      /*  if (TextUtils.isEmpty(emaill)){
             binding.emailid.setError(" email required");
             binding.emailid.requestFocus();
             return;
-        }if (TextUtils.isEmpty(addresss)){
+        }*/if (TextUtils.isEmpty(addresss)){
             binding.addressid.setError("Address required");
             binding.addressid.requestFocus();
             return;
@@ -194,7 +197,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
         else{
 
-            if (passs.length() >=8){
+            if (passs.length() ==6){
 
 
                 if (passs.equals(c_passs)){
@@ -208,7 +211,7 @@ public class SignUpActivity extends AppCompatActivity {
                 ModelUser modelUser = new ModelUser();
                 modelUser.setName(namee);
                 modelUser.setPhone(phonee);
-                modelUser.setEmail(emaill);
+           /*     modelUser.setEmail(emaill);*/
                 modelUser.setAddress(addresss);
                 modelUser.setPassword(passs);
 
@@ -243,16 +246,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ModelUser> call, Throwable t) {
-                        View parentLayout = findViewById(android.R.id.content);
-                        Snackbar mSnackBar = Snackbar.make(parentLayout, "Check the internet connection !", Snackbar.LENGTH_LONG);
-                        View view = mSnackBar.getView();
-                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-                        params.gravity = Gravity.TOP;
-                        view.setLayoutParams(params);
-                        view.setBackgroundColor(Color.RED);
-                        TextView mainTextView = (TextView) (view).findViewById(R.id.snackbar_text);
-                        mainTextView.setTextColor(Color.WHITE);
-                        mSnackBar.show();
+                        Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
 
 
                         // sign_up_progress.setVisibility(View.GONE);
@@ -271,7 +270,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             }else {
-                binding.cpassid.setError("password must be greater than 8 digit");
+                binding.cpassid.setError("password must be greater than 6 digit");
                 binding.cpassid.requestFocus();
                 return;
             }
@@ -329,7 +328,12 @@ public class SignUpActivity extends AppCompatActivity {
                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(SignUpActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
+                        Tools.snackErr(SignUpActivity.this, "Failed !", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
 
                     }
 
@@ -338,7 +342,12 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
 
-                    Toast.makeText(SignUpActivity.this, "Check the internet connection !", Toast.LENGTH_SHORT).show();
+                    Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
 
 
                 }
@@ -358,7 +367,7 @@ public class SignUpActivity extends AppCompatActivity {
         apiInterface.addUsers(modelUsers).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+           /*     Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();*/
 
                 if (deliverymethod.equals("MainActivity")){
                     Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
@@ -387,12 +396,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String nam = binding.nameid.getText().toString();
                 String pho =binding.phoneid.getText().toString();
-                String ema = binding.emailid.getText().toString();
+             /*   String ema = binding.emailid.getText().toString();*/
                 String addr = binding.addressid.getText().toString();
 
                 sharedPreferance.setName(""+nam);
                 sharedPreferance.setAddress(""+addr);
-                sharedPreferance.setEmail(""+ema);
+           /*     sharedPreferance.setEmail(""+ema);*/
                 sharedPreferance.setPhone(""+pho);
 
             }

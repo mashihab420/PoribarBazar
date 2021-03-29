@@ -1,6 +1,7 @@
 package com.poribarbazar.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,6 +29,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     private ActivityProductInfoBinding binding;
 
     int quantitytext =1;
+    CartRepository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +46,19 @@ public class ProductInfoActivity extends AppCompatActivity {
         String url3 = intent.getStringExtra("image_url3");
         String p_id = intent.getStringExtra("p_id");
         binding.textView13.setText(name);
+
         binding.textView18.setText(price);
        // binding.textView17.setText(details);
 
        /* Glide.with(getApplicationContext())
                 .load(url)
                 .into(binding.imageView5);*/
+        String quan = binding.cartQuantityId.getText().toString();
+        if(quan.equals(0)){
+            binding.cardnumber.setVisibility(View.GONE);
+        }else {
+            binding.cardnumber.setVisibility(View.VISIBLE);
+        }
 
         ImageSlider imageSlider = findViewById(R.id.imageView5);
 
@@ -75,6 +85,28 @@ public class ProductInfoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(int i) {
                 //Toast.makeText(ProductInfoActivity.this, "slider position: "+i, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        repository = new CartRepository(this);
+
+        repository.getAllData().observe(this, new Observer<List<ModelCartRoom>>() {
+            @Override
+            public void onChanged(List<ModelCartRoom> modelCartRooms) {
+
+                if (modelCartRooms.size()==0){
+                    binding.cardnumber.setVisibility(View.GONE);
+                }else {
+                    binding.cardnumber.setVisibility(View.VISIBLE);
+                    if(modelCartRooms.size()>99){
+                        binding.cartQuantityId.setText("99+");
+                    }else {
+                        binding.cartQuantityId.setText(""+modelCartRooms.size());
+                    }
+
+
+                }
             }
         });
 

@@ -69,6 +69,13 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
 
         binding.appbar.title.setText("Cart");
 
+        binding.appbar.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -102,7 +109,7 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //   Toast.makeText(CartActivity.this, ""+radio_bkash.getText(), Toast.LENGTH_SHORT).show();
-                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.blue));
+                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.colorPrimaryDark));
                 confirmorder.setText("Continue");
             }
         });
@@ -111,7 +118,7 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //   Toast.makeText(CartActivity.this, ""+radio_cash_on_dv.getText(), Toast.LENGTH_SHORT).show();
-                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.blue));
+                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.colorPrimaryDark));
                 confirmorder.setText("Buy Now");
             }
         });

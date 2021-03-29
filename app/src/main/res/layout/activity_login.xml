@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/back_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -35,9 +35,9 @@
             android:text="Login"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/back_login"
+            app:layout_constraintStart_toEndOf="@+id/back_login"
+            app:layout_constraintTop_toTopOf="@+id/back_login" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -76,7 +76,7 @@
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
                 android:inputType="textPassword"
-                android:ems="8"
+                android:maxEms="6"
                 android:padding="8dp"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/montserrat"
                 android:inputType="number"
 
-                android:ems="11"
+                android:maxEms="11"
                android:padding="8dp"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />

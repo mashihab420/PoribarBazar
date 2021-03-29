@@ -52,22 +52,23 @@
             app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardnumber"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/bg_round"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2">
 
             <TextView
-                android:id="@+id/category_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
-                android:textColor="@android:color/white"
+                android:text="0"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="12dp"
+                android:id="@+id/cart_quantity_id"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,17 +104,17 @@
             android:layout_height="match_parent">
 
 
-          <!--  <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="180dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.541"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />-->
+            <!--  <ImageView
+                  android:id="@+id/imageView7"
+                  android:layout_width="180dp"
+                  android:layout_height="200dp"
+                  android:layout_marginTop="16dp"
+                  android:visibility="gone"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintHorizontal_bias="0.541"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  tools:srcCompat="@tools:sample/avatars" />-->
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/imageView5"
@@ -123,11 +124,11 @@
                 app:auto_cycle="true"
                 app:corner_radius="5"
                 app:delay="0"
-                app:placeholder="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:period="3000">
+                app:period="3000"
+                app:placeholder="@color/white">
 
             </com.denzcoskun.imageslider.ImageSlider>
 
@@ -283,7 +284,7 @@ Lorem Ipsum is simply dummy text of the  printing and typesetting industry. Lore
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="1"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="@+id/minusitemquantity"
                 app:layout_constraintStart_toEndOf="@+id/minusitemquantity"
                 app:layout_constraintTop_toTopOf="@+id/minusitemquantity" />

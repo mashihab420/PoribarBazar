@@ -1,6 +1,7 @@
 package com.poribarbazar.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.widget.Toast;
 
 import com.poribarbazar.Adapter.AdapterCategoryProduct;
 
+import com.poribarbazar.CartRepository;
 import com.poribarbazar.databinding.ActivityProductsBinding;
+import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelProducts;
 import com.poribarbazar.network.ApiClient;
 import com.poribarbazar.network.ApiInterface;
@@ -29,7 +32,7 @@ public class ProductsActivity extends AppCompatActivity {
     ActivityProductsBinding binding;
     AdapterCategoryProduct adapterCategoryProduct;
     ModelProducts modelProducts,modelOfferProducts;
-
+    CartRepository repository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +49,40 @@ public class ProductsActivity extends AppCompatActivity {
             binding.title.setText(getIntent().getStringExtra("category"));
         }
 
-
+        String quan = binding.cartQuantityId.getText().toString();
+        if(quan.equals(0)){
+            binding.cardnumber.setVisibility(View.GONE);
+        }else {
+            binding.cardnumber.setVisibility(View.VISIBLE);
+        }
 
 
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+
+        repository = new CartRepository(this);
+
+        repository.getAllData().observe(this, new Observer<List<ModelCartRoom>>() {
+            @Override
+            public void onChanged(List<ModelCartRoom> modelCartRooms) {
+
+                if (modelCartRooms.size()==0){
+                    binding.cardnumber.setVisibility(View.GONE);
+                }else {
+                    binding.cardnumber.setVisibility(View.VISIBLE);
+                    if(modelCartRooms.size()>99){
+                        binding.cartQuantityId.setText("99+");
+                    }else {
+                        binding.cartQuantityId.setText(""+modelCartRooms.size());
+                    }
+
+
+                }
             }
         });
 

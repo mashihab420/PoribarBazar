@@ -19,6 +19,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     MysharedPreferance sharedPreferance;
 
+    ImageView back;
     String deliverymethod = "";
     CartRepository repository;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
@@ -67,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
         repository = new CartRepository(getApplicationContext());
         phone = findViewById(R.id.phoneid);
+        back = findViewById(R.id.back_login);
         pass = findViewById(R.id.passwordid);
         getData();
         deliverymethod = getIntent().getStringExtra("method");
@@ -74,7 +77,14 @@ public class LoginActivity extends AppCompatActivity {
         subtotal = getIntent().getStringExtra("subtotal");
         total = getIntent().getStringExtra("total");
 
-        Toast.makeText(this, "" + deliverymethod, Toast.LENGTH_SHORT).show();
+      /*  Toast.makeText(this, "" + deliverymethod, Toast.LENGTH_SHORT).show();*/
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         TextView textView = findViewById(R.id.dthana);
         String text = "Don't have an account ? Create New Account";
@@ -161,7 +171,12 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
 
-                    Toast.makeText(LoginActivity.this, "Check the internet connection !", Toast.LENGTH_SHORT).show();
+                    Tools.snackErr(LoginActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
 
 
                 }
@@ -248,7 +263,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }*/
-                Toast.makeText(LoginActivity.this, "" + response.body().getAddress(), Toast.LENGTH_SHORT).show();
+             /*   Toast.makeText(LoginActivity.this, "" + response.body().getAddress(), Toast.LENGTH_SHORT).show();*/
                 sharedPreferance.setName(response.body().getName());
                 sharedPreferance.setPhone(response.body().getPhone());
                 sharedPreferance.setAddress(response.body().getAddress());
@@ -288,7 +303,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelUser> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                Tools.snackErr(LoginActivity.this, " Login Failed !", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
         });
 
