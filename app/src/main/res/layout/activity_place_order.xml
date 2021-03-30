@@ -11,7 +11,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -92,7 +92,7 @@
                 android:background="@drawable/placeorder_edit_style"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
-                android:hint="Bkash Number"
+                android:hint="Mob. Account Number"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"

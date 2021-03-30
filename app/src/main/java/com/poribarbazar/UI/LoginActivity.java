@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ModelOrders> call, Response<ModelOrders> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(LoginActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(LoginActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
 
@@ -186,6 +186,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }
+
+        Intent intent = new Intent(LoginActivity.this, InvoiceActivity.class);
+        intent.putExtra("invoiceid", ""+getInvoiveID);
+        intent.putExtra("method", "Online Payment");
+        intent.putExtra("subtotal", ""+subtotal);
+        intent.putExtra("total", ""+total);
+        startActivity(intent);
 
 
     }
@@ -274,14 +281,9 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
 
-                    Tools.snackErrInfo(LoginActivity.this, "Login Successfull", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    });
+                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                 }
-                if (deliverymethod.equals("bkashDelivery")) {
+                else if (deliverymethod.equals("bkashDelivery")) {
 
 
                     Date d = new Date();
@@ -296,6 +298,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intentw);
                 } else {
                     orderProduct();
+
                 }
 
 

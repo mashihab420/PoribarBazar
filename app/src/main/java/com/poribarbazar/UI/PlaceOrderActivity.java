@@ -35,7 +35,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     CartRepository repository;
     AdapterCart adapterCart;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
-
+    int flag = 0;
     String price;
     String subtotal;
     String phone;
@@ -86,12 +86,49 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private void orderProduct() {
         String payment_number = binding.paymentnumber.getText().toString();
         String trxno = binding.trxnumber.getText().toString();
-
-        if (payment_number.equals("")){
+        String firstThreeNumber = "";
+       /* if (payment_number.equals("")){
             binding.paymentnumber.setError("Insert Number");
-        }if (trxno.equals("")){
-            binding.trxnumber.setError("Insert Trx No");
+            binding.paymentnumber.requestFocus();
+            return;
+        }*/
+        if (payment_number.length() >=11)
+        {
+            firstThreeNumber = payment_number.substring(0, 3);
+            //      Toast.makeText(this, ""+firstThreeNumber, Toast.LENGTH_SHORT).show();
+            if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))){
+
+                // Toast.makeText(this, "U can signup now", Toast.LENGTH_SHORT).show();
+                flag = 1;
+
+            }else {
+
+                binding.paymentnumber.setError("Number required");
+                binding.paymentnumber.requestFocus();
+                return;
+            }
+        }else
+        {
+            binding.paymentnumber.setError("must be 11 digit");
+            binding.paymentnumber.requestFocus();
+            return;
+        }
+
+        if (trxno.length() >=10)
+        {
+
+        }else
+        {
+            binding.trxnumber.setError("Insert Valid Trx no");
+            binding.trxnumber.requestFocus();
+            return;
+        }
+        if (trxno.equals("")){
+            binding.trxnumber.setError("Insert Valid Trx no");
+            binding.trxnumber.requestFocus();
+            return;
         }else{
+
 
             Retrofit instance = ApiClient.getClient();
             ApiInterface apiInterface = instance.create(ApiInterface.class);
@@ -123,7 +160,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ModelOrders> call, Response<ModelOrders> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(PlaceOrderActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
+                           /* Toast.makeText(PlaceOrderActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();*/
                         } else {
                             Toast.makeText(PlaceOrderActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
 
@@ -141,7 +178,12 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 });
 
                 //  Toast.makeText(CartActivity.this, ""+i, Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(PlaceOrderActivity.this, InvoiceActivity.class);
+                intent.putExtra("invoiceid", ""+getInvoiveID);
+                intent.putExtra("method", "Online Payment");
+                intent.putExtra("subtotal", ""+subtotal);
+                intent.putExtra("total", ""+price);
+                startActivity(intent);
 
             }
         }

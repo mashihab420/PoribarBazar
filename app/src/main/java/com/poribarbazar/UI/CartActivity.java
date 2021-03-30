@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -22,6 +23,7 @@ import com.poribarbazar.MainActivity;
 import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.OnDataSend;
 import com.poribarbazar.R;
+import com.poribarbazar.Tools;
 import com.poribarbazar.databinding.ActivityCartBinding;
 import com.poribarbazar.databinding.ActivityMainBinding;
 import com.poribarbazar.model.ModelCartRoom;
@@ -170,7 +172,6 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                     } else {
 
                         orderProduct();
-
                     }
                 }
             }
@@ -250,9 +251,9 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onResponse(Call<ModelOrders> call, Response<ModelOrders> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(CartActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(CartActivity.this, "order confirmed", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(CartActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(CartActivity.this, "Order Not Successful", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -261,8 +262,14 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
 
-                    Toast.makeText(CartActivity.this, "Check the internet connection !", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(CartActivity.this, "Check the internet connection !", Toast.LENGTH_SHORT).show();
 
+                    Tools.snackErr(CartActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
 
                 }
             });
@@ -271,6 +278,13 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
 
 
         }
+
+        Intent intent = new Intent(CartActivity.this, InvoiceActivity.class);
+        intent.putExtra("invoiceid", ""+getInvoiveID);
+        intent.putExtra("method", "Cash on Delivery");
+        intent.putExtra("subtotal", ""+intsub);
+        intent.putExtra("total", ""+total);
+        startActivity(intent);
 
 
     }

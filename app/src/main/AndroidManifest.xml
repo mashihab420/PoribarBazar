@@ -27,7 +27,11 @@
         <activity android:name=".UI.CartActivity" />
         <activity android:name=".UI.LoginActivity" />
         <activity android:name=".UI.ProductInfoActivity" />
-        <activity android:name=".UI.PlaceOrderActivity" />
+        <activity android:name=".UI.PlaceOrderActivity">
+
+
+
+        </activity>
         <activity android:name=".UI.ProductsActivity" />
         <activity android:name=".MainActivity" />
 

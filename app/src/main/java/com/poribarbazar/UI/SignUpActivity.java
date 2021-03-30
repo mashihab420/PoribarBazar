@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         subtotal = getIntent().getStringExtra("subtotal");
         total = getIntent().getStringExtra("total");
 
-   /*     Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();*/
+       /* Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();*/
 
 
 
@@ -358,6 +358,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         }
 
+        Intent intent = new Intent(SignUpActivity.this, InvoiceActivity.class);
+        intent.putExtra("invoiceid", ""+getInvoiveID);
+        intent.putExtra("method", "Online Payment");
+        intent.putExtra("subtotal", ""+subtotal);
+        intent.putExtra("total", ""+total);
+        startActivity(intent);
+
 
     }
 
@@ -367,13 +374,14 @@ public class SignUpActivity extends AppCompatActivity {
         apiInterface.addUsers(modelUsers).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-           /*     Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();*/
+                Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                 if (deliverymethod.equals("MainActivity")){
                     Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
                     startActivity(intent);
+                    //Toast.makeText(SignUpActivity.this, "Account Create Successful", Toast.LENGTH_SHORT).show();
                 }
-                if (deliverymethod.equals("bkashDelivery")){
+               else if (deliverymethod.equals("bkashDelivery")){
 
                    /* String getInvoiveID = getIntent().getStringExtra("invoiceid");
                     String subtotal = getIntent().getStringExtra("subtotal");
