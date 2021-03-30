@@ -235,6 +235,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             modelOrders.setSubtotal("" + intsub);
             modelOrders.setTotal("" + total);
             modelOrders.setSize(carts.get(i).getSize());
+            modelOrders.setImage(carts.get(i).getUrl());
             modelOrders.setOrder_time("" + datetime);
             modelOrders.setShipping_fee("50");
             modelOrders.setPay_method("Home Delivey");

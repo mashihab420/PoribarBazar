@@ -26,6 +26,10 @@ public class ModelOrders {
     @Expose
     private String quantity;
 
+    @SerializedName("message")
+    @Expose
+    private String message;
+
     @SerializedName("order_time")
     @Expose
     private String order_time;
@@ -33,6 +37,11 @@ public class ModelOrders {
     @SerializedName("order_status")
     @Expose
     private String order_status;
+
+
+    @SerializedName("invoice_id")
+    @Expose
+    private String invoice_id;
 
     @SerializedName("phone")
     @Expose
@@ -54,9 +63,6 @@ public class ModelOrders {
     @Expose
     private String pay_method;
 
-    @SerializedName("invoice_id")
-    @Expose
-    private String invoice_id;
 
     @SerializedName("p_name")
     @Expose
@@ -197,5 +203,13 @@ public class ModelOrders {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -155,6 +155,7 @@ public class LoginActivity extends AppCompatActivity {
             modelOrders.setSubtotal("" + subtotal);
             modelOrders.setTotal("" + total);
             modelOrders.setSize(carts.get(i).getSize());
+            modelOrders.setImage(carts.get(i).getUrl());
             modelOrders.setOrder_time("" + datetime);
             modelOrders.setShipping_fee("50");
             modelOrders.setPay_method("Home Delivey");
@@ -177,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
 
-                    spinKitView.setVisibility(View.VISIBLE);
+                    spinKitView.setVisibility(View.GONE);
 
                     Tools.snackErr(LoginActivity.this, "Check the internet connection !", new View.OnClickListener() {
                         @Override
@@ -272,47 +273,69 @@ public class LoginActivity extends AppCompatActivity {
         apiInterface.loginUser(phonee, passs).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                /*if (response.body().getResponse() == "ok"){
 
+                spinKitView.setVisibility(View.GONE);
+               /* if (response.body().getResponse().equals("ok")){*/
+
+                if(response.body().getResponse().equals("ok")){
+
+                    Log.d("Massage ",""+response.body().getResponse());
                     sharedPreferance.setName(response.body().getName());
                     sharedPreferance.setPhone(response.body().getPhone());
                     sharedPreferance.setAddress(response.body().getAddress());
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+
+                    if (deliverymethod.equals("MainActivity")){
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+
+
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                    else if (deliverymethod.equals("bkashDelivery")) {
+
+
+
+                        Date d = new Date();
+                        CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
+
+                        Intent intentw = new Intent(LoginActivity.this, PlaceOrderActivity.class);
+                        intentw.putExtra("totall", "" + total);
+                        intentw.putExtra("subtotal", "" + subtotal);
+                        intentw.putExtra("phone", "" + sharedPreferance.getPhone());
+                        intentw.putExtra("invoiceid", "" + getInvoiveID);
+                        intentw.putExtra("timedate", "" + datetime);
+                        startActivity(intentw);
+                    } else {
+
+                        orderProduct();
+
+                    }
+
+                }else{
+                    Tools.snackErr(LoginActivity.this, " Login Failed !", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                }
+
+
+
+
+                /*}else {
+                    Tools.snackErrInfo(LoginActivity.this, "Phone number or password is not match.", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                 }*/
-             /*   Toast.makeText(LoginActivity.this, "" + response.body().getAddress(), Toast.LENGTH_SHORT).show();*/
-                sharedPreferance.setName(response.body().getName());
-                sharedPreferance.setPhone(response.body().getPhone());
-                sharedPreferance.setAddress(response.body().getAddress());
-                /*Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);*/
-
-                if (deliverymethod.equals("MainActivity")){
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
 
 
-                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
 
-
-                }
-                else if (deliverymethod.equals("bkashDelivery")) {
-
-
-                    Date d = new Date();
-                    CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
-
-                    Intent intentw = new Intent(LoginActivity.this, PlaceOrderActivity.class);
-                    intentw.putExtra("totall", "" + total);
-                    intentw.putExtra("subtotal", "" + subtotal);
-                    intentw.putExtra("phone", "" + sharedPreferance.getPhone());
-                    intentw.putExtra("invoiceid", "" + getInvoiveID);
-                    intentw.putExtra("timedate", "" + datetime);
-                    startActivity(intentw);
-                } else {
-                    orderProduct();
-
-                }
 
 
             }

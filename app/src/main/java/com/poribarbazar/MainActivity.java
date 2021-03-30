@@ -254,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 sharedPreferences.setEmail(null);
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
+                Tools.snackInfo(MainActivity.this,"Logout");
 
                 break;
 

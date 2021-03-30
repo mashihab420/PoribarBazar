@@ -58,7 +58,7 @@ public class MyOrders extends AppCompatActivity {
         /*adapter_my_orders = new Adapter_my_orders(orders,MyOrders.this);
         binding.recyler.setLayoutManager(new LinearLayoutManager(MyOrders.this,LinearLayoutManager.VERTICAL,false));
 */
-        adapter_my_orders = new Adapter_my_orders(orders,getApplicationContext());
+        adapter_my_orders = new Adapter_my_orders(orders,MyOrders.this);
         binding.recyler.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
 
         getMyOrders();

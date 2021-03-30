@@ -38,9 +38,9 @@ public class Adapter_Order_item extends RecyclerView.Adapter<Adapter_Order_item.
                 .into(holder.binding.image);
 
         holder.binding.pName.setText(orders.get(position).getP_name());
-        holder.binding.price.setText(orders.get(position).getP_price());
-        holder.binding.orderQuantity.setText(orders.get(position).getQuantity());
-        holder.binding.size.setText(orders.get(position).getSize());
+        holder.binding.price.setText(orders.get(position).getP_price()+" BDT");
+        holder.binding.orderQuantity.setText("Quantity: "+orders.get(position).getQuantity());
+        holder.binding.size.setText("Size: "+orders.get(position).getSize());
 
 
 

@@ -70,4 +70,7 @@ public interface ApiInterface {
     @GET("user_login.php")
     //Call<ModelUser> loginUser(@Body ModelUser modelUsers);
     Call<ModelUser> loginUser(@Query("phone") String phone, @Query("password") String password);
+
+    @POST("delete_order.php")
+    Call<ModelOrders> delete_my_orders(@Body ModelOrders modelOrders);
 }

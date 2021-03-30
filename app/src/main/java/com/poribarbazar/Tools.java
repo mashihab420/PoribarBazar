@@ -77,7 +77,7 @@ public class Tools {
                 .setActionTextColor(Color.WHITE)
                 .setAction("OK", null);
 
-        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.teal_700));
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
         snackbar.show();
     }
 

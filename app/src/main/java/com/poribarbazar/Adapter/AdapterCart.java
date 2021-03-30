@@ -59,16 +59,18 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCart.CartHolder holder, int position) {
-        holder.cartBinding.cartitemname.setText(carts.get(position).getP_name());
-        holder.cartBinding.cartitemprice.setText(carts.get(position).getP_price());
-        holder.cartBinding.cartquantity.setText(carts.get(position).getQuantity());
+        holder.cartBinding.pName.setText(carts.get(position).getP_name());
+        holder.cartBinding.price.setText(carts.get(position).getP_price());
+        holder.cartBinding.orderQuentity.setText(carts.get(position).getQuantity());
+
+
 
 
 
         Glide.with(context)
                 .load(carts.get(position).getUrl())
                 .override(300, 200)
-                .into(holder.cartBinding.cartimg);
+                .into(holder.cartBinding.image);
 
         String sizee = carts.get(position).getSize();
 
@@ -183,10 +185,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
 
                     CartRepository repository = new CartRepository(context);
                     carts.get(position).setQuantity("" + quantitys);
-                    ;
+
                     repository.update(carts.get(position));
 
-                    holder.cartBinding.cartquantity.setText(carts.get(position).getQuantity());
+                    holder.cartBinding.orderQuentity.setText(carts.get(position).getQuantity());
 
                     taka = 0;
                     total = 0;
@@ -211,7 +213,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
                 CartRepository repository = new CartRepository(context);
                 carts.get(position).setQuantity("" + quantitys);
                 repository.update(carts.get(position));
-                holder.cartBinding.cartquantity.setText(carts.get(position).getQuantity());
+                holder.cartBinding.orderQuentity.setText(carts.get(position).getQuantity());
 
 
                 taka = 0;
