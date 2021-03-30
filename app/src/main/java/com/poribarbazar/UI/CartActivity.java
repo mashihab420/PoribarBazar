@@ -23,7 +23,6 @@ import com.poribarbazar.MyPreferance.MysharedPreferance;
 import com.poribarbazar.OnDataSend;
 import com.poribarbazar.R;
 import com.poribarbazar.databinding.ActivityCartBinding;
-import com.poribarbazar.databinding.ActivityMainBinding;
 import com.poribarbazar.model.ModelCartRoom;
 import com.poribarbazar.model.ModelOrders;
 import com.poribarbazar.network.ApiClient;
@@ -41,15 +40,13 @@ import retrofit2.Retrofit;
 
 public class CartActivity extends AppCompatActivity implements OnDataSend {
 
-    RadioButton radio_bkash, radio_cash_on_dv;
-    RadioGroup radioGroup;
-    Button confirmorder;
+
     MysharedPreferance sharedPreferance;
     CartRepository repository;
     AdapterCart adapterCart;
     ApiInterface apiInterface;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
-    ActivityCartBinding binding;
+  private  ActivityCartBinding binding;
     int intsub = 0;
     int total = 0;
     int i = 0;
@@ -62,9 +59,6 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
         // setContentView(R.layout.activity_cart);
         sharedPreferance = MysharedPreferance.getPreferences(getApplicationContext());
         String address = sharedPreferance.getAddress();
-        radio_bkash = findViewById(R.id.radiobkash);
-        radio_cash_on_dv = findViewById(R.id.radiocashondelivery);
-        confirmorder = findViewById(R.id.button2);
 
 
         binding.appbar.title.setText("Cart");
@@ -76,14 +70,14 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             }
         });
 
-binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(CartActivity.this,MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-});
+        binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
         repository = new CartRepository(getApplicationContext());
 
         if (address.equals("none")) {
@@ -105,28 +99,28 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
         getData();
 
 
-        radio_bkash.setOnClickListener(new View.OnClickListener() {
+        binding.radiobkash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //   Toast.makeText(CartActivity.this, ""+radio_bkash.getText(), Toast.LENGTH_SHORT).show();
-                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.colorPrimaryDark));
-                confirmorder.setText("Continue");
+                binding.button2.setBackgroundColor(binding.button2.getContext().getResources().getColor(R.color.colorPrimaryDark));
+                binding.button2.setText("Continue");
             }
         });
 
-        radio_cash_on_dv.setOnClickListener(new View.OnClickListener() {
+        binding.radiocashondelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //   Toast.makeText(CartActivity.this, ""+radio_cash_on_dv.getText(), Toast.LENGTH_SHORT).show();
-                confirmorder.setBackgroundColor(confirmorder.getContext().getResources().getColor(R.color.colorPrimaryDark));
-                confirmorder.setText("Buy Now");
+                //   Toast.makeText(CartActivity.this, ""+binding.radiocashondelivery.getText(), Toast.LENGTH_SHORT).show();
+                binding.button2.setBackgroundColor(binding.button2.getContext().getResources().getColor(R.color.colorPrimaryDark));
+                binding.button2.setText("Buy Now");
             }
         });
 
-        confirmorder.setOnClickListener(new View.OnClickListener() {
+        binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (radio_bkash.isChecked() == true) {
+                if (binding.radiobkash.isChecked() == true) {
                   /*  Intent intent = new Intent(CartActivity.this, LoginActivity.class);
                     intent.putExtra("TAG", "CartActivity");
                     startActivity(intent);*/
@@ -134,9 +128,9 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                     if (address.equals("none")) {
                         Intent intent = new Intent(CartActivity.this, LoginActivity.class);
                         intent.putExtra("method", "bkashDelivery");
-                        intent.putExtra("invoiceid", ""+getInvoiceID);
-                        intent.putExtra("subtotal", ""+intsub);
-                        intent.putExtra("total", ""+total);
+                        intent.putExtra("invoiceid", "" + getInvoiceID);
+                        intent.putExtra("subtotal", "" + intsub);
+                        intent.putExtra("total", "" + total);
                         startActivity(intent);
                     } else {
 
@@ -146,26 +140,26 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
 
                         String pricee = binding.textView23.getText().toString();
                         Intent intentw = new Intent(CartActivity.this, PlaceOrderActivity.class);
-                        intentw.putExtra("totall",""+total);
-                        intentw.putExtra("subtotal",""+intsub);
-                        intentw.putExtra("phone",""+sharedPreferance.getPhone());
-                        intentw.putExtra("invoiceid",""+getInvoiceID);
-                        intentw.putExtra("timedate",""+datetime);
+                        intentw.putExtra("totall", "" + total);
+                        intentw.putExtra("subtotal", "" + intsub);
+                        intentw.putExtra("phone", "" + sharedPreferance.getPhone());
+                        intentw.putExtra("invoiceid", "" + getInvoiceID);
+                        intentw.putExtra("timedate", "" + datetime);
                         startActivity(intentw);
-                      //  Toast.makeText(CartActivity.this, "" + binding.textView23.getText().toString(), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(CartActivity.this, "" + binding.textView23.getText().toString(), Toast.LENGTH_SHORT).show();
 
                     }
 
-                } else if (radio_cash_on_dv.isChecked() == true) {
+                } else if (binding.radiocashondelivery.isChecked() == true) {
 
                     if (address.equals("none")) {
                         String getInvoiceID = getOrderNumberGenerator();
 
                         Intent intent = new Intent(CartActivity.this, LoginActivity.class);
                         intent.putExtra("method", "cashOnDelivery");
-                        intent.putExtra("invoiceid", ""+getInvoiceID);
-                        intent.putExtra("subtotal", ""+intsub);
-                        intent.putExtra("total", ""+total);
+                        intent.putExtra("invoiceid", "" + getInvoiceID);
+                        intent.putExtra("subtotal", "" + intsub);
+                        intent.putExtra("total", "" + total);
                         startActivity(intent);
                     } else {
 
@@ -295,9 +289,9 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                 adapterCart.notifyDataSetChanged();
                 //  binding.recyclerView2.setAdapter(adapterCart);
 
-            if (modelCartRooms.size() == 0){
-                binding.constraintLayout4.setVisibility(View.GONE);
-                binding.emptyConstant.setVisibility(View.VISIBLE);
+                if (modelCartRooms.size() == 0) {
+                    binding.constraintLayout4.setVisibility(View.GONE);
+                    binding.emptyConstant.setVisibility(View.VISIBLE);
                 /*emptyimage.setVisibility(View.VISIBLE);
 
                 emptyimage.setOnClickListener(new View.OnClickListener() {
@@ -311,11 +305,11 @@ binding.emptyConstant.setOnClickListener(new View.OnClickListener() {
                     }
                 });*/
 
-            }else {
-                binding.constraintLayout4.setVisibility(View.VISIBLE);
-                binding.emptyConstant.setVisibility(View.GONE);
-               // emptyimage.setVisibility(View.GONE);
-            }
+                } else {
+                    binding.constraintLayout4.setVisibility(View.VISIBLE);
+                    binding.emptyConstant.setVisibility(View.GONE);
+                    // emptyimage.setVisibility(View.GONE);
+                }
 
 
             }

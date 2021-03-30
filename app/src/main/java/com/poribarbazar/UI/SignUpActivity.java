@@ -191,7 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
             binding.addressid.requestFocus();
             return;
         }if (TextUtils.isEmpty(passs)){
-            binding.passwordid.setError("password required");
+            binding.passwordid.setError("Password required");
             binding.passwordid.requestFocus();
             return;
         }
@@ -270,7 +270,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             }else {
-                binding.cpassid.setError("password must be greater than 6 digit");
+                binding.cpassid.setError("password must be 6 digit");
                 binding.cpassid.requestFocus();
                 return;
             }

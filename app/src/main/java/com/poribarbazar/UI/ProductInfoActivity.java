@@ -180,4 +180,8 @@ public class ProductInfoActivity extends AppCompatActivity {
         });
 
     }
+
+    public void info_cart(View view) {
+        startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
+    }
 }
