@@ -374,43 +374,56 @@ public class SignUpActivity extends AppCompatActivity {
         apiInterface.addUsers(modelUsers).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                if (deliverymethod.equals("MainActivity")){
-                    Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    //Toast.makeText(SignUpActivity.this, "Account Create Successful", Toast.LENGTH_SHORT).show();
-                }
-               else if (deliverymethod.equals("bkashDelivery")){
+                if(response.body().getMessage().equals("Succesful")){
+
+                    if (deliverymethod.equals("MainActivity")){
+                        Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(SignUpActivity.this, "Account Create Successful", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (deliverymethod.equals("bkashDelivery")){
 
                    /* String getInvoiveID = getIntent().getStringExtra("invoiceid");
                     String subtotal = getIntent().getStringExtra("subtotal");
                     String total = getIntent().getStringExtra("total");*/
-                    String phone =binding.phoneid.getText().toString();
+                        String phone =binding.phoneid.getText().toString();
 
-                    Date d = new Date();
-                    CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
+                        Date d = new Date();
+                        CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
 
-                    Intent intentw = new Intent(SignUpActivity.this, PlaceOrderActivity.class);
-                    intentw.putExtra("totall",""+total);
-                    intentw.putExtra("subtotal",""+subtotal);
-                    intentw.putExtra("phone",""+phone);
-                    intentw.putExtra("invoiceid",""+getInvoiveID);
-                    intentw.putExtra("timedate",""+datetime);
-                    startActivity(intentw);
+                        Intent intentw = new Intent(SignUpActivity.this, PlaceOrderActivity.class);
+                        intentw.putExtra("totall",""+total);
+                        intentw.putExtra("subtotal",""+subtotal);
+                        intentw.putExtra("phone",""+phone);
+                        intentw.putExtra("invoiceid",""+getInvoiveID);
+                        intentw.putExtra("timedate",""+datetime);
+                        startActivity(intentw);
+                    }else {
+                        orderProduct();
+                    }
+
+                    String nam = binding.nameid.getText().toString();
+                    String pho =binding.phoneid.getText().toString();
+                    /*   String ema = binding.emailid.getText().toString();*/
+                    String addr = binding.addressid.getText().toString();
+
+                    sharedPreferance.setName(""+nam);
+                    sharedPreferance.setAddress(""+addr);
+                    /*     sharedPreferance.setEmail(""+ema);*/
+                    sharedPreferance.setPhone(""+pho);
+
                 }else {
-                    orderProduct();
+                    Tools.snackErrInfo(SignUpActivity.this, "Failed", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                 }
 
-                String nam = binding.nameid.getText().toString();
-                String pho =binding.phoneid.getText().toString();
-             /*   String ema = binding.emailid.getText().toString();*/
-                String addr = binding.addressid.getText().toString();
 
-                sharedPreferance.setName(""+nam);
-                sharedPreferance.setAddress(""+addr);
-           /*     sharedPreferance.setEmail(""+ema);*/
-                sharedPreferance.setPhone(""+pho);
 
             }
 

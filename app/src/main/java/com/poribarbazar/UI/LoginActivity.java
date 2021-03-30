@@ -291,16 +291,10 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
 
-<<<<<<< HEAD
-                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-=======
-                    Tools.snackErrInfo(LoginActivity.this, "Login Successful", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
 
-                        }
-                    });
->>>>>>> 42c52f0ad571f69110ca25e19809860d58a8ce76
+                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+
+
                 }
                 else if (deliverymethod.equals("bkashDelivery")) {
 
