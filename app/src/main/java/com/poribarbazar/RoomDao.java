@@ -28,6 +28,8 @@ public interface RoomDao {
     @Query("SELECT * FROM cartitem")
     LiveData<List<ModelCartRoom>> getAllData();
 
+    @Query("DELETE FROM cartitem")
+    LiveData<ModelCartRoom> delete_cart();
 
 
 }
