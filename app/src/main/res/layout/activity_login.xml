@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_height="match_parent"
     tools:context=".UI.LoginActivity">
+
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -43,127 +48,130 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit_login"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="@style/SpinKitView.Large.DoubleBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="5dp"
-        app:elevation="10dp"
-        android:id="@+id/outlinedTextFieldd2"
+        android:elevation="15dp"
+        app:SpinKit_Color="@color/colorPrimaryDark"
+
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        android:layout_height="55dp">
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="186dp"
+            android:layout_height="179dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/cardView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:srcCompat="@drawable/app_logo" />
 
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditText.Black.Hint"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            >
 
-            android:hint="password"
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:theme="@style/EditText.Black"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
+            android:theme="@style/EditText.Black.Hint"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
-                android:maxLines="1"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
                 android:inputType="textPassword"
-                android:maxEms="6"
-                android:padding="8dp"
-                android:textColorHint="@color/blue"
-                android:textSize="14dp" />
+                android:maxLength="6"
+                android:hint="Password"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:theme="@style/EditText.Black"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.cardview.widget.CardView>
 
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="5dp"
-        app:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/outlinedTextFieldd2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField1"
+        <TextView
+            android:id="@+id/textView30"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:hint="Phone">
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/montserrat"
+            android:onClick="btn_login"
+            android:padding="15dp"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/outlinedTextFieldd2" />
 
-            <EditText
-                android:id="@+id/phoneid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
-                android:inputType="number"
-
-                android:maxEms="11"
-               android:padding="8dp"
-                android:textColorHint="@color/blue"
-                android:textSize="14dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:background="@color/colorPrimaryDark"
-        android:fontFamily="@font/montserrat"
-        android:onClick="btn_login"
-        android:padding="15dp"
-        android:text="Login"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextFieldd2" />
-
-    <TextView
-        android:id="@+id/dthana"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="186dp"
-        android:layout_height="179dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:srcCompat="@drawable/app_logo" />
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/dthana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

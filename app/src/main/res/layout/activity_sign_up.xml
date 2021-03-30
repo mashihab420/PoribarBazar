@@ -57,27 +57,26 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/err_name"
-
+            android:theme="@style/EditText.Black.Hint"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:hint="Name "
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.13999999">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
-                android:textColorHint="@color/blue"
+                android:theme="@style/EditText.Black"
                 android:textSize="14dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -85,30 +84,46 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/err_phone"
+            android:theme="@style/EditText.Black.Hint"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:hint="Phone"
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/err_name">
 
-            <EditText
-                android:maxEms="11"
+            <com.google.android.material.textfield.TextInputEditText
+                android:maxLength="11"
                 android:inputType="phone"
                 android:id="@+id/phoneid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
+                android:theme="@style/EditText.Black"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            android:visibility="gone"
+            style="@style/SpinKitView.Large.DoubleBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="15dp"
+            app:SpinKit_Color="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
 
     <!--    <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/err_email"
@@ -136,24 +151,25 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/err_address"
+            android:theme="@style/EditText.Black.Hint"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:hint="Address"
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/err_phone">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addressid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
+                android:theme="@style/EditText.Black"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />
 
@@ -161,25 +177,25 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/err_pass"
+            android:theme="@style/EditText.Black.Hint"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:hint="Password"
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/err_address">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
-                android:maxEms="6"
+                android:maxLength="6"
+                android:theme="@style/EditText.Black"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />
 
@@ -187,25 +203,25 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField5"
+            android:theme="@style/EditText.Black.Hint"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:hint="Confirm Password"
-            app:boxStrokeColor="@color/black"
-            app:hintTextAppearance="@style/BlueTextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/err_pass">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cpassid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
-                android:maxEms="6"
+                android:maxLength="6"
+                android:theme="@style/EditText.Black"
                 android:textColorHint="@color/blue"
                 android:textSize="14dp" />
 

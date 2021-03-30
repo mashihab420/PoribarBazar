@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -170,5 +171,9 @@ public class ProductsActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void product_cart(View view) {
+        startActivity(new Intent(ProductsActivity.this,CartActivity.class));
     }
 }

@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.poribarbazar.Adapter.AdapterCart;
 import com.poribarbazar.CartRepository;
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     MysharedPreferance sharedPreferance;
 
+    SpinKitView spinKitView;
     ImageView back;
     String deliverymethod = "";
     CartRepository repository;
@@ -71,6 +73,10 @@ public class LoginActivity extends AppCompatActivity {
         phone = findViewById(R.id.phoneid);
         back = findViewById(R.id.back_login);
         pass = findViewById(R.id.passwordid);
+        spinKitView = findViewById(R.id.spin_kit_login);
+        spinKitView.setVisibility(View.GONE);
+
+
         getData();
         deliverymethod = getIntent().getStringExtra("method");
         getInvoiveID = getIntent().getStringExtra("invoiceid");
@@ -171,6 +177,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
 
+                    spinKitView.setVisibility(View.VISIBLE);
+
                     Tools.snackErr(LoginActivity.this, "Check the internet connection !", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -198,6 +206,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void btn_login(View view) {
+
+
         String phonee = phone.getText().toString();
         String passs = pass.getText().toString();
 
@@ -210,12 +220,12 @@ public class LoginActivity extends AppCompatActivity {
             if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))) {
 
 
-                if (passs.length() >= 8) {
+                if (passs.length()== 6) {
                     // Toast.makeText(getApplicationContext(), "You CAn Login", Toast.LENGTH_SHORT).show();
                     //Here is the login api
                     login_method();
                 } else {
-                    pass.setError("password must be greater than 8 digit");
+                    pass.setError("must be 6 digit");
                     pass.requestFocus();
                     return;
                 }
@@ -227,7 +237,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
         } else {
-            phone.setError("Phone number must be 11 digit");
+            phone.setError("must be 11 digit");
             phone.requestFocus();
             return;
         }
@@ -251,7 +261,7 @@ public class LoginActivity extends AppCompatActivity {
     private void login_method() {
         Retrofit instance = ApiClient.getClient();
         apiInterface = instance.create(ApiInterface.class);
-
+        spinKitView.setVisibility(View.VISIBLE);
         String phonee = phone.getText().toString();
         String passs = pass.getText().toString();
 
@@ -281,7 +291,16 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
 
+<<<<<<< HEAD
                     Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+=======
+                    Tools.snackErrInfo(LoginActivity.this, "Login Successful", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+>>>>>>> 42c52f0ad571f69110ca25e19809860d58a8ce76
                 }
                 else if (deliverymethod.equals("bkashDelivery")) {
 
@@ -306,6 +325,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelUser> call, Throwable t) {
+                spinKitView.setVisibility(View.GONE);
                 Tools.snackErr(LoginActivity.this, " Login Failed !", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
