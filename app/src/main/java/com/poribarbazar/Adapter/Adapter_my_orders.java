@@ -1,6 +1,7 @@
 package com.poribarbazar.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.poribarbazar.UI.OrderItems;
 import com.poribarbazar.databinding.ItemCategoryBinding;
 import com.poribarbazar.databinding.ItemMyOrdersBinding;
 import com.poribarbazar.model.ModelOrders;
@@ -44,6 +46,15 @@ public class Adapter_my_orders extends RecyclerView.Adapter<Adapter_my_orders.Ho
         holder.binding.status.setText("Status: "+orders.get(position).getOrder_status());
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(context, OrderItems.class);
+                intent.putExtra("invoice",orders.get(position).getInvoice_id());
+
+            }
+        });
 
     }
 

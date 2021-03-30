@@ -10,6 +10,10 @@ public class ModelOrders {
     @Expose
     private String id;
 
+    @SerializedName("image")
+    @Expose
+    private String image;
+
     @SerializedName("p_price")
     @Expose
     private String p_price;
@@ -65,6 +69,15 @@ public class ModelOrders {
     @SerializedName("trx_id")
     @Expose
     private String trx_id;
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getId() {
         return id;

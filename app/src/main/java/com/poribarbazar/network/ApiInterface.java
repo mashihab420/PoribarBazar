@@ -37,6 +37,11 @@ public interface ApiInterface {
     @POST("get_my_orders.php")
     Call<List<ModelOrders>> get_my_order(@Body ModelOrders modelOrders);
 
+
+    @POST("get_order_item.php")
+    Call<List<ModelOrders>> get_my_order_list(@Body ModelOrders modelOrders);
+
+
     @GET("get_offers.php")
     Call<List<ModelOffers>> getOffers();
 

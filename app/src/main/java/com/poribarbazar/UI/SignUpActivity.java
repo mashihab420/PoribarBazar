@@ -74,6 +74,9 @@ public class SignUpActivity extends AppCompatActivity {
         repository = new CartRepository(getApplicationContext());
         getData();
 
+        Retrofit instance = ApiClient.getClient();
+        apiInterface = instance.create(ApiInterface.class);
+
         deliverymethod = getIntent().getStringExtra("method");
         getInvoiveID = getIntent().getStringExtra("invoiceid");
         subtotal = getIntent().getStringExtra("subtotal");
@@ -137,7 +140,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void check_data() {
-        
+
+        binding.spinKit.setVisibility(View.VISIBLE);
         
 
         String namee = binding.nameid.getText().toString();
@@ -205,8 +209,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if (flag== 1){
 
-                         Retrofit instance = ApiClient.getClient();
-                apiInterface = instance.create(ApiInterface.class);
 
                 ModelUser modelUser = new ModelUser();
                 modelUser.setName(namee);
@@ -220,6 +222,8 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
                         if (response.body().getResponse().equals("ok")) {
+
+                            binding.spinKit.setVisibility(View.GONE);
 
                             View parentLayout = findViewById(android.R.id.content);
                             Snackbar mSnackBar = Snackbar.make(parentLayout, "This number is already used. Please login", Snackbar.LENGTH_LONG);
@@ -246,6 +250,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ModelUser> call, Throwable t) {
+                        binding.spinKit.setVisibility(View.GONE);
                         Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -341,7 +346,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ModelOrders> call, Throwable t) {
-
+                    binding.spinKit.setVisibility(View.GONE);
                     Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -429,8 +434,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelUser> call, Throwable t) {
-
-
+                binding.spinKit.setVisibility(View.GONE);
                 View parentLayout = findViewById(android.R.id.content);
                 Snackbar mSnackBar = Snackbar.make(parentLayout, "Check the internet connection !", Snackbar.LENGTH_LONG);
                 View view = mSnackBar.getView();

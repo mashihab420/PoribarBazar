@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/cartimg"
+            android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cartitemname"
+            android:id="@+id/p_name"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -31,19 +31,19 @@
             android:textSize="18sp"
             android:layout_marginTop="8dp"
             android:text="TextVsdfsd ssdfsdfsd sdfsdsfsd sdifhsdf sdfjsdof sdfois df sdfoijdfsiew"
-            app:layout_constraintStart_toEndOf="@+id/cartimg"
-            app:layout_constraintTop_toTopOf="@+id/cartimg" />
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
 
         <TextView
-            android:id="@+id/cartitemprice"
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="0 BDT"
             android:textColor="@color/red"
-            app:layout_constraintStart_toEndOf="@+id/cartimg"
-            app:layout_constraintTop_toBottomOf="@+id/cartitemname" />
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/p_name" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/cartitemprice"
-            app:layout_constraintTop_toBottomOf="@+id/cartitemprice">
+            app:layout_constraintStart_toStartOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/price">
 
             <RadioButton
                 android:id="@+id/small"
@@ -81,15 +81,15 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/cartquantity"
+            android:id="@+id/order_quentity"
             android:layout_width="30dp"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:text="00"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/cartitemprice"
+            app:layout_constraintBottom_toBottomOf="@+id/price"
             app:layout_constraintStart_toEndOf="@+id/cartminus"
-            app:layout_constraintTop_toTopOf="@+id/cartitemprice" />
+            app:layout_constraintTop_toTopOf="@+id/price" />
 
         <ImageView
             android:id="@+id/cartminus"
@@ -97,9 +97,9 @@
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
             android:src="@drawable/ic_remove"
-            app:layout_constraintBottom_toBottomOf="@+id/cartquantity"
-            app:layout_constraintStart_toEndOf="@+id/cartitemprice"
-            app:layout_constraintTop_toTopOf="@+id/cartquantity" />
+            app:layout_constraintBottom_toBottomOf="@+id/order_quentity"
+            app:layout_constraintStart_toEndOf="@+id/price"
+            app:layout_constraintTop_toTopOf="@+id/order_quentity" />
 
 
         <ImageView
@@ -108,9 +108,9 @@
             android:id="@+id/cartplus"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_add_black"
-            app:layout_constraintBottom_toBottomOf="@+id/cartquantity"
-            app:layout_constraintStart_toEndOf="@+id/cartquantity"
-            app:layout_constraintTop_toTopOf="@+id/cartquantity" />
+            app:layout_constraintBottom_toBottomOf="@+id/order_quentity"
+            app:layout_constraintStart_toEndOf="@+id/order_quentity"
+            app:layout_constraintTop_toTopOf="@+id/order_quentity" />
 
         <ImageView
             android:id="@+id/deletecartitem"
