@@ -2,21 +2,31 @@ package com.poribarbazar.Fragment;
 
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.poribarbazar.Adapter.AdapterCategoryProduct;
 import com.poribarbazar.Adapter.AdapterFlashSell;
 import com.poribarbazar.Adapter.AdapterOffers;
 import com.poribarbazar.Adapter.AdapterPopularProduct;
 import com.poribarbazar.Adapter.Adapter_item_category;
+import com.poribarbazar.CartRepository;
+import com.poribarbazar.MainActivity;
+import com.poribarbazar.UI.ProductsActivity;
+import com.poribarbazar.databinding.ActivityProductsBinding;
 import com.poribarbazar.databinding.FragmentHomeBinding;
 import com.poribarbazar.model.ModelCategory;
 import com.poribarbazar.model.ModelProducts;
@@ -46,6 +56,12 @@ ArrayList<ModelCategory> categories=new ArrayList<>();
 ArrayList<ModelOffers> offers=new ArrayList<>();
 ArrayList<ModelProducts> flashSells=new ArrayList<>();
 ArrayList<ModelProducts> popularproducts=new ArrayList<>();
+
+
+    ArrayList<ModelProducts> products;
+    AdapterCategoryProduct adapterCategoryProduct;
+    ModelProducts modelProducts;
+
 
     public HomeFragment() {
 
@@ -93,8 +109,75 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         binding.recyclerpopularproduct.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
+        binding.editText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                binding.searchLayout.setVisibility(View.VISIBLE);
+                binding.imageView4.setVisibility(View.VISIBLE);
+
+                return false;
+            }
+        });
+
+
+        binding.imageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.editText.getText().clear();
+                binding.searchLayout.setVisibility(View.GONE);
+                binding.imageView4.setVisibility(View.GONE);
+
+
+
+
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(binding.editText.getWindowToken(), 0);
+            }
+        });
+
+
+
+        binding.searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Retrofit instance = ApiClient.getClient();
+                apiInterface =instance.create(ApiInterface.class);
+                products=new ArrayList<>();
+
+                binding.recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(),3,GridLayoutManager.VERTICAL,false));
+                adapterCategoryProduct = new AdapterCategoryProduct(products,getContext());
+                getCategoryProduct();
+            }
+        });
+
+
 
         return view;
+    }
+
+    public void getCategoryProduct()
+    {
+
+
+
+        apiInterface.getCategorieProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
+            @Override
+            public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
+
+                products.addAll(response.body());
+                binding.recyclerViewSearch.setAdapter(adapterCategoryProduct);
+                adapterCategoryProduct.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
 
@@ -154,6 +237,8 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
             }
         });
     }
+
+
 
     public void get_category(){
 
