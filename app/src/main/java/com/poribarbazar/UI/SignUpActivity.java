@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     MysharedPreferance sharedPreferance;
 
-    String deliverymethod ="";
+    String deliverymethod = "";
     CartRepository repository;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
 
@@ -82,8 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
         subtotal = getIntent().getStringExtra("subtotal");
         total = getIntent().getStringExtra("total");
 
-       /* Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();*/
-
+        /* Toast.makeText(this, ""+deliverymethod, Toast.LENGTH_SHORT).show();*/
 
 
         TextView textView = findViewById(R.id.dthana);
@@ -96,9 +95,8 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(@NonNull View widget) {
 
 
-
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                intent.putExtra("method", "" +"MainActivity");
+                intent.putExtra("method", "" + "MainActivity");
                 intent.putExtra("invoiceid", "");
                 intent.putExtra("subtotal", "");
                 intent.putExtra("total", "");
@@ -113,10 +111,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
         };
-        ss.setSpan(clickableSpan1, 26,31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 26, 31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        ss.setSpan(new BackgroundColorSpan(Color.WHITE), 26,31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(new ForegroundColorSpan(Color.rgb(243, 156, 38)), 26,31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new BackgroundColorSpan(Color.WHITE), 26, 31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ForegroundColorSpan(Color.rgb(243, 156, 38)), 26, 31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -133,7 +131,6 @@ public class SignUpActivity extends AppCompatActivity {
                 carts.addAll(modelCartRooms);
 
 
-
             }
         });
     }
@@ -141,46 +138,37 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void check_data() {
 
-        binding.spinKit.setVisibility(View.VISIBLE);
-        
-
         String namee = binding.nameid.getText().toString();
-        String phonee =binding.phoneid.getText().toString();
-     /*   String emaill = binding.emailid.getText().toString();*/
+        String phonee = binding.phoneid.getText().toString();
+        /*   String emaill = binding.emailid.getText().toString();*/
         String addresss = binding.addressid.getText().toString();
         String passs = binding.passwordid.getText().toString();
         String c_passs = binding.cpassid.getText().toString();
         String firstThreeNumber = "";
-        if (TextUtils.isEmpty(namee)){
+        if (TextUtils.isEmpty(namee)) {
 
 
             binding.nameid.setError("Name required");
             binding.nameid.requestFocus();
             return;
-        }/*if (TextUtils.isEmpty(phonee)){
-            phone.setError("Please enter your phone");
-            phone.requestFocus();
-            return;
-        }*/
-           //substring containing first 4 characters
+        }
 
-        if (phonee.length() ==11)
-        {
+
+        if (phonee.length() == 11) {
             firstThreeNumber = phonee.substring(0, 3);
             //      Toast.makeText(this, ""+firstThreeNumber, Toast.LENGTH_SHORT).show();
-            if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))){
+            if ((firstThreeNumber.contains("017") || (firstThreeNumber.contains("019")) || (firstThreeNumber.contains("018")) || (firstThreeNumber.contains("016")) || (firstThreeNumber.contains("013")) || (firstThreeNumber.contains("015")))) {
 
-               // Toast.makeText(this, "U can signup now", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "U can signup now", Toast.LENGTH_SHORT).show();
                 flag = 1;
 
-            }else {
+            } else {
 
-                binding.phoneid.setError("Number required");
+                binding.phoneid.setError("invalid number");
                 binding.phoneid.requestFocus();
                 return;
             }
-        }else
-        {
+        } else {
             binding.phoneid.setError("must be 11 digit");
             binding.phoneid.requestFocus();
             return;
@@ -190,91 +178,79 @@ public class SignUpActivity extends AppCompatActivity {
             binding.emailid.setError(" email required");
             binding.emailid.requestFocus();
             return;
-        }*/if (TextUtils.isEmpty(addresss)){
+        }*/
+        if (TextUtils.isEmpty(addresss)) {
             binding.addressid.setError("Address required");
             binding.addressid.requestFocus();
             return;
-        }if (TextUtils.isEmpty(passs)){
+        }
+        if (TextUtils.isEmpty(passs)) {
             binding.passwordid.setError("Password required");
             binding.passwordid.requestFocus();
             return;
-        }
-        else{
+        } else {
 
-            if (passs.length() ==6){
-
-
-                if (passs.equals(c_passs)){
+            if (passs.length() == 6) {
 
 
-                    if (flag== 1){
+                if (passs.equals(c_passs)) {
 
 
-                ModelUser modelUser = new ModelUser();
-                modelUser.setName(namee);
-                modelUser.setPhone(phonee);
-           /*     modelUser.setEmail(emaill);*/
-                modelUser.setAddress(addresss);
-                modelUser.setPassword(passs);
+                    if (flag == 1) {
 
 
-                apiInterface.check_data(phonee).enqueue(new Callback<ModelUser>() {
-                    @Override
-                    public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                        if (response.body().getResponse().equals("ok")) {
+                        binding.spinKit.setVisibility(View.VISIBLE);
 
-                            binding.spinKit.setVisibility(View.GONE);
-
-                            View parentLayout = findViewById(android.R.id.content);
-                            Snackbar mSnackBar = Snackbar.make(parentLayout, "This number is already used. Please login", Snackbar.LENGTH_LONG);
-                            View view = mSnackBar.getView();
-                            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-                            params.gravity = Gravity.TOP;
-                            view.setLayoutParams(params);
-                            view.setBackgroundColor(Color.RED);
-                            TextView mainTextView = (TextView) (view).findViewById(R.id.snackbar_text);
-                            mainTextView.setTextColor(Color.WHITE);
-                            mSnackBar.show();
-
-                            //sign_up_progress.setVisibility(View.GONE);
-
-                            //create.setVisibility(View.VISIBLE);
-                        } else {
-
-                            sendData(modelUser);
-
-                        }
+                        ModelUser modelUser = new ModelUser();
+                        modelUser.setName(namee);
+                        modelUser.setPhone(phonee);
+                        /*     modelUser.setEmail(emaill);*/
+                        modelUser.setAddress(addresss);
+                        modelUser.setPassword(passs);
 
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<ModelUser> call, Throwable t) {
-                        binding.spinKit.setVisibility(View.GONE);
-                        Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                        apiInterface.check_data(phonee).enqueue(new Callback<ModelUser>() {
                             @Override
-                            public void onClick(View view) {
+                            public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
+                                if (response.body().getResponse().equals("ok")) {
 
+                                    binding.spinKit.setVisibility(View.GONE);
+
+                                    Tools.snackErr(SignUpActivity.this, "This number is used, Please Login", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                        }
+                                    });
+
+                                } else {
+
+                                    sendData(modelUser);
+                                }
                             }
+
+                            @Override
+                            public void onFailure(Call<ModelUser> call, Throwable t) {
+                                binding.spinKit.setVisibility(View.GONE);
+                                Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                    }
+                                }); }
                         });
 
-
-                        // sign_up_progress.setVisibility(View.GONE);
-                        // create.setVisibility(View.VISIBLE);
-                    }
-                });
-
                     }
 
 
-                }else {
+                } else {
                     binding.passwordid.setError("Password Not match");
                     binding.passwordid.requestFocus();
                     return;
                 }
 
 
-            }else {
+            } else {
                 binding.cpassid.setError("password must be 6 digit");
                 binding.cpassid.requestFocus();
                 return;
@@ -282,8 +258,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         }
-
-
 
 
     }
@@ -297,7 +271,7 @@ public class SignUpActivity extends AppCompatActivity {
         /*String getInvoiveID = getIntent().getStringExtra("invoiceid");
         String subtotal = getIntent().getStringExtra("subtotal");
         String total = getIntent().getStringExtra("total");*/
-        String phone =binding.phoneid.getText().toString();
+        String phone = binding.phoneid.getText().toString();
 
         Date d = new Date();
         CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
@@ -307,12 +281,11 @@ public class SignUpActivity extends AppCompatActivity {
             ModelOrders modelOrders = new ModelOrders();
 
 
-
             modelOrders.setP_name(carts.get(i).getP_name());
             modelOrders.setP_price(carts.get(i).getP_price());
             modelOrders.setQuantity(carts.get(i).getQuantity());
-            modelOrders.setInvoice_id(""+getInvoiveID);
-            modelOrders.setPhone(""+phone);
+            modelOrders.setInvoice_id("" + getInvoiveID);
+            modelOrders.setPhone("" + phone);
             modelOrders.setSubtotal("" + subtotal);
             modelOrders.setTotal("" + total);
             modelOrders.setSize(carts.get(i).getSize());
@@ -322,8 +295,6 @@ public class SignUpActivity extends AppCompatActivity {
             modelOrders.setPay_method("Home Delivey");
             modelOrders.setPayment_phone("null");
             modelOrders.setTrx_id("null");
-
-
 
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {
@@ -365,10 +336,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(SignUpActivity.this, InvoiceActivity.class);
-        intent.putExtra("invoiceid", ""+getInvoiveID);
+        intent.putExtra("invoiceid", "" + getInvoiveID);
         intent.putExtra("method", "Online Payment");
-        intent.putExtra("subtotal", ""+subtotal);
-        intent.putExtra("total", ""+total);
+        intent.putExtra("subtotal", "" + subtotal);
+        intent.putExtra("total", "" + total);
         startActivity(intent);
 
 
@@ -377,50 +348,51 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void sendData(ModelUser modelUsers) {
 
+
         apiInterface.addUsers(modelUsers).enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-             //   Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(SignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                if(response.body().getMessage().equals("Succesful")){
-
-                    if (deliverymethod.equals("MainActivity")){
-                        Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                if (response.body().getMessage().equals("Succesful")) {
+                    binding.spinKit.setVisibility(View.GONE);
+                    if (deliverymethod.equals("MainActivity")) {
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                         startActivity(intent);
                         Toast.makeText(SignUpActivity.this, "Account Create Successful", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (deliverymethod.equals("bkashDelivery")){
+                    } else if (deliverymethod.equals("bkashDelivery")) {
 
                    /* String getInvoiveID = getIntent().getStringExtra("invoiceid");
                     String subtotal = getIntent().getStringExtra("subtotal");
                     String total = getIntent().getStringExtra("total");*/
-                        String phone =binding.phoneid.getText().toString();
+                        String phone = binding.phoneid.getText().toString();
 
                         Date d = new Date();
                         CharSequence datetime = DateFormat.format("d MMMM, yyyy ", d.getTime());
 
                         Intent intentw = new Intent(SignUpActivity.this, PlaceOrderActivity.class);
-                        intentw.putExtra("totall",""+total);
-                        intentw.putExtra("subtotal",""+subtotal);
-                        intentw.putExtra("phone",""+phone);
-                        intentw.putExtra("invoiceid",""+getInvoiveID);
-                        intentw.putExtra("timedate",""+datetime);
+                        intentw.putExtra("totall", "" + total);
+                        intentw.putExtra("subtotal", "" + subtotal);
+                        intentw.putExtra("phone", "" + phone);
+                        intentw.putExtra("invoiceid", "" + getInvoiveID);
+                        intentw.putExtra("timedate", "" + datetime);
                         startActivity(intentw);
-                    }else {
+                    } else {
                         orderProduct();
                     }
 
                     String nam = binding.nameid.getText().toString();
-                    String pho =binding.phoneid.getText().toString();
+                    String pho = binding.phoneid.getText().toString();
                     /*   String ema = binding.emailid.getText().toString();*/
                     String addr = binding.addressid.getText().toString();
 
-                    sharedPreferance.setName(""+nam);
-                    sharedPreferance.setAddress(""+addr);
+                    sharedPreferance.setName("" + nam);
+                    sharedPreferance.setAddress("" + addr);
                     /*     sharedPreferance.setEmail(""+ema);*/
-                    sharedPreferance.setPhone(""+pho);
+                    sharedPreferance.setPhone("" + pho);
 
-                }else {
+                } else {
+                    binding.spinKit.setVisibility(View.GONE);
                     Tools.snackErrInfo(SignUpActivity.this, "Failed", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -430,22 +402,17 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
             public void onFailure(Call<ModelUser> call, Throwable t) {
                 binding.spinKit.setVisibility(View.GONE);
-                View parentLayout = findViewById(android.R.id.content);
-                Snackbar mSnackBar = Snackbar.make(parentLayout, "Check the internet connection !", Snackbar.LENGTH_LONG);
-                View view = mSnackBar.getView();
-                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-                params.gravity = Gravity.TOP;
-                view.setLayoutParams(params);
-                view.setBackgroundColor(Color.RED);
-                TextView mainTextView = (TextView) (view).findViewById(R.id.snackbar_text);
-                mainTextView.setTextColor(Color.WHITE);
-                mSnackBar.show();
+                Tools.snackErr(SignUpActivity.this, "Check the internet connection !", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
 
             }
         });
@@ -454,7 +421,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void btn_createaccount(View view) {
-
 
 
         check_data();

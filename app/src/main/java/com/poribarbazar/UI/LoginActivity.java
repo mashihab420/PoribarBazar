@@ -325,19 +325,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                /*}else {
-                    Tools.snackErrInfo(LoginActivity.this, "Phone number or password is not match.", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    });
-                }*/
-
-
-
-
-
             }
 
             @Override

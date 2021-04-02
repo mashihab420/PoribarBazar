@@ -1,5 +1,6 @@
 package com.poribarbazar.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import android.text.Editable;
@@ -25,6 +26,7 @@ import com.poribarbazar.Adapter.AdapterPopularProduct;
 import com.poribarbazar.Adapter.Adapter_item_category;
 import com.poribarbazar.CartRepository;
 import com.poribarbazar.MainActivity;
+import com.poribarbazar.Tools;
 import com.poribarbazar.UI.ProductsActivity;
 import com.poribarbazar.databinding.ActivityProductsBinding;
 import com.poribarbazar.databinding.FragmentHomeBinding;
@@ -43,7 +45,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
-public class HomeFragment extends Fragment {
+public class  HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
 Adapter_item_category adapter_item_category;
@@ -60,7 +62,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
     ArrayList<ModelProducts> products;
     AdapterCategoryProduct adapterCategoryProduct;
-    ModelProducts modelProducts;
+    ModelProducts modelProducts=new ModelProducts();
 
 
     public HomeFragment() {
@@ -112,8 +114,10 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         binding.editText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                binding.editText.setCursorVisible(true);
 
                 binding.searchLayout.setVisibility(View.VISIBLE);
+                binding.homeLayout.setVisibility(View.GONE);
                 binding.imageView4.setVisibility(View.VISIBLE);
 
                 return false;
@@ -127,7 +131,8 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
                 binding.editText.getText().clear();
                 binding.searchLayout.setVisibility(View.GONE);
                 binding.imageView4.setVisibility(View.GONE);
-
+                binding.editText.setCursorVisible(false);
+                binding.homeLayout.setVisibility(View.VISIBLE);
 
 
 
@@ -141,13 +146,20 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         binding.searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Retrofit instance = ApiClient.getClient();
                 apiInterface =instance.create(ApiInterface.class);
                 products=new ArrayList<>();
 
                 binding.recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(),3,GridLayoutManager.VERTICAL,false));
                 adapterCategoryProduct = new AdapterCategoryProduct(products,getContext());
-                getCategoryProduct();
+
+                if (!binding.editText.getText().toString().isEmpty())
+                {
+                    getSearchProduct();
+                }
+
             }
         });
 
@@ -156,15 +168,19 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         return view;
     }
 
-    public void getCategoryProduct()
+    public void getSearchProduct()
     {
 
+        binding.homeSpinkit.setVisibility(View.VISIBLE);
+
+        modelProducts.setPName(binding.editText.getText().toString());
 
 
-        apiInterface.getCategorieProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
+        apiInterface.getSearchProduct(modelProducts).enqueue(new Callback<List<ModelProducts>>() {
             @Override
             public void onResponse(Call<List<ModelProducts>> call, Response<List<ModelProducts>> response) {
-
+                binding.homeSpinkit.setVisibility(View.GONE);
+                products.clear();
                 products.addAll(response.body());
                 binding.recyclerViewSearch.setAdapter(adapterCategoryProduct);
                 adapterCategoryProduct.notifyDataSetChanged();
@@ -173,6 +189,17 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
             @Override
             public void onFailure(Call<List<ModelProducts>> call, Throwable t) {
+                binding.homeSpinkit.setVisibility(View.GONE);
+                products.clear();
+                binding.recyclerViewSearch.setAdapter(adapterCategoryProduct);
+                adapterCategoryProduct.notifyDataSetChanged();
+
+                Tools.snackErr((Activity) getContext(), "No product found !", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
 
             }
         });
