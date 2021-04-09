@@ -56,6 +56,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         String url2 = products.get(position).getImage_url2();
         String url3 = products.get(position).getImage_url3();
         holder.p_name.setText(products.get(position).getPName());
+        holder.offer.setText(products.get(position).getDicountPercentage()+" %");
 
         holder.p_price_normal.setText(products.get(position).getPPrice()+" BDT");
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");

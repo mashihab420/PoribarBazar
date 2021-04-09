@@ -34,7 +34,7 @@ public class ModelProducts {
     @SerializedName("stock")
     @Expose
     private String stock;
-    @SerializedName("discount_price")
+    @SerializedName("discount_percent")
     @Expose
     private String discountPrice;
     @SerializedName("dicount_percentage")
