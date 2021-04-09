@@ -64,6 +64,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbarTitle.setText(R.string.app_name);
 
 
+
+        if (sharedPreferences.getPhone().equals("none")){
+            binding.navLogout.setVisibility(View.GONE);
+            binding.logoutText.setVisibility(View.GONE);
+        }else{
+            binding.navLogout.setVisibility(View.VISIBLE);
+            binding.logoutText.setVisibility(View.VISIBLE);
+        }
+
+
         setSupportActionBar(binding.include.toolbar);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
@@ -295,6 +305,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
                 Tools.snackInfo(MainActivity.this, "Logout");
+
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
 
                 break;
 

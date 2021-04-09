@@ -210,7 +210,7 @@
                    app:srcCompat="@drawable/ic_logout" />
 
                <TextView
-                   android:id="@+id/textView"
+                   android:id="@+id/logoutText"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginBottom="16dp"

@@ -1,0 +1,112 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM__Default_Changelist_.xml	(revision 174e236fa8a36d8c524835f049d299646955f63e)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM__Default_Changelist_.xml	(revision 174e236fa8a36d8c524835f049d299646955f63e)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM_[Default_Changelist]" date="1616779217632" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/26/2021 11:20 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM_[Default_Changelist]/shelved.patch	(revision 174e236fa8a36d8c524835f049d299646955f63e)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_3_26_2021_11_20_PM_[Default_Changelist]/shelved.patch	(revision 174e236fa8a36d8c524835f049d299646955f63e)
+@@ -1,97 +0,0 @@
+-Index: app/src/main/java/com/poribarbazar/network/ApiInterface.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.poribarbazar.network;\r\n\r\n\r\n\r\nimport com.poribarbazar.model.ModelCategory;\r\nimport com.poribarbazar.model.ModelOrders;\r\nimport com.poribarbazar.model.ModelProducts;\r\nimport com.poribarbazar.model.ModelOffers;\r\nimport com.poribarbazar.model.ModelUser;\r\nimport com.poribarbazar.model.Test;\r\n\r\nimport java.util.List;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.http.Body;\r\nimport retrofit2.http.GET;\r\nimport retrofit2.http.POST;\r\nimport retrofit2.http.Query;\r\n\r\n\r\npublic interface ApiInterface {\r\n\r\n    @GET(\"get_category.php\")\r\n    Call<List<ModelCategory>> getCategories();\r\n\r\n\r\n    @POST(\"get_categoryproduct.php\")\r\n    Call<List<ModelProducts>> getCategorieProduct(@Body ModelProducts modelProducts);\r\n\r\n    @POST(\"get_offer_product.php\")\r\n    Call<List<ModelProducts>> getOfferProduct(@Body ModelProducts modelProducts);\r\n\r\n\r\n    @POST(\"get_offer_product.php\")\r\n    Call<List<ModelUser>> update_profile(@Body ModelUser modelUser);\r\n\r\n    @GET(\"get_offers.php\")\r\n    Call<List<ModelOffers>> getOffers();\r\n\r\n    @GET(\"get_flash_sell.php\")\r\n    Call<List<ModelProducts>> getflashsell();\r\n\r\n    @GET(\"get_popular_product.php\")\r\n    Call<List<ModelProducts>> getPopularProduct();\r\n\r\n\r\n    @POST(\"users\")\r\n    Call<Test> createuser(@Body Test test);\r\n\r\n    @POST(\"user_registration.php\")\r\n    Call<ModelUser> user_signUp(@Body ModelUser modelUser);\r\n\r\n    @GET(\"check_data_before_create.php\")\r\n    Call<ModelUser> check_data(@Query(\"phone\") String phone );\r\n\r\n    @POST(\"insert_user_info.php\")\r\n    Call<ModelUser> addUsers(@Body ModelUser modelUsers);\r\n\r\n    @POST(\"insert_order.php\")\r\n    Call<ModelOrders> insert_order(@Body ModelOrders modelOrders);\r\n\r\n    @GET(\"user_login.php\")\r\n    //Call<ModelUser> loginUser(@Body ModelUser modelUsers);\r\n    Call<ModelUser> loginUser(@Query(\"phone\") String phone, @Query(\"password\") String password);\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/java/com/poribarbazar/network/ApiInterface.java	(revision 01d1f14eb2358423e19c96381902bab8251f565b)
+-+++ app/src/main/java/com/poribarbazar/network/ApiInterface.java	(date 1616779087129)
+-@@ -31,7 +31,7 @@
+-     Call<List<ModelProducts>> getOfferProduct(@Body ModelProducts modelProducts);
+- 
+- 
+--    @POST("get_offer_product.php")
+-+    @POST("update_user_info.php")
+-     Call<List<ModelUser>> update_profile(@Body ModelUser modelUser);
+- 
+-     @GET("get_offers.php")
+-Index: app/src/main/java/com/poribarbazar/MainActivity.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.poribarbazar;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.RequiresApi;\r\nimport androidx.appcompat.app.ActionBarDrawerToggle;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.core.view.GravityCompat;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport android.annotation.SuppressLint;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.material.navigation.NavigationView;\r\nimport com.poribarbazar.Fragment.HomeFragment;\r\nimport com.poribarbazar.MyPreferance.MysharedPreferance;\r\nimport com.poribarbazar.UI.CartActivity;\r\nimport com.poribarbazar.UI.LoginActivity;\r\nimport com.poribarbazar.UI.MyOrders;\r\nimport com.poribarbazar.UI.ProductsActivity;\r\nimport com.poribarbazar.UI.Profile;\r\nimport com.poribarbazar.UI.SignUpActivity;\r\nimport com.poribarbazar.databinding.ActivityMainBinding;\r\n\r\n\r\npublic class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {\r\n    private ActivityMainBinding binding;\r\n    HomeFragment homeFragment;\r\n    int valu =0;\r\n    Toolbar toolbarr;\r\n    TextView toolbarTitle,cartQuantity;\r\n    private ActionBarDrawerToggle actionBarDrawerToggle;\r\n    MysharedPreferance sharedPreferences;\r\n\r\n    \r\n\r\n    @RequiresApi(api = Build.VERSION_CODES.M)\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding = ActivityMainBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n        sharedPreferences = MysharedPreferance.getPreferences(getApplicationContext());\r\n\r\n        toolbarr=findViewById(R.id.toolbar);\r\n        setSupportActionBar(toolbarr);\r\n\r\n     //   cartQuantity = findViewById(R.id.cart_quantity_id);\r\n        toolbarTitle=findViewById(R.id.toolbarTitle);\r\n        toolbarTitle.setText(R.string.app_name);\r\n\r\n\r\n        setSupportActionBar(binding.include.toolbar);\r\n\r\n        actionBarDrawerToggle=new ActionBarDrawerToggle(this,\r\n                binding.drawerLayout,binding.include.toolbar,R.string.open, R.string.close);\r\n        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.white));\r\n\r\n\r\n        binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);\r\n        actionBarDrawerToggle.syncState();\r\n\r\n        binding.navigationView.setNavigationItemSelectedListener(this);\r\n\r\n\r\n\r\n        binding.navBaby.setOnClickListener(this);\r\n        binding.navElectronic.setOnClickListener(this);\r\n        binding.navHealth.setOnClickListener(this);\r\n        binding.navOrders.setOnClickListener(this);\r\n        binding.navProfile.setOnClickListener(this);\r\n        binding.navLogout.setOnClickListener(this);\r\n        binding.navWoman.setOnClickListener(this);\r\n        binding.navWatches.setOnClickListener(this);\r\n        binding.navMan.setOnClickListener(this);\r\n\r\n\r\n            initFragmentHome();\r\n\r\n\r\n    }\r\n\r\n    private void initFragmentHome(){\r\n        homeFragment=new HomeFragment();\r\n        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();\r\n        fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(),homeFragment,\"HomeFragment\").commit();\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_cart,menu);\r\n\r\n\r\n\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        if(item.getItemId()==R.id.cartmenuid){\r\n\r\n            Intent intent = new Intent(MainActivity.this, CartActivity.class);\r\n            startActivity(intent);\r\n\r\n\r\n          /*  valu++;\r\n            if (valu>0){\r\n                cartQuantity.setVisibility(View.VISIBLE);\r\n            }\r\n\r\n            cartQuantity.setText(\"\"+valu);\r\n\r\n            if (valu>10){\r\n                cartQuantity.setText(\"10+\");\r\n            }*/\r\n\r\n        }\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n\r\n    @Override\r\n    public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n        \r\n        \r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View view) {\r\n        switch (view.getId()){\r\n\r\n\r\n\r\n            case R.id.nav_profile:\r\n\r\n\r\n                if (sharedPreferences.getPhone().equals(\"none\"))\r\n                {\r\n\r\n                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);\r\n                    intent.putExtra(\"method\", \"\" +\"MainActivity\");\r\n                    intent.putExtra(\"invoiceid\", \"\");\r\n                    intent.putExtra(\"subtotal\", \"\");\r\n                    intent.putExtra(\"total\", \"\");\r\n                    startActivity(intent);\r\n                }else {\r\n\r\n                    startActivity(new Intent(MainActivity.this, Profile.class));\r\n                }\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n\r\n\r\n            case R.id.nav_orders:\r\n                if (sharedPreferences.getPhone().equals(\"none\"))\r\n                {\r\n                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));\r\n                }else {\r\n\r\n                    startActivity(new Intent(MainActivity.this, MyOrders.class));\r\n                }\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n\r\n\r\n\r\n            case R.id.nav_man:\r\n\r\n                Intent intent=new Intent(MainActivity.this, ProductsActivity.class);\r\n                intent.putExtra(\"category\",\"Man\");\r\n                intent.putExtra(\"type\",\"none\");\r\n                startActivity(intent);\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n\r\n\r\n            case R.id.nav_woman:\r\n\r\n                intent=new Intent(MainActivity.this, ProductsActivity.class);\r\n                intent.putExtra(\"category\",\"Woman\");\r\n                intent.putExtra(\"type\",\"none\");\r\n                startActivity(intent);\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n\r\n            case R.id.nav_baby:\r\n\r\n                intent=new Intent(MainActivity.this, ProductsActivity.class);\r\n                intent.putExtra(\"category\",\"Baby\");\r\n                intent.putExtra(\"type\",\"none\");\r\n                startActivity(intent);\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n            case R.id.nav_logout:\r\n\r\n                sharedPreferences.setName(null);\r\n                sharedPreferences.setAddress(null);\r\n                sharedPreferences.setPhone(\"none\");\r\n                sharedPreferences.setEmail(null);\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n\r\n                break;\r\n\r\n          /*  case R.id.cart:\r\n                Toast.makeText(this, \"Logged Out\", Toast.LENGTH_SHORT).show();\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n                \r\n                break;\r\n\r\n\r\n            case R.id.loginid:\r\n                Toast.makeText(this, \"Logged Out\", Toast.LENGTH_SHORT).show();\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n          \r\n\r\n                break;\r\n\r\n            case R.id.createaccount:\r\n                Toast.makeText(this, \"Logged Out\", Toast.LENGTH_SHORT).show();\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n               \r\n\r\n                break;\r\n\r\n            case R.id.orderid:\r\n                Toast.makeText(this, \"Logged Out\", Toast.LENGTH_SHORT).show();\r\n\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n                \r\n\r\n                break;\r\n\r\n\r\n\r\n            case R.id.logout:\r\n                Toast.makeText(this, \"Logged Out\", Toast.LENGTH_SHORT).show();\r\n               \r\n\r\n                binding.createaccount.setVisibility(View.VISIBLE);\r\n                binding.loginid.setVisibility(View.VISIBLE);\r\n                binding.logout.setVisibility(View.GONE);\r\n                binding.orderid.setVisibility(View.GONE);\r\n                break;\r\n\r\n            case R.id.imageView3:\r\n                Toast.makeText(this, \"Kaj hoi na\", Toast.LENGTH_SHORT).show();\r\n                binding.drawerLayout.closeDrawer(GravityCompat.START);\r\n                Intent intent = new Intent(MainActivity.this, LoginActivity.class);\r\n                startActivity(intent);\r\n                break;\r\n\r\n            default:*/\r\n            default:\r\n\r\n        }\r\n    }\r\n    \r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/java/com/poribarbazar/MainActivity.java	(revision 01d1f14eb2358423e19c96381902bab8251f565b)
+-+++ app/src/main/java/com/poribarbazar/MainActivity.java	(date 1616778351324)
+-@@ -168,7 +168,12 @@
+-             case R.id.nav_orders:
+-                 if (sharedPreferences.getPhone().equals("none"))
+-                 {
+--                    startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+-+                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+-+                    intent.putExtra("method", "" +"MainActivity");
+-+                    intent.putExtra("invoiceid", "");
+-+                    intent.putExtra("subtotal", "");
+-+                    intent.putExtra("total", "");
+-+                    startActivity(intent);
+-                 }else {
+- 
+-                     startActivity(new Intent(MainActivity.this, MyOrders.class));
+-Index: .idea/jarRepositories.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"BintrayJCenter\" />\r\n      <option name=\"name\" value=\"BintrayJCenter\" />\r\n      <option name=\"url\" value=\"https://jcenter.bintray.com/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"Google\" />\r\n      <option name=\"name\" value=\"Google\" />\r\n      <option name=\"url\" value=\"https://dl.google.com/dl/android/maven2/\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- .idea/jarRepositories.xml	(revision 01d1f14eb2358423e19c96381902bab8251f565b)
+-+++ .idea/jarRepositories.xml	(date 1616778822327)
+-@@ -21,5 +21,10 @@
+-       <option name="name" value="Google" />
+-       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
+-     </remote-repository>
+-+    <remote-repository>
+-+      <option name="id" value="maven" />
+-+      <option name="name" value="maven" />
+-+      <option name="url" value="https://jitpack.io" />
+-+    </remote-repository>
+-   </component>
+- </project>
+-\ No newline at end of file
+-Index: build.gradle
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.1\"\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- build.gradle	(revision 01d1f14eb2358423e19c96381902bab8251f565b)
+-+++ build.gradle	(date 1616778750942)
+-@@ -16,6 +16,7 @@
+-     repositories {
+-         google()
+-         jcenter()
+-+        maven { url 'https://jitpack.io'}
+-     }
+- }
+- 
+-Index: app/build.gradle
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>apply plugin: 'com.android.application'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"29.0.3\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.poribarbazar\"\r\n        minSdkVersion 22\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    viewBinding{\r\n        enabled true\r\n    }\r\n\r\n    dataBinding{\r\n        enabled true\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n    implementation 'com.google.android.material:material:1.0.0'\r\n    implementation \"androidx.recyclerview:recyclerview:1.1.0\"\r\n    implementation 'com.github.bumptech.glide:glide:4.11.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'\r\n\r\n\r\n\r\n    // networking library\r\n    implementation 'com.squareup.okhttp3:okhttp:3.14.2'\r\n    implementation(\"com.squareup.okhttp3:okhttp:4.9.0\")\r\n    implementation 'com.squareup.retrofit2:retrofit:2.5.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'\r\n\r\n    // JSON parsing, serialize-deserialize\r\n    implementation 'com.google.code.gson:gson:2.8.6'\r\n\r\n    // pretty logger\r\n    implementation 'com.orhanobut:logger:2.2.0'\r\n\r\n    // image loading and caching\r\n    implementation 'com.squareup.picasso:picasso:2.71828'\r\n\r\n    implementation 'de.hdodenhof:circleimageview:3.1.0'\r\n\r\n    // event publish/subscribe\r\n    implementation 'org.greenrobot:eventbus:3.1.1'\r\n\r\n    implementation 'com.github.bumptech.glide:glide:4.8.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'\r\n\r\n\r\n    def room_version = \"2.2.3\"\r\n\r\n    implementation \"androidx.room:room-runtime:$room_version\"\r\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\r\n    implementation \"android.arch.persistence.room:rxjava2:1.1.1\"\r\n\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/build.gradle	(revision 01d1f14eb2358423e19c96381902bab8251f565b)
+-+++ app/build.gradle	(date 1616778602183)
+-@@ -81,4 +81,7 @@
+-     annotationProcessor "androidx.room:room-compiler:$room_version"
+-     implementation "android.arch.persistence.room:rxjava2:1.1.1"
+- 
+-+    //image slider
+-+    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
+-+
+- }
+-\ No newline at end of file
