@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,7 +28,10 @@ public class InvoiceActivity extends AppCompatActivity {
     ActivityInvoiceBinding binding;
     CartRepository repository;
     ArrayList<ModelCartRoom> carts = new ArrayList<>();
-    ModelCartRoom modelCartRoom=new ModelCartRoom();
+    ModelCartRoom modelCartRoom = new ModelCartRoom();
+    private String TAG;
+    int size;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +46,21 @@ public class InvoiceActivity extends AppCompatActivity {
         subtotal = getIntent().getStringExtra("subtotal");
         total = getIntent().getStringExtra("total");
 
-        binding.textView21.setText("Invoice number #"+getInvoiveID);
-        binding.textView23.setText(""+method);
-        binding.subtotalid.setText(subtotal+" BDT");
+        binding.textView21.setText("Invoice number #" + getInvoiveID);
+        binding.textView23.setText("" + method);
+        binding.subtotalid.setText(subtotal + " BDT");
         binding.totalid.setText("50 BDT");
-        binding.deliveryfeeid.setText(total+" BDT");
+        binding.deliveryfeeid.setText(total + " BDT");
         binding.appbar.title.setText("Invoice");
 
         getData();
-
-       /* Tools.snackInfo(InvoiceActivity.this,""+carts.size());*/
-
-        for (int j=0;j<carts.size();j++)
-        {
-
-            modelCartRoom.setId(carts.get(j).getId());
-            repository.delete(modelCartRoom);
-        }
-
-
 
 
         binding.appbar.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InvoiceActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -75,7 +68,7 @@ public class InvoiceActivity extends AppCompatActivity {
 
     public void go_home(View view) {
         Intent intent = new Intent(InvoiceActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
@@ -83,7 +76,7 @@ public class InvoiceActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(InvoiceActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
@@ -93,6 +86,11 @@ public class InvoiceActivity extends AppCompatActivity {
             public void onChanged(List<ModelCartRoom> modelCartRooms) {
                 carts.clear();
                 carts.addAll(modelCartRooms);
+
+                for (int j = 0; j < carts.size(); j++) {
+                    modelCartRoom.setId(carts.get(j).getId());
+                    repository.delete(modelCartRoom);
+                }
 
             }
         });

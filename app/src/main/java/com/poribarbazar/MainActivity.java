@@ -35,16 +35,16 @@ import com.poribarbazar.model.ModelCartRoom;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private ActivityMainBinding binding;
     HomeFragment homeFragment;
-    int valu =0;
+    int valu = 0;
     Toolbar toolbarr;
-    TextView toolbarTitle,cartQuantity;
+    TextView toolbarTitle, cartQuantity;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     MysharedPreferance sharedPreferences;
     CartRepository repository;
-    
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -55,19 +55,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         sharedPreferences = MysharedPreferance.getPreferences(getApplicationContext());
 
-        toolbarr=findViewById(R.id.toolbar);
+        toolbarr = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarr);
 
-     //   cartQuantity = findViewById(R.id.cart_quantity_id);
+        //   cartQuantity = findViewById(R.id.cart_quantity_id);
         cartQuantity = findViewById(R.id.cart_quantity_id);
-        toolbarTitle=findViewById(R.id.toolbarTitle);
+        toolbarTitle = findViewById(R.id.toolbarTitle);
         toolbarTitle.setText(R.string.app_name);
 
 
         setSupportActionBar(binding.include.toolbar);
 
-        actionBarDrawerToggle=new ActionBarDrawerToggle(this,
-                binding.drawerLayout,binding.include.toolbar,R.string.open, R.string.close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                binding.drawerLayout, binding.include.toolbar, R.string.open, R.string.close);
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.white));
 
 
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
 
         binding.navigationView.setNavigationItemSelectedListener(this);
-
 
 
         binding.navBaby.setOnClickListener(this);
@@ -94,14 +93,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onChanged(List<ModelCartRoom> modelCartRooms) {
 
-                if (modelCartRooms.size()==0){
+                if (modelCartRooms.size() == 0) {
                     cartQuantity.setVisibility(View.GONE);
-                }else {
+                } else {
                     cartQuantity.setVisibility(View.VISIBLE);
-                    if(modelCartRooms.size()>99){
+                    if (modelCartRooms.size() > 99) {
                         cartQuantity.setText("99+");
-                    }else {
-                        cartQuantity.setText(""+modelCartRooms.size());
+                    } else {
+                        cartQuantity.setText("" + modelCartRooms.size());
                     }
 
 
@@ -109,28 +108,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-            initFragmentHome();
-
-
-
+        initFragmentHome();
 
 
     }
 
-    private void initFragmentHome(){
-        homeFragment=new HomeFragment();
-        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(),homeFragment,"HomeFragment").commit();
+    private void initFragmentHome() {
+        homeFragment = new HomeFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(binding.include.contentMain.fragmentContainer.getId(), homeFragment, "HomeFragment").commit();
 
     }
-
-
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_cart,menu);
-
+        getMenuInflater().inflate(R.menu.menu_cart, menu);
 
 
         return true;
@@ -138,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.cartmenuid){
+        if (item.getItemId() == R.id.cartmenuid) {
 
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
             startActivity(intent);
@@ -161,30 +154,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        
-        
+
+
         return false;
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-
+        switch (view.getId()) {
 
 
             case R.id.nav_profile:
 
 
-                if (sharedPreferences.getPhone().equals("none"))
-                {
+                if (sharedPreferences.getPhone().equals("none")) {
 
-                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
-                    intent.putExtra("method", "" +"MainActivity");
+                    Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                    intent.putExtra("method", "" + "MainActivity");
                     intent.putExtra("invoiceid", "");
                     intent.putExtra("subtotal", "");
                     intent.putExtra("total", "");
                     startActivity(intent);
-                }else {
+                } else {
 
                     startActivity(new Intent(MainActivity.this, Profile.class));
                 }
@@ -194,15 +185,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             case R.id.nav_orders:
-                if (sharedPreferences.getPhone().equals("none"))
-                {
-                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
-                    intent.putExtra("method", "" +"MainActivity");
+                if (sharedPreferences.getPhone().equals("none")) {
+                    Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                    intent.putExtra("method", "" + "MainActivity");
                     intent.putExtra("invoiceid", "");
                     intent.putExtra("subtotal", "");
                     intent.putExtra("total", "");
                     startActivity(intent);
-                }else {
+                } else {
 
                     startActivity(new Intent(MainActivity.this, MyOrders.class));
                 }
@@ -212,12 +202,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
 
-
             case R.id.nav_man:
 
-                Intent intent=new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("category","Man");
-                intent.putExtra("type","none");
+                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Man");
+                intent.putExtra("type", "none");
                 startActivity(intent);
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
@@ -225,11 +214,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
 
+            case R.id.nav_electronic:
+
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Electronics");
+                intent.putExtra("type", "none");
+                startActivity(intent);
+
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+
+                break;
+
+            case R.id.nav_Watches:
+
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Watches & Accessories");
+                intent.putExtra("type", "none");
+                startActivity(intent);
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+
+                break;
+
+            case R.id.nav_health:
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Health & Beauty");
+                intent.putExtra("type", "none");
+                startActivity(intent);
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+
+
+            case R.id.nav_grocharies:
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Grocery");
+                intent.putExtra("type", "none");
+                startActivity(intent);
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+
+
+            case R.id.nav_home:
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Home & Lifestyle");
+                intent.putExtra("type", "none");
+                startActivity(intent);
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+
+
+
             case R.id.nav_woman:
 
-                intent=new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("category","Woman");
-                intent.putExtra("type","none");
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Woman");
+                intent.putExtra("type", "none");
                 startActivity(intent);
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
@@ -238,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_baby:
 
-                intent=new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("category","Baby");
-                intent.putExtra("type","none");
+                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("category", "Baby");
+                intent.putExtra("type", "none");
                 startActivity(intent);
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
@@ -254,65 +294,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 sharedPreferences.setEmail(null);
 
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
-                Tools.snackInfo(MainActivity.this,"Logout");
-
-                break;
-
-          /*  case R.id.cart:
-                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
-                
-                break;
-
-
-            case R.id.loginid:
-                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
-          
-
-                break;
-
-            case R.id.createaccount:
-                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
-               
-
-                break;
-
-            case R.id.orderid:
-                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
-                
+                Tools.snackInfo(MainActivity.this, "Logout");
 
                 break;
 
 
-
-            case R.id.logout:
-                Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-               
-
-                binding.createaccount.setVisibility(View.VISIBLE);
-                binding.loginid.setVisibility(View.VISIBLE);
-                binding.logout.setVisibility(View.GONE);
-                binding.orderid.setVisibility(View.GONE);
-                break;
-
-            case R.id.imageView3:
-                Toast.makeText(this, "Kaj hoi na", Toast.LENGTH_SHORT).show();
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                break;
-
-            default:*/
             default:
 
         }
     }
-    
+
 }

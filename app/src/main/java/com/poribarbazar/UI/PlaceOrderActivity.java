@@ -50,6 +50,12 @@ public class PlaceOrderActivity extends AppCompatActivity {
          subtotal = getIntent().getStringExtra("subtotal");
          phone = getIntent().getStringExtra("phone");
 
+         binding.backLogin.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 onBackPressed();
+             }
+         });
 
         binding.textView9.setText(price+" BDT");
         repository = new CartRepository(getApplicationContext());
