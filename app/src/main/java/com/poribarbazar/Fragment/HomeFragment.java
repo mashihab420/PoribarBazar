@@ -128,12 +128,13 @@ public class HomeFragment extends Fragment {
         binding.imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                products.clear();
                 binding.editText.getText().clear();
                 binding.searchLayout.setVisibility(View.GONE);
                 binding.imageView4.setVisibility(View.GONE);
                 binding.editText.setCursorVisible(false);
                 binding.homeLayout.setVisibility(View.VISIBLE);
-                products.clear();
+
 
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
