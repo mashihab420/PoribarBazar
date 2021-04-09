@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navWoman.setOnClickListener(this);
         binding.navWatches.setOnClickListener(this);
         binding.navMan.setOnClickListener(this);
+        binding.navGrocharies.setOnClickListener(this);
+        binding.navHome.setOnClickListener(this);
 
         repository = new CartRepository(this);
 
