@@ -209,6 +209,9 @@ public class LoginActivity extends AppCompatActivity {
     public void btn_login(View view) {
 
 
+        Tools.hideKeyboard(LoginActivity.this);
+
+
         String phonee = phone.getText().toString();
         String passs = pass.getText().toString();
 

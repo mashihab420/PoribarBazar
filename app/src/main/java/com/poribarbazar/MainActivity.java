@@ -34,6 +34,8 @@ import com.poribarbazar.model.ModelCartRoom;
 
 import java.util.List;
 
+import static androidx.core.view.GravityCompat.*;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private ActivityMainBinding binding;
@@ -58,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbarr = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarr);
 
+
+
+
+
+
+
+
+
         //   cartQuantity = findViewById(R.id.cart_quantity_id);
         cartQuantity = findViewById(R.id.cart_quantity_id);
         toolbarTitle = findViewById(R.id.toolbarTitle);
@@ -81,8 +91,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.white));
 
 
+
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+
+
+
+
+        binding.navigationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Tools.hideKeyboard(MainActivity.this);
+            }
+        });
 
         binding.navigationView.setNavigationItemSelectedListener(this);
 
@@ -191,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     startActivity(new Intent(MainActivity.this, Profile.class));
                 }
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
                 break;
 
@@ -209,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(MainActivity.this, MyOrders.class));
                 }
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
                 break;
 
@@ -221,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("type", "none");
                 startActivity(intent);
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
                 break;
 
@@ -233,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("type", "none");
                 startActivity(intent);
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
 
                 break;
@@ -244,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("category", "Watches & Accessories");
                 intent.putExtra("type", "none");
                 startActivity(intent);
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
 
                 break;
@@ -254,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("category", "Health & Beauty");
                 intent.putExtra("type", "none");
                 startActivity(intent);
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
                 break;
 
 
@@ -263,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("category", "Grocery");
                 intent.putExtra("type", "none");
                 startActivity(intent);
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
                 break;
 
 
@@ -272,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("category", "Home & Lifestyle");
                 intent.putExtra("type", "none");
                 startActivity(intent);
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
                 break;
 
 
@@ -284,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("type", "none");
                 startActivity(intent);
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
                 break;
 
@@ -295,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("type", "none");
                 startActivity(intent);
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
 
                 break;
             case R.id.nav_logout:
@@ -305,10 +327,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 sharedPreferences.setPhone("none");
                 sharedPreferences.setEmail(null);
 
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                binding.drawerLayout.closeDrawer(START);
                 Tools.snackInfo(MainActivity.this, "Logout");
 
-                intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent = new Intent(MainActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 

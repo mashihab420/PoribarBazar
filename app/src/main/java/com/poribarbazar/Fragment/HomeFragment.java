@@ -45,24 +45,24 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
-public class  HomeFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-private FragmentHomeBinding binding;
-Adapter_item_category adapter_item_category;
-AdapterOffers adapterOffers;
-AdapterFlashSell adapterFlashSell;
-AdapterPopularProduct adapterPopularProduct;
+    private FragmentHomeBinding binding;
+    Adapter_item_category adapter_item_category;
+    AdapterOffers adapterOffers;
+    AdapterFlashSell adapterFlashSell;
+    AdapterPopularProduct adapterPopularProduct;
 
-ApiInterface apiInterface;
-ArrayList<ModelCategory> categories=new ArrayList<>();
-ArrayList<ModelOffers> offers=new ArrayList<>();
-ArrayList<ModelProducts> flashSells=new ArrayList<>();
-ArrayList<ModelProducts> popularproducts=new ArrayList<>();
+    ApiInterface apiInterface;
+    ArrayList<ModelCategory> categories = new ArrayList<>();
+    ArrayList<ModelOffers> offers = new ArrayList<>();
+    ArrayList<ModelProducts> flashSells = new ArrayList<>();
+    ArrayList<ModelProducts> popularproducts = new ArrayList<>();
 
 
-    ArrayList<ModelProducts> products;
+    ArrayList<ModelProducts> products = new ArrayList<>();
     AdapterCategoryProduct adapterCategoryProduct;
-    ModelProducts modelProducts=new ModelProducts();
+    ModelProducts modelProducts = new ModelProducts();
 
 
     public HomeFragment() {
@@ -75,7 +75,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         super.onCreate(savedInstanceState);
 
         Retrofit instance = ApiClient.getClient();
-        apiInterface =instance.create(ApiInterface.class);
+        apiInterface = instance.create(ApiInterface.class);
         get_category();
         getOffers();
         getFlashSell();
@@ -94,21 +94,21 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
         }
 
-        binding= FragmentHomeBinding.inflate(inflater,container,false);
-        View view=binding.getRoot();
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
 
-        adapter_item_category = new Adapter_item_category(categories,getActivity());
-        binding.recylerCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        adapter_item_category = new Adapter_item_category(categories, getActivity());
+        binding.recylerCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        adapterOffers = new AdapterOffers(offers,getActivity());
-        binding.recylerOffers.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        adapterOffers = new AdapterOffers(offers, getActivity());
+        binding.recylerOffers.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        adapterFlashSell = new AdapterFlashSell(flashSells,getActivity());
-        binding.recyclerflashsell.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        adapterFlashSell = new AdapterFlashSell(flashSells, getActivity());
+        binding.recyclerflashsell.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        adapterPopularProduct = new AdapterPopularProduct(popularproducts,getActivity());
-        binding.recyclerpopularproduct.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        adapterPopularProduct = new AdapterPopularProduct(popularproducts, getActivity());
+        binding.recyclerpopularproduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
         binding.editText.setOnTouchListener(new View.OnTouchListener() {
@@ -133,14 +133,13 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
                 binding.imageView4.setVisibility(View.GONE);
                 binding.editText.setCursorVisible(false);
                 binding.homeLayout.setVisibility(View.VISIBLE);
+                products.clear();
 
 
-
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(binding.editText.getWindowToken(), 0);
             }
         });
-
 
 
         binding.searchIcon.setOnClickListener(new View.OnClickListener() {
@@ -149,14 +148,11 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
 
                 Retrofit instance = ApiClient.getClient();
-                apiInterface =instance.create(ApiInterface.class);
-                products=new ArrayList<>();
+                apiInterface = instance.create(ApiInterface.class);
+                binding.recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false));
+                adapterCategoryProduct = new AdapterCategoryProduct(products, getContext());
 
-                binding.recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(),3,GridLayoutManager.VERTICAL,false));
-                adapterCategoryProduct = new AdapterCategoryProduct(products,getContext());
-
-                if (!binding.editText.getText().toString().isEmpty())
-                {
+                if (!binding.editText.getText().toString().isEmpty()) {
                     getSearchProduct();
                 }
 
@@ -164,12 +160,10 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         });
 
 
-
         return view;
     }
 
-    public void getSearchProduct()
-    {
+    public void getSearchProduct() {
 
         binding.homeSpinkit.setVisibility(View.VISIBLE);
 
@@ -208,8 +202,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
     }
 
 
-    public void getOffers()
-    {
+    public void getOffers() {
 
         apiInterface.getOffers().enqueue(new Callback<List<ModelOffers>>() {
             @Override
@@ -227,8 +220,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         });
     }
 
-    public void getFlashSell()
-    {
+    public void getFlashSell() {
 
         apiInterface.getflashsell().enqueue(new Callback<List<ModelProducts>>() {
             @Override
@@ -246,8 +238,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
         });
     }
 
-    public void getPoputerProduct()
-    {
+    public void getPoputerProduct() {
 
         apiInterface.getPopularProduct().enqueue(new Callback<List<ModelProducts>>() {
             @Override
@@ -266,8 +257,7 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
     }
 
 
-
-    public void get_category(){
+    public void get_category() {
 
 
         apiInterface.getCategories().enqueue(new Callback<List<ModelCategory>>() {
@@ -322,7 +312,6 @@ ArrayList<ModelProducts> popularproducts=new ArrayList<>();
 
             }
         });*/
-
 
 
     }

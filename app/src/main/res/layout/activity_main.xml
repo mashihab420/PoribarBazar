@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -151,78 +150,92 @@
            </ScrollView>
 
 
-           <androidx.constraintlayout.widget.ConstraintLayout
+           <RelativeLayout
+               android:layout_alignParentBottom="true"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true">
 
-               <ImageView
-                   android:id="@+id/nav_profile"
-                   android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toStartOf="@+id/nav_orders"
-                   app:layout_constraintHorizontal_bias="0.5"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:srcCompat="@drawable/ic_user" />
+                   android:layout_alignParentBottom="true">
 
-               <TextView
-                   android:id="@+id/textView28"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="16dp"
-                   android:text="Profile"
-                   android:padding="8dp"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintEnd_toEndOf="@+id/nav_profile"
-                   app:layout_constraintStart_toStartOf="@+id/nav_profile"
-                   app:layout_constraintTop_toBottomOf="@+id/nav_profile" />
+                   <ImageView
+                       android:id="@+id/nav_profile"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintEnd_toStartOf="@+id/nav_orders"
+                       app:layout_constraintHorizontal_bias="0.5"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:srcCompat="@drawable/ic_user" />
 
-               <ImageView
-                   android:id="@+id/nav_orders"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toStartOf="@+id/nav_logout"
-                   app:layout_constraintHorizontal_bias="0.5"
-                   app:layout_constraintStart_toEndOf="@+id/nav_profile"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:srcCompat="@drawable/ic_shopping" />
+                   <TextView
+                       android:id="@+id/textView28"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="16dp"
+                       android:text="Profile"
+                       android:padding="8dp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="@+id/nav_profile"
+                       app:layout_constraintStart_toStartOf="@+id/nav_profile"
+                       app:layout_constraintTop_toBottomOf="@+id/nav_profile" />
 
-               <TextView
-                   android:id="@+id/orderid"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="16dp"
-                   android:text="Orders"
-                   android:padding="8dp"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintEnd_toEndOf="@+id/nav_orders"
-                   app:layout_constraintStart_toStartOf="@+id/nav_orders"
-                   app:layout_constraintTop_toBottomOf="@+id/nav_orders" />
+                   <ImageView
+                       android:id="@+id/nav_orders"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintEnd_toStartOf="@+id/nav_logout"
+                       app:layout_constraintHorizontal_bias="0.5"
+                       app:layout_constraintStart_toEndOf="@+id/nav_profile"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:srcCompat="@drawable/ic_shopping" />
 
-               <ImageView
-                   android:id="@+id/nav_logout"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.5"
-                   app:layout_constraintStart_toEndOf="@+id/nav_orders"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:srcCompat="@drawable/ic_logout" />
+                   <TextView
+                       android:id="@+id/orderid"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="16dp"
+                       android:text="Orders"
+                       android:padding="8dp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="@+id/nav_orders"
+                       app:layout_constraintStart_toStartOf="@+id/nav_orders"
+                       app:layout_constraintTop_toBottomOf="@+id/nav_orders" />
 
-               <TextView
-                   android:id="@+id/logoutText"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="16dp"
-                   android:text="Logout"
-                   android:padding="8dp"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintEnd_toEndOf="@+id/nav_logout"
-                   app:layout_constraintStart_toStartOf="@+id/nav_logout"
-                   app:layout_constraintTop_toBottomOf="@+id/nav_logout" />
+                   <ImageView
+                       android:id="@+id/nav_logout"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.5"
+                       app:layout_constraintStart_toEndOf="@+id/nav_orders"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:srcCompat="@drawable/ic_logout" />
 
-           </androidx.constraintlayout.widget.ConstraintLayout>
+                   <TextView
+                       android:id="@+id/logoutText"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="16dp"
+                       android:text="Logout"
+                       android:padding="8dp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="@+id/nav_logout"
+                       app:layout_constraintStart_toStartOf="@+id/nav_logout"
+                       app:layout_constraintTop_toBottomOf="@+id/nav_logout" />
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+           </RelativeLayout>
+
+
+
+
+
 
 
        </RelativeLayout>
