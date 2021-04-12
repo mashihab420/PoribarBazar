@@ -31,6 +31,7 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
 
     @NonNull
     @Override
+    //
     public Adapter_item_category.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        // View view = LayoutInflater.from(context).inflate(R.layout.item_category,parent,false);
       //return new Holder(ItemCartBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
