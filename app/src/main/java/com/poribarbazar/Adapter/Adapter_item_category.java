@@ -50,9 +50,11 @@ public class Adapter_item_category extends RecyclerView.Adapter<Adapter_item_cat
         holder.binding.categoryName.setText(categories.get(position).getCategory());
 
         String getcat = categories.get(position).getCategory();
+       // String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+
 
         Glide.with(context)
-                .load(categories.get(position).getImage_url())
+                .load(/*BaseURL+""+*/categories.get(position).getImage_url())
                 .override(300, 200)
                 .into(holder.binding.categoryImage);
 

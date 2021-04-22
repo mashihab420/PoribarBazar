@@ -50,8 +50,11 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         holder.p_name.setText(popularproduct.get(position).getPName());
         holder.price.setText(popularproduct.get(position).getPPrice()+" BDT");
         holder.disount_price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
+
+        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+
         Glide.with(context)
-                .load(popularproduct.get(position).getImageUrl())
+                .load(BaseURL+""+popularproduct.get(position).getImageUrl())
                 .into(holder.p_img);
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override

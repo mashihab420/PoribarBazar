@@ -60,8 +60,9 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
         holder.p_price_normal.setText(products.get(position).getPPrice()+" BDT");
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
+        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
         Glide.with(context)
-                .load(products.get(position).getImageUrl())
+                .load(BaseURL+""+products.get(position).getImageUrl())
                 .into(holder.image);
 
 

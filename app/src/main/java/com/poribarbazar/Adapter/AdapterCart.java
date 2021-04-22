@@ -63,12 +63,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
         holder.cartBinding.price.setText(carts.get(position).getP_price());
         holder.cartBinding.orderQuentity.setText(carts.get(position).getQuantity());
 
-
+        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
 
 
 
         Glide.with(context)
-                .load(carts.get(position).getUrl())
+                .load(BaseURL+""+carts.get(position).getUrl())
                 .override(300, 200)
                 .into(holder.cartBinding.image);
 
