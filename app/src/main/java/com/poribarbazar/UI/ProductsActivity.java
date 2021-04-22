@@ -47,7 +47,7 @@ public class ProductsActivity extends AppCompatActivity {
             binding.title.setText("Offer");
 
         }else {
-            binding.title.setText(getIntent().getStringExtra("category"));
+            binding.title.setText(getIntent().getStringExtra("sub_category"));
         }
 
         String quan = binding.cartQuantityId.getText().toString();

@@ -60,14 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbarr = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarr);
 
-
-
-
-
-
-
-
-
         //   cartQuantity = findViewById(R.id.cart_quantity_id);
         cartQuantity = findViewById(R.id.cart_quantity_id);
         toolbarTitle = findViewById(R.id.toolbarTitle);

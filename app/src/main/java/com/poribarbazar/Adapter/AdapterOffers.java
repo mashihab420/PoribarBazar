@@ -41,7 +41,7 @@ public class AdapterOffers extends RecyclerView.Adapter<AdapterOffers.Holder> {
     public void onBindViewHolder(@NonNull AdapterOffers.Holder holder, int position) {
 
 
-        holder.name.setText(offers.get(position).getItem_name());
+        holder.name.setText(offers.get(position).getSub_category());
         holder.discount.setText("Up-to "+offers.get(position).getDiscount_value()+" % Discount");
 
 
@@ -56,7 +56,6 @@ public class AdapterOffers extends RecyclerView.Adapter<AdapterOffers.Holder> {
 
                 Intent intent =new Intent(context, ProductsActivity.class);
                 intent.putExtra("type","Offer");
-                intent.putExtra("category",offers.get(position).getCategory());
                 intent.putExtra("sub_category",offers.get(position).getSub_category());
                 context.startActivity(intent);
 
