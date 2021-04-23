@@ -55,10 +55,10 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         if (hassize.equals("No")){
             binding.radioGroup.setVisibility(View.GONE);
-            binding.textView.setVisibility(View.GONE);
+            binding.sizeCaption.setVisibility(View.GONE);
         }else {
             binding.radioGroup.setVisibility(View.VISIBLE);
-            binding.textView.setVisibility(View.VISIBLE);
+            binding.sizeCaption.setVisibility(View.VISIBLE);
         }
 
         String quan = binding.cartQuantityId.getText().toString();
@@ -170,9 +170,14 @@ public class ProductInfoActivity extends AppCompatActivity {
                     modelCartRoom.setUrl(url);
                     modelCartRoom.setQuantity(""+quantitytext);
 
+                    if (hassize.equals("No"))
+                    {
+                        size="null";
+                    }
+
                     //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                    repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size));
+                    repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size,hassize));
 
 
                     Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {

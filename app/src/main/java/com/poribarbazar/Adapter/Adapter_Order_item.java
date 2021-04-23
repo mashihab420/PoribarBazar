@@ -2,6 +2,7 @@ package com.poribarbazar.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -41,7 +42,17 @@ public class Adapter_Order_item extends RecyclerView.Adapter<Adapter_Order_item.
         holder.binding.pName.setText(orders.get(position).getP_name());
         holder.binding.price.setText(orders.get(position).getP_price()+" BDT");
         holder.binding.orderQuantity.setText("Quantity: "+orders.get(position).getQuantity());
-        holder.binding.size.setText("Size: "+orders.get(position).getSize());
+
+        if (orders.get(position).getHas_size().equals("Yes"))
+        {
+            holder.binding.size.setVisibility(View.VISIBLE);
+            holder.binding.size.setText("Size: "+orders.get(position).getSize());
+        }else {
+
+            holder.binding.size.setVisibility(View.GONE);
+
+        }
+
 
 
 

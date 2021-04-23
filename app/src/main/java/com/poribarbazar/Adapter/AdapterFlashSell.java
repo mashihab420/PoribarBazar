@@ -45,7 +45,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String pname = flashSells.get(position).getPName();
-        String price = flashSells.get(position).getPPrice();
+        String price = flashSells.get(position).getDiscountPrice();
         String details = flashSells.get(position).getPDescription();
         String url = flashSells.get(position).getImageUrl();
         String url2 = flashSells.get(position).getImage_url2();
@@ -72,8 +72,17 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 modelCartRoom.setUrl(url);
                 modelCartRoom.setQuantity("1");
                 //    modelCartRoom.setP_name(binding.quantity.getText().toString());
+                String pSize;
+                if (hasSize.equals("No"))
+                {
+                    pSize="null";
+                }
+                else {
+                    pSize="M";
+                }
 
-                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+                modelCartRoom.setHasSize(hasSize);
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,pSize,hasSize));
 
 
 

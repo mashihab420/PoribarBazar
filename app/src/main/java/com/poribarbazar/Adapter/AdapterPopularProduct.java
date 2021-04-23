@@ -42,7 +42,7 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String pname = popularproduct.get(position).getPName();
-        String price = popularproduct.get(position).getPPrice();
+        String price = popularproduct.get(position).getDiscountPrice();
         String details = popularproduct.get(position).getPDescription();
         String url = popularproduct.get(position).getImageUrl();
         String url2 = popularproduct.get(position).getImage_url2();
@@ -59,11 +59,9 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // holder.quantity.setVisibility(View.VISIBLE);
-              //  holder.minus.setVisibility(View.VISIBLE);
-               /* int quantity= Integer.parseInt(holder.quantity.getText().toString());
-                quantity++;
-                holder.quantity.setText(""+quantity);*/
+
+
+
                 final CartRepository repository = new CartRepository(context);
 
                 ModelCartRoom modelCartRoom=new ModelCartRoom();
@@ -71,8 +69,17 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                 modelCartRoom.setP_price(price);
                 modelCartRoom.setUrl(url);
                 modelCartRoom.setQuantity("1");
+                String pSize;
+                if (hasSize.equals("No"))
+                {
+                    pSize="null";
+                }
+                else {
+                    pSize="M";
+                }
 
-                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+                modelCartRoom.setHasSize(hasSize);
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,pSize,hasSize));
 
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override

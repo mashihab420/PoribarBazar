@@ -34,6 +34,10 @@ public class ModelOrders {
     @Expose
     private String order_time;
 
+    @SerializedName("has_size")
+    @Expose
+    private String has_size;
+
     @SerializedName("order_status")
     @Expose
     private String order_status;
@@ -76,6 +80,14 @@ public class ModelOrders {
     @Expose
     private String trx_id;
 
+
+    public String getHas_size() {
+        return has_size;
+    }
+
+    public void setHas_size(String has_size) {
+        this.has_size = has_size;
+    }
 
     public String getImage() {
         return image;

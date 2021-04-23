@@ -161,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
             modelOrders.setPay_method("Home Delivey");
             modelOrders.setPayment_phone("null");
             modelOrders.setTrx_id("null");
+            modelOrders.setHas_size(carts.get(i).getHasSize());
 
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {

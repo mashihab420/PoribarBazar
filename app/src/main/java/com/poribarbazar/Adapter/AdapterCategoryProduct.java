@@ -50,7 +50,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     public void onBindViewHolder(@NonNull AdapterCategoryProduct.ViewHolder holder, int position) {
 
         String pname = products.get(position).getPName();
-        String price = products.get(position).getPPrice();
+        String price = products.get(position).getDiscountPrice();
         String details = products.get(position).getPDescription();
         String url = products.get(position).getImageUrl();
         String url2 = products.get(position).getImage_url2();
@@ -81,9 +81,20 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 modelCartRoom.setP_price(price);
                 modelCartRoom.setUrl(url);
                 modelCartRoom.setQuantity("1");
+
                 //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
-                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,"M"));
+                String pSize;
+                if (hasSize.equals("No"))
+                {
+                    pSize="null";
+                }
+                else {
+                    pSize="M";
+                }
+                modelCartRoom.setHasSize(hasSize);
+
+                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,pSize,hasSize));
 
                /* holder.quantity.setVisibility(View.VISIBLE);
                 holder.minus.setVisibility(View.VISIBLE);

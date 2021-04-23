@@ -72,22 +72,36 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
                 .override(300, 200)
                 .into(holder.cartBinding.image);
 
+
+
+
         String sizee = carts.get(position).getSize();
 
 
-        if (sizee.equals("S")){
-            holder.cartBinding.small.setChecked(true);
-        }
-        if (sizee.equals("M")){
-            holder.cartBinding.medium.setChecked(true);
-        }
-        if (sizee.equals("L")){
-            holder.cartBinding.large.setChecked(true);
-        }
-        if (sizee.equals("XL")){
+        if (!sizee.equals("null"))
+        {
 
-            holder.cartBinding.extralarge.setChecked(true);
+            holder.cartBinding.radioGroup.setVisibility(View.VISIBLE);
+            if (sizee.equals("S")){
+                holder.cartBinding.small.setChecked(true);
+            }
+            if (sizee.equals("M")){
+                holder.cartBinding.medium.setChecked(true);
+            }
+            if (sizee.equals("L")){
+                holder.cartBinding.large.setChecked(true);
+            }
+            if (sizee.equals("XL")){
+
+                holder.cartBinding.extralarge.setChecked(true);
+            }
         }
+        else {
+
+            holder.cartBinding.radioGroup.setVisibility(View.GONE);
+        }
+
+
 
 
 
