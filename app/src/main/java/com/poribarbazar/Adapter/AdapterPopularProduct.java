@@ -48,8 +48,8 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         String url2 = popularproduct.get(position).getImage_url2();
         String url3 = popularproduct.get(position).getImage_url3();
         holder.p_name.setText(popularproduct.get(position).getPName());
-        holder.price.setText(popularproduct.get(position).getPPrice()+" BDT");
-        holder.disount_price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
+        holder.disount_price.setText(popularproduct.get(position).getpPrice()+" BDT");
+        holder.price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
 
         String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
 

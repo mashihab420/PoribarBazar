@@ -25,6 +25,11 @@ public class ModelProducts {
     @SerializedName("p_name")
     @Expose
     private String pName;
+
+    @SerializedName("has_size")
+    @Expose
+    private String has_size;
+
     @SerializedName("p_description")
     @Expose
     private String pDescription;
@@ -34,10 +39,10 @@ public class ModelProducts {
     @SerializedName("stock")
     @Expose
     private String stock;
-    @SerializedName("discount_percent")
+    @SerializedName("discount_price")
     @Expose
     private String discountPrice;
-    @SerializedName("dicount_percentage")
+    @SerializedName("discount_percent")
     @Expose
     private String dicountPercentage;
     @SerializedName("flash_sell")
@@ -191,5 +196,13 @@ public class ModelProducts {
 
     public void setImage_url3(String image_url3) {
         this.image_url3 = image_url3;
+    }
+
+    public String getHas_size() {
+        return has_size;
+    }
+
+    public void setHas_size(String has_size) {
+        this.has_size = has_size;
     }
 }

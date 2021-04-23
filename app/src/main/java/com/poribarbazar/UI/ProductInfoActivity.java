@@ -45,6 +45,10 @@ public class ProductInfoActivity extends AppCompatActivity {
         String url2 = intent.getStringExtra("image_url2");
         String url3 = intent.getStringExtra("image_url3");
         String p_id = intent.getStringExtra("p_id");
+        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+
+        Toast.makeText(this, ""+BaseURL+url, Toast.LENGTH_SHORT).show();
+
         binding.textView13.setText(name);
 
         binding.textView18.setText(price);
@@ -68,12 +72,12 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         }
         if(url2.equals("") && url3.equals("")){
-            slideModels.add(new SlideModel(url));
+            slideModels.add(new SlideModel(BaseURL+url));
         }else {
           /*  slideModels.clear();*/
-            slideModels.add(new SlideModel(url));
-            slideModels.add(new SlideModel(url2));
-            slideModels.add(new SlideModel(url3));
+            slideModels.add(new SlideModel(BaseURL+url));
+            slideModels.add(new SlideModel(BaseURL+url2));
+            slideModels.add(new SlideModel(BaseURL+url3));
         }
 
         // slideModels.add(new SlideModel(imgurl1,"1 Image"));

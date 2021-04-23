@@ -58,7 +58,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         holder.p_name.setText(products.get(position).getPName());
         holder.offer.setText(products.get(position).getDicountPercentage()+" %");
 
-        holder.p_price_normal.setText(products.get(position).getPPrice()+" BDT");
+        holder.p_price_discount.setText(products.get(position).getpPrice()+" BDT");
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
         String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
         Glide.with(context)
@@ -146,7 +146,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
 
         ImageView image,plus,minus;
-        TextView offer,p_name,p_price_normal,p_price_final,quantity;
+        TextView offer,p_name,p_price_discount,p_price_final,quantity;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -158,7 +158,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             offer=itemView.findViewById(R.id.item_category_discount);
             p_name=itemView.findViewById(R.id.item_category_p_name);
             p_price_final=itemView.findViewById(R.id.item_category_final_price);
-            p_price_normal=itemView.findViewById(R.id.item_category_normal_price);
+            p_price_discount=itemView.findViewById(R.id.item_category_normal_price);
             quantity=itemView.findViewById(R.id.item_category_quantity);
 
 
