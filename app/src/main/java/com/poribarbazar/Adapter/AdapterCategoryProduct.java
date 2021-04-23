@@ -55,8 +55,11 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         String url = products.get(position).getImageUrl();
         String url2 = products.get(position).getImage_url2();
         String url3 = products.get(position).getImage_url3();
+        String hasSize = products.get(position).getHas_size();
+
         holder.p_name.setText(products.get(position).getPName());
         holder.offer.setText(products.get(position).getDicountPercentage()+" %");
+
 
         holder.p_price_discount.setText(products.get(position).getpPrice()+" BDT");
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
@@ -129,6 +132,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 intent.putExtra("image_url",url);
                 intent.putExtra("image_url2",url2);
                 intent.putExtra("image_url3",url3);
+                intent.putExtra("hassize",hasSize);
                 intent.putExtra("p_id",products.get(position).getId());
                 context.startActivity(intent);
             }

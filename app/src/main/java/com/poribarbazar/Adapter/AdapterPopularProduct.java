@@ -50,7 +50,7 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
         holder.p_name.setText(popularproduct.get(position).getPName());
         holder.disount_price.setText(popularproduct.get(position).getpPrice()+" BDT");
         holder.price.setText(popularproduct.get(position).getDiscountPrice()+" BDT");
-
+        String hasSize = popularproduct.get(position).getHas_size();
         String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
 
         Glide.with(context)
@@ -112,6 +112,7 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                 intent.putExtra("image_url",url);
                 intent.putExtra("image_url2",url2);
                 intent.putExtra("image_url3",url3);
+                intent.putExtra("hassize",hasSize);
                 intent.putExtra("p_id",popularproduct.get(position).getId());
                 context.startActivity(intent);
             }

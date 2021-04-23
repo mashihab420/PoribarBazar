@@ -45,18 +45,22 @@ public class ProductInfoActivity extends AppCompatActivity {
         String url2 = intent.getStringExtra("image_url2");
         String url3 = intent.getStringExtra("image_url3");
         String p_id = intent.getStringExtra("p_id");
+        String hassize = intent.getStringExtra("hassize");
         String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
 
-        Toast.makeText(this, ""+BaseURL+url, Toast.LENGTH_SHORT).show();
 
         binding.textView13.setText(name);
 
-        binding.textView18.setText(price);
-       // binding.textView17.setText(details);
+        binding.textView18.setText(price+" BDT");
 
-       /* Glide.with(getApplicationContext())
-                .load(url)
-                .into(binding.imageView5);*/
+        if (hassize.equals("No")){
+            binding.radioGroup.setVisibility(View.GONE);
+            binding.textView.setVisibility(View.GONE);
+        }else {
+            binding.radioGroup.setVisibility(View.VISIBLE);
+            binding.textView.setVisibility(View.VISIBLE);
+        }
+
         String quan = binding.cartQuantityId.getText().toString();
         if(quan.equals(0)){
             binding.cardnumber.setVisibility(View.GONE);
@@ -113,6 +117,8 @@ public class ProductInfoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        binding.textView17.setText(details);
 
 
         binding.plusitemquantity.setOnClickListener(new View.OnClickListener() {
