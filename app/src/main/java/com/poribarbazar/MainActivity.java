@@ -66,11 +66,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbarTitle.setText(R.string.app_name);
 
 
-
-        if (sharedPreferences.getPhone().equals("none")){
+        if (sharedPreferences.getPhone().equals("none")) {
             binding.navLogout.setVisibility(View.GONE);
             binding.logoutText.setVisibility(View.GONE);
-        }else{
+        } else {
             binding.navLogout.setVisibility(View.VISIBLE);
             binding.logoutText.setVisibility(View.VISIBLE);
         }
@@ -83,12 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.white));
 
 
-
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
-
-
 
 
         binding.navigationView.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navMan.setOnClickListener(this);
         binding.navGrocharies.setOnClickListener(this);
         binding.navHome.setOnClickListener(this);
+        binding.navFood.setOnClickListener(this);
 
         repository = new CartRepository(this);
 
@@ -290,7 +286,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
 
-
             case R.id.nav_woman:
 
                 intent = new Intent(MainActivity.this, ProductsActivity.class);
@@ -301,6 +296,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 binding.drawerLayout.closeDrawer(START);
 
                 break;
+
+
+            case R.id.nav_food:
+
+
+                Tools.snackInfo(MainActivity.this, "Coming Soon In Next Update !");
+
+                binding.drawerLayout.closeDrawer(START);
+
+                break;
+
 
             case R.id.nav_baby:
 
