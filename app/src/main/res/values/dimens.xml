@@ -12,7 +12,7 @@
     <dimen name="nav_item_top_margin">16dp</dimen>
     <dimen name="nav_item_text_size">22sp</dimen>
     <dimen name="nav_item_text_size_32">32sp</dimen>
-    <dimen name="text_size">6sp</dimen>
+    <dimen name="text_size">5sp</dimen>
     <dimen name="text_padding">8sp</dimen>
 
 

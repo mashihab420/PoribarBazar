@@ -116,7 +116,7 @@ public class ProductsActivity extends AppCompatActivity {
        }else {
            modelProducts=new ModelProducts();
            modelProducts.setCategory(getIntent().getStringExtra("category"));
-           modelOfferProducts.setSub_category(getIntent().getStringExtra("sub_category"));
+           modelProducts.setSub_category(getIntent().getStringExtra("sub_category"));
            getCategoryProduct();
        }
 
