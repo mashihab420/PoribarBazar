@@ -100,7 +100,7 @@ public class Profile extends AppCompatActivity {
 
                 mysharedPreferance.setName(binding.name.getText().toString());
              //   mysharedPreferance.setEmail(binding.email.getText().toString());
-                mysharedPreferance.setAddress(binding.phone.getText().toString());
+                mysharedPreferance.setAddress(binding.address.getText().toString());
                 Tools.snackOK(Profile.this, "Successful Saved", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
