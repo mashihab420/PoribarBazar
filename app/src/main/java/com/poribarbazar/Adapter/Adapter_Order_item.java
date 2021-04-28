@@ -34,7 +34,7 @@ public class Adapter_Order_item extends RecyclerView.Adapter<Adapter_Order_item.
     @Override
     public void onBindViewHolder(@NonNull Adapter_Order_item.Holder holder, int position) {
 
-        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+        String BaseURL="http://app.poribarbazar.com/poribarbazar/api/file_upload_api/";
         Glide.with(context)
                 .load(BaseURL+""+orders.get(position).getImage())
                 .into(holder.binding.image);

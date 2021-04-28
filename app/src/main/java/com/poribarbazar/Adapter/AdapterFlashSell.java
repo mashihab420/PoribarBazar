@@ -55,7 +55,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
 
         holder.disount_price.setText(flashSells.get(position).getPPrice()+" BDT");
         holder.price.setText(flashSells.get(position).getDiscountPrice()+" BDT");
-        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+        String BaseURL="http://app.poribarbazar.com/poribarbazar/api/file_upload_api/";
         Glide.with(context)
                 .load(BaseURL+""+flashSells.get(position).getImageUrl())
                 .into(holder.p_img);

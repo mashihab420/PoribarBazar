@@ -28,6 +28,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
     private ActivityProductInfoBinding binding;
 
+    String name,price,details,url,url2,url3,hassize,BaseURL,size;
     int quantitytext =1;
     CartRepository repository;
 
@@ -38,15 +39,15 @@ public class ProductInfoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("pname");
-        String price = intent.getStringExtra("price");
-        String details = intent.getStringExtra("details");
-        String url = intent.getStringExtra("image_url");
-        String url2 = intent.getStringExtra("image_url2");
-        String url3 = intent.getStringExtra("image_url3");
-        String p_id = intent.getStringExtra("p_id");
-        String hassize = intent.getStringExtra("hassize");
-        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+        name = intent.getStringExtra("pname");
+         price = intent.getStringExtra("price");
+         details = intent.getStringExtra("details");
+         url = intent.getStringExtra("image_url");
+         url2 = intent.getStringExtra("image_url2");
+         url3 = intent.getStringExtra("image_url3");
+       // String p_id = intent.getStringExtra("p_id");
+         hassize = intent.getStringExtra("hassize");
+         BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
 
 
         binding.textView13.setText(name);
@@ -156,14 +157,10 @@ public class ProductInfoActivity extends AppCompatActivity {
 
 
 
-                if (binding.radioGroup.getCheckedRadioButtonId()==-1){
-                    Toast.makeText(ProductInfoActivity.this, "You Must Select Dress Size ", Toast.LENGTH_SHORT).show();
-
-                }else{
-
+                if (hassize.equals("No"))
+                {
                     final CartRepository repository = new CartRepository(ProductInfoActivity.this);
-                    String size = ((RadioButton)findViewById(binding.radioGroup.getCheckedRadioButtonId())).getText().toString();
-
+                    //String size = ((RadioButton)findViewById(binding.radioGroup.getCheckedRadioButtonId())).getText().toString();
                     ModelCartRoom modelCartRoom=new ModelCartRoom();
                     modelCartRoom.setP_name(name);
                     modelCartRoom.setP_price(price);
@@ -172,13 +169,10 @@ public class ProductInfoActivity extends AppCompatActivity {
 
                     if (hassize.equals("No"))
                     {
-                        size="null";
+                       size="null";
                     }
 
-                    //    modelCartRoom.setP_name(binding.quantity.getText().toString());
-
                     repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size,hassize));
-
 
                     Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {
                         @Override
@@ -186,7 +180,41 @@ public class ProductInfoActivity extends AppCompatActivity {
                             startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
                         }
                     });
+
+                }else {
+
+                    if (binding.radioGroup.getCheckedRadioButtonId()==-1){
+                        Toast.makeText(ProductInfoActivity.this, "You Must Select Dress Size ", Toast.LENGTH_SHORT).show();
+
+                    }else{
+
+                        final CartRepository repository = new CartRepository(ProductInfoActivity.this);
+                        String size = ((RadioButton)findViewById(binding.radioGroup.getCheckedRadioButtonId())).getText().toString();
+
+                        ModelCartRoom modelCartRoom=new ModelCartRoom();
+                        modelCartRoom.setP_name(name);
+                        modelCartRoom.setP_price(price);
+                        modelCartRoom.setUrl(url);
+                        modelCartRoom.setQuantity(""+quantitytext);
+
+                        if (hassize.equals("No"))
+                        {
+                            size="null";
+                        }
+
+
+                        repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size,hassize));
+
+                        Tools.snackInfo_Listener(ProductInfoActivity.this, "Added to Cart", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
+                            }
+                        });
+                    }
                 }
+
+
 
 
 
@@ -199,4 +227,11 @@ public class ProductInfoActivity extends AppCompatActivity {
     public void info_cart(View view) {
         startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
     }
+
+    public void addToCart()
+    {
+
+    }
+
+
 }

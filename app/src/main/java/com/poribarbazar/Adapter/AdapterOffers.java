@@ -45,7 +45,7 @@ public class AdapterOffers extends RecyclerView.Adapter<AdapterOffers.Holder> {
         holder.discount.setText("Up-to "+offers.get(position).getDiscount_value()+" % Discount");
 
 
-        String BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+        String BaseURL="http://app.poribarbazar.com/poribarbazar/api/file_upload_api/";
         Glide.with(context)
                 .load(BaseURL+""+offers.get(position).getImage())
                 .override(300, 200)
