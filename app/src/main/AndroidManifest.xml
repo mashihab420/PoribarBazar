@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UI.OrderItems"></activity>
+        <activity android:name=".UI.SearchActivity"></activity>
+        <activity android:name=".UI.OrderItems" />
         <activity android:name=".UI.InvoiceActivity" />
         <activity android:name=".UI.MyOrders" />
         <activity android:name=".UI.Profile" />
@@ -28,15 +29,11 @@
         <activity android:name=".UI.CartActivity" />
         <activity android:name=".UI.LoginActivity" />
         <activity android:name=".UI.ProductInfoActivity" />
-        <activity android:name=".UI.PlaceOrderActivity">
-
-
-
-        </activity>
+        <activity android:name=".UI.PlaceOrderActivity"></activity>
         <activity android:name=".UI.ProductsActivity" />
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="preloaded_fonts"
