@@ -47,7 +47,7 @@ public class ProductInfoActivity extends AppCompatActivity {
          url3 = intent.getStringExtra("image_url3");
        // String p_id = intent.getStringExtra("p_id");
          hassize = intent.getStringExtra("hassize");
-         BaseURL="http://shihab.techdevbd.com/poribarbazar/api/file_upload_api/";
+         BaseURL="https://api.poribarbazar.com/file_upload_api/";
 
 
         binding.textView13.setText(name);
@@ -73,10 +73,10 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         List<SlideModel> slideModels = new ArrayList<>();
 
-        if(url.equals("") && url2.equals("") && url3.equals("")){
+        if(url.equals("null") && url2.equals("null") && url3.equals("null")){
 
         }
-        if(url2.equals("") && url3.equals("")){
+        if(url2.equals("null") && url3.equals("null")){
             slideModels.add(new SlideModel(BaseURL+url));
         }else {
           /*  slideModels.clear();*/
