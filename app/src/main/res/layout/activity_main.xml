@@ -128,7 +128,7 @@
                                 android:id="@+id/nav_home"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Home &amp; Lifestyle" />
+                                android:text="Home &amp; Living" />
 
                             <com.poribarbazar.UI.CustomTextView
                                 android:id="@+id/nav_food"

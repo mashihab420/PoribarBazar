@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_home:
                 intent = new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("category", "Home & Lifestyle");
+                intent.putExtra("category", "Home & Living");
                 intent.putExtra("type", "none");
                 startActivity(intent);
                 binding.drawerLayout.closeDrawer(START);
