@@ -29,6 +29,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     ArrayList<ModelProducts> products;
     Context context;
     CartRepository repository;
+    String getPrice;
 
 
     public AdapterCategoryProduct(ArrayList<ModelProducts> products, Context context) {
@@ -50,7 +51,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     public void onBindViewHolder(@NonNull AdapterCategoryProduct.ViewHolder holder, int position) {
 
         String pname = products.get(position).getPName();
-        String price = products.get(position).getDiscountPrice();
+
         String details = products.get(position).getPDescription();
         String url = products.get(position).getImageUrl();
         String url2 = products.get(position).getImage_url2();
@@ -59,10 +60,24 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
         holder.p_name.setText(products.get(position).getPName());
         holder.offer.setText(products.get(position).getDicountPercentage()+" %");
-
-
         holder.p_price_discount.setText(products.get(position).getpPrice()+" BDT");
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
+
+
+        if (products.get(position).getDiscountPrice().equals("0"))
+        {
+            getPrice=products.get(position).getpPrice();
+            holder.p_price_final.setVisibility(View.GONE);
+            holder.cross.setVisibility(View.GONE);
+            holder.offer.setVisibility(View.GONE);
+        }else {
+            holder.offer.setVisibility(View.VISIBLE);
+            holder.cross.setVisibility(View.VISIBLE);
+            holder.p_price_final.setVisibility(View.VISIBLE);
+            getPrice=products.get(position).getDiscountPrice();
+        }
+
+
         String BaseURL="https://api.poribarbazar.com/file_upload_api/";
         Glide.with(context)
                 .load(BaseURL+""+products.get(position).getImageUrl())
@@ -74,15 +89,25 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             @Override
             public void onClick(View view) {
 
+
+
+
+                if (products.get(position).getDiscountPrice().equals("0"))
+                {
+                    getPrice=products.get(position).getpPrice();
+
+                }else {
+                    getPrice=products.get(position).getDiscountPrice();
+                }
+
                 final CartRepository repository = new CartRepository(context);
 
                 ModelCartRoom modelCartRoom=new ModelCartRoom();
                 modelCartRoom.setP_name(pname);
-                modelCartRoom.setP_price(price);
+                modelCartRoom.setP_price(getPrice);
                 modelCartRoom.setUrl(url);
                 modelCartRoom.setQuantity("1");
 
-                //    modelCartRoom.setP_name(binding.quantity.getText().toString());
 
                 String pSize;
                 if (hasSize.equals("No"))
@@ -94,13 +119,9 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 }
                 modelCartRoom.setHasSize(hasSize);
 
-                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,pSize,hasSize));
+                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,pSize,hasSize));
 
-               /* holder.quantity.setVisibility(View.VISIBLE);
-                holder.minus.setVisibility(View.VISIBLE);
-                int quantity= Integer.parseInt(holder.quantity.getText().toString());
-                quantity++;
-                holder.quantity.setText(""+quantity);*/
+
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -110,27 +131,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             }
         });
 
-      /*  holder.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                int quantity= Integer.parseInt(holder.quantity.getText().toString());
-                if (quantity==0)
-                {
-                    holder.quantity.setVisibility(View.GONE);
-                    holder.minus.setVisibility(View.GONE);
-                }else {
-
-                    quantity--;
-                    holder.quantity.setText(""+quantity);
-                    holder.quantity.setVisibility(View.VISIBLE);
-                    holder.minus.setVisibility(View.VISIBLE);
-                }
-
-
-
-            }
-        });*/
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +139,13 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProductInfoActivity.class);
                 intent.putExtra("pname",pname);
-                intent.putExtra("price",price);
+                if (products.get(position).getDiscountPrice().equals("0"))
+                {
+                    intent.putExtra("price",products.get(position).getpPrice());
+
+                }else {
+                    intent.putExtra("price",products.get(position).getDiscountPrice());
+                }
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
                 intent.putExtra("image_url2",url2);
@@ -160,7 +167,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        ImageView image,plus,minus;
+        ImageView image,plus,minus,cross;
         TextView offer,p_name,p_price_discount,p_price_final,quantity;
 
 
@@ -175,6 +182,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
             p_price_final=itemView.findViewById(R.id.item_category_final_price);
             p_price_discount=itemView.findViewById(R.id.item_category_normal_price);
             quantity=itemView.findViewById(R.id.item_category_quantity);
+            cross=itemView.findViewById(R.id.item_category_cross);
 
 
 

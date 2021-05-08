@@ -2,13 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="140dp"
+    android:layout_width="150dp"
     app:cardCornerRadius="10dp"
     android:layout_marginLeft="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
-    android:layout_height="wrap_content">
+    android:paddingBottom="8dp"
+    android:paddingEnd="8dp"
+    android:layout_height="190dp">
 
 
    <RelativeLayout
@@ -27,16 +29,12 @@
            android:background="@color/white" />
 
 
-       <androidx.constraintlayout.widget.ConstraintLayout
+       <LinearLayout
+           android:layout_marginLeft="8dp"
+           android:layout_marginTop="115dp"
            android:orientation="vertical"
-           android:id="@+id/constraintLayout2"
            android:layout_width="match_parent"
-           android:layout_height="60dp"
-           android:layout_below="@+id/item_procut_image"
-           android:layout_marginStart="10dp"
-           android:layout_marginTop="8dp"
-           android:layout_alignParentBottom="true"
-           android:layout_marginEnd="8dp">
+           android:layout_height="wrap_content">
 
            <TextView
                android:id="@+id/item_product_name"
@@ -56,97 +54,92 @@
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:id="@+id/item_price"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/montserrat"
+                   android:text="0"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+
+               <ImageView
+                   android:id="@+id/price_cross"
+                   android:layout_width="45dp"
+                   android:layout_height="1dp"
+                   android:background="@drawable/line_design"
+                   app:layout_constraintBottom_toBottomOf="@+id/item_price"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="@+id/item_price" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
            <TextView
-               android:id="@+id/item_product_discount_price"
+               android:layout_marginBottom="4dp"
+               android:id="@+id/item_discount_price"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_marginStart="2dp"
-               android:fontFamily="@font/montserrat"
-               android:text="0"
-               app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-               app:layout_constraintStart_toStartOf="@+id/imageView4"
-               app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-           <ImageView
-               android:id="@+id/imageView4"
-               android:layout_width="45dp"
-               android:layout_height="1dp"
-               android:layout_marginTop="8dp"
-               android:background="@drawable/line_design"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/item_product_name" />
-
-
-           <TextView
-               android:id="@+id/item_product_price"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="8dp"
                android:fontFamily="@font/montserrat"
                android:text="12345678"
                android:textColor="@color/colorPrimaryDark"
+
                android:textStyle="bold"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintHorizontal_bias="0.0"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/imageView4"
+               app:layout_constraintTop_toBottomOf="@+id/item_price"
                app:layout_constraintVertical_bias="0.0" />
+       </LinearLayout>
 
+
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="30dp"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentBottom="true"
+           android:background="@drawable/add_product_design"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:id="@+id/item_category_plus"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginTop="8dp"
+               android:layout_marginBottom="8dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="1.0"
+               app:srcCompat="@drawable/ic_add" />
+
+
+
+           <ImageView
+               android:id="@+id/item_product_minus"
+               android:layout_width="16dp"
+               android:layout_height="16dp"
+               android:visibility="gone"
+               android:layout_marginTop="8dp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:srcCompat="@drawable/ic_minus" />
 
        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/add_product_design"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        >
-
-
-        <ImageView
-            android:id="@+id/item_category_plus"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_add" />
-
-        <TextView
-            android:id="@+id/item_category_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="0"
-            android:visibility="gone"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/item_category_plus"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_product_minus" />
-
-        <ImageView
-            android:id="@+id/item_product_minus"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:visibility="gone"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_minus" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
    </RelativeLayout>
 </androidx.cardview.widget.CardView>
+
+
+
+
+
+

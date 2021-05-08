@@ -118,20 +118,20 @@ public class HomeFragment extends Fragment {
 
                 binding.searchLayout.setVisibility(View.VISIBLE);
                 binding.homeLayout.setVisibility(View.GONE);
-                binding.imageView4.setVisibility(View.VISIBLE);
+                binding.cross.setVisibility(View.VISIBLE);
 
                 return false;
             }
         });
 
 
-        binding.imageView4.setOnClickListener(new View.OnClickListener() {
+        binding.cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 products.clear();
                 binding.editText.getText().clear();
                 binding.searchLayout.setVisibility(View.GONE);
-                binding.imageView4.setVisibility(View.GONE);
+                binding.cross.setVisibility(View.GONE);
                 binding.editText.setCursorVisible(false);
                 binding.homeLayout.setVisibility(View.VISIBLE);
 

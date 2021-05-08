@@ -19,8 +19,6 @@ import com.poribarbazar.Tools;
 import com.poribarbazar.UI.CartActivity;
 import com.poribarbazar.UI.ProductInfoActivity;
 import com.poribarbazar.model.ModelCartRoom;
-import com.poribarbazar.model.ModelFlashSell;
-import com.poribarbazar.model.ModelOffers;
 import com.poribarbazar.model.ModelProducts;
 
 import java.util.ArrayList;
@@ -28,6 +26,7 @@ import java.util.ArrayList;
 public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyViewHolder> {
     ArrayList<ModelProducts> flashSells;
     Context context;
+    String getPrice;
 
     public AdapterFlashSell(ArrayList<ModelProducts> flashSells, Context context) {
         this.flashSells = flashSells;
@@ -45,7 +44,6 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String pname = flashSells.get(position).getPName();
-        String price = flashSells.get(position).getDiscountPrice();
         String details = flashSells.get(position).getPDescription();
         String url = flashSells.get(position).getImageUrl();
         String url2 = flashSells.get(position).getImage_url2();
@@ -53,9 +51,23 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
         holder.p_name.setText(flashSells.get(position).getPName());
         String hasSize = flashSells.get(position).getHas_size();
 
-        holder.disount_price.setText(flashSells.get(position).getPPrice()+" BDT");
-        holder.price.setText(flashSells.get(position).getDiscountPrice()+" BDT");
+        holder.price.setText(flashSells.get(position).getPPrice()+" BDT");
+        holder.disount_price.setText(flashSells.get(position).getDiscountPrice()+" BDT");
         String BaseURL="https://api.poribarbazar.com/file_upload_api/";
+
+
+        if (flashSells.get(position).getDiscountPrice().equals("0"))
+        {
+            getPrice=flashSells.get(position).getpPrice();
+            holder.disount_price.setVisibility(View.GONE);
+            holder.price_cross.setVisibility(View.GONE);
+        }else {
+            holder.price_cross.setVisibility(View.VISIBLE);
+            holder.disount_price.setVisibility(View.VISIBLE);
+            getPrice=flashSells.get(position).getDiscountPrice();
+        }
+
+
         Glide.with(context)
                 .load(BaseURL+""+flashSells.get(position).getImageUrl())
                 .into(holder.p_img);
@@ -64,11 +76,21 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
             @Override
             public void onClick(View view) {
 
-                final CartRepository repository = new CartRepository(context);
 
+
+                if (flashSells.get(position).getDiscountPrice().equals("0"))
+                {
+                    getPrice=flashSells.get(position).getpPrice();
+
+                }else {
+                    getPrice=flashSells.get(position).getDiscountPrice();
+                }
+
+
+                final CartRepository repository = new CartRepository(context);
                 ModelCartRoom modelCartRoom=new ModelCartRoom();
                 modelCartRoom.setP_name(pname);
-                modelCartRoom.setP_price(price);
+                modelCartRoom.setP_price(getPrice);
                 modelCartRoom.setUrl(url);
                 modelCartRoom.setQuantity("1");
                 //    modelCartRoom.setP_name(binding.quantity.getText().toString());
@@ -82,15 +104,9 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 }
 
                 modelCartRoom.setHasSize(hasSize);
-                repository.insertSingleData(new ModelCartRoom(pname,price,"1",url,pSize,hasSize));
+                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,pSize,hasSize));
 
 
-
-              //  holder.quantity.setVisibility(View.VISIBLE);
-            //    holder.minus.setVisibility(View.VISIBLE);
-                int quantity= Integer.parseInt(holder.quantity.getText().toString());
-                quantity++;
-            //    holder.quantity.setText(""+quantity);
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -102,24 +118,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
             }
         });
 
-        holder.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                int quantity= Integer.parseInt(holder.quantity.getText().toString());
-                if (quantity==0)
-                {
-                    holder.quantity.setVisibility(View.GONE);
-                    holder.minus.setVisibility(View.GONE);
-                }else {
-
-                    quantity--;
-                    holder.quantity.setText(""+quantity);
-                    holder.quantity.setVisibility(View.VISIBLE);
-                    holder.minus.setVisibility(View.VISIBLE);
-                }
-            }
-        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +126,15 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProductInfoActivity.class);
                 intent.putExtra("pname",pname);
-                intent.putExtra("price",price);
+                if (flashSells.get(position).getDiscountPrice().equals("0"))
+                {
+                    intent.putExtra("price",flashSells.get(position).getpPrice());
+
+
+                }else {
+                    intent.putExtra("price",flashSells.get(position).getDiscountPrice());
+                }
+
                 intent.putExtra("details",details);
                 intent.putExtra("image_url",url);
                 intent.putExtra("image_url2",url2);
@@ -145,17 +152,18 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView p_img,minus,pluse;
+        ImageView p_img,minus,pluse,price_cross;
         TextView p_name,price,disount_price,quantity;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             p_img = itemView.findViewById(R.id.item_procut_image);
             p_name = itemView.findViewById(R.id.item_product_name);
-            price = itemView.findViewById(R.id.item_product_price);
-            disount_price = itemView.findViewById(R.id.item_product_discount_price);
+            disount_price = itemView.findViewById(R.id.item_discount_price);
+            price= itemView.findViewById(R.id.item_price);
             quantity = itemView.findViewById(R.id.item_category_quantity);
             minus = itemView.findViewById(R.id.item_product_minus);
             pluse = itemView.findViewById(R.id.item_category_plus);
+            price_cross = itemView.findViewById(R.id.price_cross);
 
         }
     }
