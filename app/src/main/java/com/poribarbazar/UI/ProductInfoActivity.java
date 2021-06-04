@@ -7,7 +7,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +24,8 @@ import com.poribarbazar.databinding.ActivityProductInfoBinding;
 import com.poribarbazar.model.ModelCartRoom;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductInfoActivity extends AppCompatActivity {
@@ -31,6 +35,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     String name,price,details,url,url2,url3,hassize,BaseURL,size;
     int quantitytext =1;
     CartRepository repository;
+    Spinner spinner;
+    ArrayList<String> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,33 @@ public class ProductInfoActivity extends AppCompatActivity {
          hassize = intent.getStringExtra("hassize");
          BaseURL="https://api.poribarbazar.com/file_upload_api/";
 
+
+       String s1 = "23,45,42,12,1121";
+
+        String[] array = s1.split(",");
+
+
+        Collections.addAll(arrayList, array);
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayList);
+
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+
+        //Toast.makeText(this, ""+arrayList.get(3), Toast.LENGTH_SHORT).show();
+
+       // arrayList.addAll(Arrays.asList(array));
+
+      //  Toast.makeText(this, ""+array[0], Toast.LENGTH_SHORT).show();
+    /*    for (int i=0;i<array.length;i++){
+            Toast.makeText(this, ""+array[i], Toast.LENGTH_SHORT).show();
+        }
+*/
 
         binding.textView13.setText(name);
 

@@ -103,7 +103,7 @@ public class ProductsActivity extends AppCompatActivity {
         GridLayoutManager  mLayoutManager = new GridLayoutManager(ProductsActivity.this,columns);
         binding.recyler.setLayoutManager(mLayoutManager);*/
 
-       binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3,GridLayoutManager.VERTICAL,false));
+       binding.recyler.setLayoutManager(new GridLayoutManager(ProductsActivity.this,2,GridLayoutManager.VERTICAL,false));
 
 
        if (getIntent().getStringExtra("type").equals("Offer"))

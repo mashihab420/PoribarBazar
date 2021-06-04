@@ -209,7 +209,7 @@ public class SignUpActivity extends AppCompatActivity {
                         modelUser.setPassword(passs);
 
 
-                        apiInterface.check_data(phonee).enqueue(new Callback<ModelUser>() {
+                        apiInterface.check_data(""+phonee).enqueue(new Callback<ModelUser>() {
                             @Override
                             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
                                 if (response.body().getResponse().equals("ok")) {
@@ -225,7 +225,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 } else {
 
-                                    sendData(modelUser);
+                                   sendData(modelUser);
+                                   // Toast.makeText(SignUpActivity.this, "Id Kule gese", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
