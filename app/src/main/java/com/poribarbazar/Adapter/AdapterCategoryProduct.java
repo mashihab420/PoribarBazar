@@ -152,6 +152,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 intent.putExtra("image_url3",url3);
                 intent.putExtra("hassize",hasSize);
                 intent.putExtra("p_id",products.get(position).getId());
+                intent.putExtra("size_list",products.get(position).getSize_list());
                 context.startActivity(intent);
             }
         });

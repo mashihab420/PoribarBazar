@@ -52,6 +52,18 @@ public class ModelProducts {
     @Expose
     private String polular;
 
+    @SerializedName("size_list")
+    @Expose
+    private String size_list;
+
+    public String getSize_list() {
+        return size_list;
+    }
+
+    public ModelProducts setSize_list(String size_list) {
+        this.size_list = size_list;
+        return this;
+    }
 
     @SerializedName("sub_category")
     @Expose

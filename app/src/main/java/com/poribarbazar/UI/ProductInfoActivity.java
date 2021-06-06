@@ -32,7 +32,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
     private ActivityProductInfoBinding binding;
 
-    String name,price,details,url,url2,url3,hassize,BaseURL,size;
+    String name,price,details,url,url2,url3,hassize,BaseURL,size,size_list,getSize;
     int quantitytext =1;
     CartRepository repository;
     Spinner spinner;
@@ -56,9 +56,11 @@ public class ProductInfoActivity extends AppCompatActivity {
          BaseURL="https://api.poribarbazar.com/file_upload_api/";
 
 
-       String s1 = "23,45,42,12,1121";
+          size_list=intent.getStringExtra("size_list");
 
-        String[] array = s1.split(",");
+      // String s1 = "23,45,42,12,1121";
+
+        String[] array = size_list.split(",");
 
 
         Collections.addAll(arrayList, array);
@@ -203,6 +205,11 @@ public class ProductInfoActivity extends AppCompatActivity {
                     if (hassize.equals("No"))
                     {
                        size="null";
+                    }
+                    else {
+
+                        size=spinner.getSelectedItem().toString();
+
                     }
 
                     repository.insertSingleData(new ModelCartRoom(name,price,""+quantitytext,url,""+size,hassize));
