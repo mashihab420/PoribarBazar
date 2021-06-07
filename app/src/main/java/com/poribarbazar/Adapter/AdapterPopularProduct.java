@@ -100,8 +100,12 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                     pSize="M";
                 }
 
+                String  size_list= popularproduct.get(position).getSize_list();
+                String[] array = size_list.split(",");
+
+
                 modelCartRoom.setHasSize(hasSize);
-                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,pSize,hasSize));
+                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,""+array[0],hasSize));
 
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {
                     @Override

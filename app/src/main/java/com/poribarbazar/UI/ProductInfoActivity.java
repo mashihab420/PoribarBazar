@@ -192,8 +192,8 @@ public class ProductInfoActivity extends AppCompatActivity {
 
 
 
-                if (hassize.equals("No"))
-                {
+                /*if (hassize.equals("No"))
+                {*/
                     final CartRepository repository = new CartRepository(ProductInfoActivity.this);
                     //String size = ((RadioButton)findViewById(binding.radioGroup.getCheckedRadioButtonId())).getText().toString();
                     ModelCartRoom modelCartRoom=new ModelCartRoom();
@@ -221,9 +221,9 @@ public class ProductInfoActivity extends AppCompatActivity {
                         }
                     });
 
-                }else {
+               /* }else {*/
 
-                    if (binding.radioGroup.getCheckedRadioButtonId()==-1){
+                    /*if (binding.radioGroup.getCheckedRadioButtonId()==-1){
                         Toast.makeText(ProductInfoActivity.this, "You Must Select Dress Size ", Toast.LENGTH_SHORT).show();
 
                     }else{
@@ -251,7 +251,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                                 startActivity(new Intent(ProductInfoActivity.this,CartActivity.class));
                             }
                         });
-                    }
+                    }*/
                 }
 
 
@@ -259,7 +259,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
 
 
-            }
+           /* }*/
         });
 
     }

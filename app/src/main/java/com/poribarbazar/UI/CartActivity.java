@@ -105,8 +105,8 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             @Override
             public void onClick(View view) {
                 //   Toast.makeText(CartActivity.this, ""+radio_bkash.getText(), Toast.LENGTH_SHORT).show();
-                binding.button2.setBackgroundColor(binding.button2.getContext().getResources().getColor(R.color.colorPrimaryDark));
-                binding.button2.setText("Continue");
+                binding.btnOrder.setBackgroundColor(binding.btnOrder.getContext().getResources().getColor(R.color.colorPrimaryDark));
+                binding.btnOrder.setText("Continue");
             }
         });
 
@@ -114,12 +114,12 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             @Override
             public void onClick(View view) {
                 //   Toast.makeText(CartActivity.this, ""+binding.radiocashondelivery.getText(), Toast.LENGTH_SHORT).show();
-                binding.button2.setBackgroundColor(binding.button2.getContext().getResources().getColor(R.color.colorPrimaryDark));
-                binding.button2.setText("Buy Now");
+                binding.btnOrder.setBackgroundColor(binding.btnOrder.getContext().getResources().getColor(R.color.colorPrimaryDark));
+                binding.btnOrder.setText("Buy Now");
             }
         });
 
-        binding.button2.setOnClickListener(new View.OnClickListener() {
+        binding.btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (binding.radiobkash.isChecked() == true) {
@@ -241,6 +241,7 @@ public class CartActivity extends AppCompatActivity implements OnDataSend {
             modelOrders.setPay_method("Home Delivey");
             modelOrders.setPayment_phone("null");
             modelOrders.setTrx_id("null");
+            modelOrders.setHas_size(carts.get(i).getHasSize());
             modelOrders.setHas_size(carts.get(i).getHasSize());
 
             apiInterface.insert_order(modelOrders).enqueue(new Callback<ModelOrders>() {

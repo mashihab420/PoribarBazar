@@ -86,6 +86,8 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                     getPrice=flashSells.get(position).getDiscountPrice();
                 }
 
+                String  size_list= flashSells.get(position).getSize_list();
+                String[] array = size_list.split(",");
 
                 final CartRepository repository = new CartRepository(context);
                 ModelCartRoom modelCartRoom=new ModelCartRoom();
@@ -104,7 +106,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 }
 
                 modelCartRoom.setHasSize(hasSize);
-                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,pSize,hasSize));
+                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,""+array[0],hasSize));
 
 
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {

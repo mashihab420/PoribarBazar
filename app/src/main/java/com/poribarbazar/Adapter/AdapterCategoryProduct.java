@@ -109,6 +109,13 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 modelCartRoom.setQuantity("1");
 
 
+              String  size_list= products.get(position).getSize_list();
+
+
+                String[] array = size_list.split(",");
+
+
+
                 String pSize;
                 if (hasSize.equals("No"))
                 {
@@ -119,7 +126,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
                 }
                 modelCartRoom.setHasSize(hasSize);
 
-                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,pSize,hasSize));
+                repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,""+array[0],hasSize));
 
 
                 Tools.snackInfo_Listener((Activity) context, "Added to cart", new View.OnClickListener() {

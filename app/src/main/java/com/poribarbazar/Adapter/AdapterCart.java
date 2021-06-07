@@ -77,8 +77,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
 
         String sizee = carts.get(position).getSize();
 
+        holder.cartBinding.size.setText("Size: "+sizee);
 
-        if (!sizee.equals("null"))
+        /*if (!sizee.equals("null"))
         {
 
             holder.cartBinding.radioGroup.setVisibility(View.VISIBLE);
@@ -99,11 +100,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
         else {
 
             holder.cartBinding.radioGroup.setVisibility(View.GONE);
-        }
+        }*/
 
 
 
 
+/*
 
         holder.cartBinding.small.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +155,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartHolder> {
         });
 
 
+*/
 
 
 

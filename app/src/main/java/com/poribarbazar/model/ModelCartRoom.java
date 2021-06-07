@@ -27,7 +27,9 @@ public class ModelCartRoom {
         this.url = url;
         this.size = size;
         this.hasSize = hasSize;
+
     }
+
 
 
     public String getHasSize() {
