@@ -152,6 +152,7 @@ public class AdapterPopularProduct extends RecyclerView.Adapter<AdapterPopularPr
                 intent.putExtra("image_url2",url2);
                 intent.putExtra("image_url3",url3);
                 intent.putExtra("hassize",hasSize);
+                intent.putExtra("size_list",popularproduct.get(position).getSize_list());
                 intent.putExtra("p_id",popularproduct.get(position).getId());
                 context.startActivity(intent);
             }

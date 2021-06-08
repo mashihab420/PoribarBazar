@@ -143,6 +143,7 @@ public class AdapterFlashSell extends RecyclerView.Adapter<AdapterFlashSell.MyVi
                 intent.putExtra("image_url3",url3);
                 intent.putExtra("hassize",hasSize);
                 intent.putExtra("p_id",flashSells.get(position).getId());
+                intent.putExtra("size_list",flashSells.get(position).getSize_list());
                 context.startActivity(intent);
             }
         });

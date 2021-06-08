@@ -120,8 +120,8 @@
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/imageView5"
-                android:layout_width="180dp"
-                android:layout_height="200dp"
+                android:layout_width="300dp"
+                android:layout_height="230dp"
                 android:layout_marginTop="8dp"
                 app:auto_cycle="true"
                 app:corner_radius="5"
@@ -180,11 +180,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Size:"
                 android:textColor="@color/black_material"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -238,22 +238,25 @@
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                android:layout_marginStart="24dp"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="@+id/size_caption"
+                app:layout_constraintStart_toEndOf="@+id/size_caption"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Details :"
                 android:textColor="@color/black_material"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/size_caption" />
 
 
             <TextView
@@ -261,15 +264,15 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textSize="16sp"
                 android:fontFamily="@font/montserrat"
                 android:justificationMode="inter_word"
                 android:lineSpacingExtra="5dp"
                 android:text=""
                 android:textColor="@color/black_material"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

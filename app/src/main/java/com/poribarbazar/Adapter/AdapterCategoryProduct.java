@@ -64,7 +64,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
         holder.p_price_final.setText(products.get(position).getDiscountPrice()+" BDT");
 
 
-        if (products.get(position).getDiscountPrice().equals("0"))
+        if (products.get(position).getDicountPercentage().equals("0"))
         {
             getPrice=products.get(position).getpPrice();
             holder.p_price_final.setVisibility(View.GONE);
@@ -116,14 +116,7 @@ public class AdapterCategoryProduct extends RecyclerView.Adapter<AdapterCategory
 
 
 
-                String pSize;
-                if (hasSize.equals("No"))
-                {
-                    pSize="null";
-                }
-                else {
-                    pSize="M";
-                }
+
                 modelCartRoom.setHasSize(hasSize);
 
                 repository.insertSingleData(new ModelCartRoom(pname,getPrice,"1",url,""+array[0],hasSize));

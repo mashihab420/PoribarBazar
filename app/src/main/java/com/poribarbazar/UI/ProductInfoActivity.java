@@ -61,8 +61,6 @@ public class ProductInfoActivity extends AppCompatActivity {
       // String s1 = "23,45,42,12,1121";
 
         String[] array = size_list.split(",");
-
-
         Collections.addAll(arrayList, array);
 
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -104,33 +102,37 @@ public class ProductInfoActivity extends AppCompatActivity {
             binding.cardnumber.setVisibility(View.VISIBLE);
         }
 
-        ImageSlider imageSlider = findViewById(R.id.imageView5);
 
-        List<SlideModel> slideModels = new ArrayList<>();
+        try {
 
-        if(url.equals("null") && url2.equals("null") && url3.equals("null")){
+            ImageSlider imageSlider = findViewById(R.id.imageView5);
+            List<SlideModel> slideModels = new ArrayList<>();
+            if(url.equals("null") && url2.equals("null") && url3.equals("null")){
 
-        }
-        if(url2.equals("null") && url3.equals("null")){
-            slideModels.add(new SlideModel(BaseURL+url));
-        }else {
-          /*  slideModels.clear();*/
-            slideModels.add(new SlideModel(BaseURL+url));
-            slideModels.add(new SlideModel(BaseURL+url2));
-            slideModels.add(new SlideModel(BaseURL+url3));
-        }
-
-        // slideModels.add(new SlideModel(imgurl1,"1 Image"));
-
-
-      imageSlider.setImageList(slideModels,false);
-
-        imageSlider.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemSelected(int i) {
-                //Toast.makeText(ProductInfoActivity.this, "slider position: "+i, Toast.LENGTH_SHORT).show();
             }
-        });
+            if(url2.equals("null") && url3.equals("null")){
+                slideModels.add(new SlideModel(BaseURL+url));
+            }else {
+
+                slideModels.add(new SlideModel(BaseURL+url));
+                slideModels.add(new SlideModel(BaseURL+url2));
+                slideModels.add(new SlideModel(BaseURL+url3));
+            }
+
+            imageSlider.setImageList(slideModels,false);
+
+
+        }catch (Exception e)
+        {
+
+        }
+
+
+
+
+
+
+
 
 
         repository = new CartRepository(this);
